@@ -2,6 +2,9 @@
   "@@locale": "en",
   "helloWorld": "Hello World!",
   "name": "Ahmed",
-  "appName": "Flower App"
+  "appName": "Flower App",
+  "home": "Home",
+  "orders": "Orders",
+  "profile": "Profile"
 
 }

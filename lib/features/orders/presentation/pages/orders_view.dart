@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class MyProfile extends StatelessWidget {
-  const MyProfile({super.key});
+class OrdersView extends StatelessWidget {
+  const OrdersView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(
-      title:Text('MyProfile') ,
+      title:Text('OrdersView') ,
     ),);
   }
 }

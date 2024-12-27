@@ -101,3 +101,9 @@ flutter:
           weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  assets:
+    - assets/
+    - assets/fonts/
+    - assets/images/
+    - assets/map_style/
+

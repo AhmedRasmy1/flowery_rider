@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../features/layout/presentation/pages/layout_view.dart';
 import '../../on_boarding.dart';
 
 class RoutesManager {
   static const String onBoarding = '/';
+  static const String layoutRoute = '/layoutRoute';
 }
 
 class RouteGenerator {
@@ -11,7 +13,8 @@ class RouteGenerator {
     switch (settings.name) {
       case RoutesManager.onBoarding:
         return MaterialPageRoute(builder: (_) => const OnBoarding());
-
+      case RoutesManager.layoutRoute:
+        return MaterialPageRoute(builder: (_) => const LayoutView());
       default:
         return unDefinedRoute();
     }

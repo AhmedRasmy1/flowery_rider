@@ -1,4 +1,15 @@
+import 'package:flutter/material.dart';
+
+import '../../features/home/presentation/pages/home_view.dart';
+import '../../features/my_profile/presentation/pages/my_profile_view.dart';
+import '../../features/orders/presentation/pages/orders_view.dart';
+
 class AppConstants {
   static const int splashDelay = 3;
   static const double screenWidthRatio = 2.3;
+  static const viewOptions = <Widget>[
+    HomeView(),
+    OrdersView(),
+    MyProfile(),
+  ];
 }
