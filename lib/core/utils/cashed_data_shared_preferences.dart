@@ -43,6 +43,15 @@ class CacheService {
 
 class CacheConstants {
   static const String defaultLanguage = 'defaultLanguage';
+  static const String firstName = 'firstName';
+  static const String lastName = 'lastName';
+  static const String email = 'email';
+  static const String phone = 'phone';
+  static const String gender = 'gender';
+  static const String urlImage = 'urlImage';
+  static const String vehicleNumber = 'vehicleNumber';
+  static const String vehicleLicense = 'vehicleLicense';
+  static const String vehicleType = 'vehicleType';
 
 
 }
