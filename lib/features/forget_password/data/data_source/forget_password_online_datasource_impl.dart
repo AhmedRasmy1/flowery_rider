@@ -19,8 +19,6 @@ class ForgetPasswordOnlineDatasourceImpl implements ForgetPasswordOnlineDatasour
 
   ForgetPasswordOnlineDatasourceImpl(this._authRetrofit);
 
-  @override
-
 
   @override
   Future<Result<ForgetPasswordEntity?>> forgetPassword(String email) {

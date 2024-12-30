@@ -1,5 +1,4 @@
 import 'package:flowery_rider/features/auth/presentation/pages/apply_view.dart';
-import 'package:flowery_rider/features/auth/presentation/pages/forget_password.dart';
 import 'package:flowery_rider/features/auth/presentation/pages/login_view.dart';
 import 'package:flowery_rider/features/layout/presentation/pages/layout_view.dart';
 import '../../features/forget_password/presentation/view/email_verification_view.dart';
@@ -15,13 +14,11 @@ import '../../on_boarding.dart';
 class RoutesManager {
   static const String onBoarding = '/';
   static const String layoutRoute = '/layoutRoute';
-  static const String forgetPassword = '/forgetPasswordRoute';
   static const String registerRoute = '/registerRoute';
   static const String loginRoute = '/loginRoute';
   static const String editProfileView = '/editProfileView';
   static const String editVehicle = '/editVehicle';
   static const String loginView = '/loginView';
-  static const String forgetPasswordRoute = '/forgetPassword';
   static const String emailVerificationRoute = '/emailVerification';
   static const String resetPasswordRoute = '/resetPassword';
   static const String changePasswordViewRoute = '/chanePasswordViewRoute';
@@ -35,14 +32,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OnBoarding());
       case RoutesManager.layoutRoute:
         return MaterialPageRoute(builder: (_) => const LayoutView());
-      case RoutesManager.forgetPassword:
-        return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
       case RoutesManager.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case RoutesManager.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
-      case RoutesManager.layoutRoute:
-        return MaterialPageRoute(builder: (_) => const LayoutView());
       case RoutesManager.editProfileView:
         return MaterialPageRoute(builder: (_) => const EditProfileView());
       case RoutesManager.editVehicle:
