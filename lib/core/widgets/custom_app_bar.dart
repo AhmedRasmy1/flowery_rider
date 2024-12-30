@@ -8,8 +8,8 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
     this.title,
-    this.onTap,
-    this.color,
+     this.onTap,
+   this.color,
   });
 
   final String? title;
