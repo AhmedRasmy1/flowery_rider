@@ -42,6 +42,7 @@ class CacheService {
 }
 
 class CacheConstants {
+  static const String selectGender = 'selectGender';
   static const String defaultLanguage = 'defaultLanguage';
 
 
