@@ -67,51 +67,16 @@ Widget passwordHidden({
   );
 }
 
-// void showAwesomeDialog({
-//   required BuildContext context,
-//   required String message,
-//   required DialogType dialogType,
-//   required VoidCallback onOkPressed,
-//   required Color btnOkColor,
-// }) {
-//   AwesomeDialog(
-//     context: context,
-//     animType: AnimType.scale,
-//     dialogType: dialogType,
-//     body: Center(
-//       child: Text(
-//         textAlign: TextAlign.center,
-//         message,
-//         style: const TextStyle(
-//           fontStyle: FontStyle.normal,
-//           fontWeight: FontWeight.bold,
-//         ),
-//       ),
-//     ),
-//     btnOkOnPress: onOkPressed,
-//     btnOkColor: btnOkColor,
-//   ).show();
-// }
-
 Widget buildIcon(String assetPath, int index, int currentIndex) {
   bool isSelected = index == currentIndex;
 
-  return Container(
-    padding: const EdgeInsets.symmetric(
-        horizontal: AppPadding.p20, vertical: AppPadding.p4),
-    decoration: BoxDecoration(
-      color:
-          isSelected ? ColorManager.pink.withOpacity(0.2) : Colors.transparent,
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: SvgPicture.asset(
-      assetPath,
-      width: 24,
-      height: 24,
-      colorFilter: ColorFilter.mode(
-        isSelected ? ColorManager.pink : ColorManager.grey,
-        BlendMode.srcIn,
-      ),
+  return SvgPicture.asset(
+    assetPath,
+    width: 24,
+    height: 24,
+    colorFilter: ColorFilter.mode(
+      isSelected ? ColorManager.pink : ColorManager.grey,
+      BlendMode.srcIn,
     ),
   );
 }

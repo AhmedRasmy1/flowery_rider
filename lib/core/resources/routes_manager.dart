@@ -3,17 +3,24 @@ import 'package:flowery_rider/features/forget_password/presentation/view/email_v
 import 'package:flowery_rider/features/forget_password/presentation/view/forget_password_screen.dart';
 import 'package:flowery_rider/features/forget_password/presentation/view/reset_password_view.dart';
 import 'package:flutter/material.dart';
+
+import '../../features/edit_profile/presentation/pages/edit_profile_view.dart';
+import '../../features/edit_vehicle/presentation/pages/edit_vehicle_view.dart';
+import '../../features/layout/presentation/pages/layout_view.dart';
 import '../../features/change_password/presentation/view/change_password_view.dart';
 import '../../on_boarding.dart';
 
 class RoutesManager {
   static const String onBoarding = '/';
-  static const String loginView='/loginView';
+  static const String layoutRoute = '/layoutRoute';
+  static const String editProfileView = '/editProfileView';
+  static const String editVehicle = '/editVehicle';
+  static const String loginView = '/loginView';
   static const String forgetPasswordRoute = '/forgetPassword';
   static const String emailVerificationRoute = '/emailVerification';
   static const String resetPasswordRoute = '/resetPassword';
   static const String changePasswordViewRoute = '/chanePasswordViewRoute';
-  static const String forgetPasswordScreen='/forgetPasswordScreen';
+  static const String forgetPasswordScreen = '/forgetPasswordScreen';
 }
 
 class RouteGenerator {
@@ -21,6 +28,12 @@ class RouteGenerator {
     switch (settings.name) {
       case RoutesManager.onBoarding:
         return MaterialPageRoute(builder: (_) => const OnBoarding());
+      case RoutesManager.layoutRoute:
+        return MaterialPageRoute(builder: (_) => const LayoutView());
+      case RoutesManager.editProfileView:
+        return MaterialPageRoute(builder: (_) => const EditProfileView());
+      case RoutesManager.editVehicle:
+        return MaterialPageRoute(builder: (_) => const EditVehicleView());
       case RoutesManager.loginView:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case RoutesManager.resetPasswordRoute:

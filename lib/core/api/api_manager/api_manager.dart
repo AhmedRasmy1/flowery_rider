@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
+import '../../../features/my_profile/data/models/response/profile_data_model.dart';
 import '../../../features/change_password/data/model/change_password_request.dart';
 import '../../../features/change_password/data/model/change_password_response.dart';
 import '../../../features/forget_password/data/model/forget_password_request/forget_password_request.dart';
@@ -18,9 +19,13 @@ part 'api_manager.g.dart';
 @singleton
 @RestApi(baseUrl: ApiConstants.baseUrl)
 abstract class ApiService {
-
   @FactoryMethod()
-  factory ApiService(Dio dio) =_ApiService;
+  factory ApiService(Dio dio) = _ApiService;
+
+  @GET(ApiConstants.profile)
+  Future<ProfileDataModel> getProfile(
+    @Header("Authorization") String token,
+  );
 
   @POST(ApiConstants.forgetPasswordRoute)
   Future<ForgetPasswordResponse> forgetPassword(
