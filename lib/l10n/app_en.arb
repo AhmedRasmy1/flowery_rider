@@ -2,6 +2,8 @@
   "@@locale": "en",
   "helloWorld": "Hello World!",
   "name": "Ahmed",
-  "appName": "Flower App"
-
+  "appName": "Flowery rider app",
+  "welcomeTo": "Welcome to",
+  "login": "Login",
+  "apply": "Apply now"
 }

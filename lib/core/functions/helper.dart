@@ -135,3 +135,19 @@ String? validatePassword({
   }
   return null;
 }
+
+String? validateEmail({
+  required String value,
+  required String message,
+  required String messageInvalid,
+}) {
+  final RegExp emailRegExp = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
+  if (value.trim().isEmpty) {
+    return message;
+  } else if (!emailRegExp.hasMatch(value)) {
+    return messageInvalid;
+  }
+  return null;
+}
