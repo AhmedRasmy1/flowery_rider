@@ -1,6 +1,11 @@
+import 'package:bloc/bloc.dart';
+import 'package:flowery_rider/core/di/di.config.dart';
+import 'package:flowery_rider/features/auth/presentation/pages/login_view.dart';
+import 'package:flowery_rider/features/auth/presentation/widgets/logout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get_it/get_it.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 
@@ -16,6 +21,9 @@ Future<void> main() async {
   await CacheService.cacheInitialization();
   configureDependencies();
   Bloc.observer = MyBlocObserver();
+  final getIt = GetIt.instance;
+  getIt.init();
+
   final getIt = GetIt.instance;
   getIt.init();
   runApp(const FlowerRider());
@@ -44,6 +52,8 @@ class FlowerRider extends StatelessWidget {
             ],
             debugShowCheckedModeBanner: false,
             onGenerateRoute: RouteGenerator.getRoute,
+            home: LoginView(),
+            // initialRoute: RoutesManager.onBoarding,
             initialRoute: RoutesManager.layoutRoute,
           );
         },
