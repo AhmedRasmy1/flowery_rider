@@ -35,8 +35,6 @@ abstract class ApiService {
   // @POST(ApiConstants.signupRoute)
   // Future<RegisterResponseDto> signUp(@Body() RegisterModelDto registerModelDto);
 
-  factory ApiService(Dio dio) = _ApiService;
-
   @GET(ApiConstants.profile)
   Future<ProfileDataModel> getProfile(
     @Header("Authorization") String token,

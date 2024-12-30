@@ -2,7 +2,6 @@ import 'package:flowery_rider/features/auth/presentation/pages/apply_view.dart';
 import 'package:flowery_rider/features/auth/presentation/pages/forget_password.dart';
 import 'package:flowery_rider/features/auth/presentation/pages/login_view.dart';
 import 'package:flowery_rider/features/layout/presentation/pages/layout_view.dart';
-import '../../features/auth/presentation/pages/login_view.dart';
 import '../../features/forget_password/presentation/view/email_verification_view.dart';
 import '../../features/forget_password/presentation/view/forget_password_screen.dart';
 import '../../features/forget_password/presentation/view/reset_password_view.dart';
@@ -10,7 +9,6 @@ import 'package:flutter/material.dart';
 
 import '../../features/edit_profile/presentation/pages/edit_profile_view.dart';
 import '../../features/edit_vehicle/presentation/pages/edit_vehicle_view.dart';
-import '../../features/layout/presentation/pages/layout_view.dart';
 import '../../features/change_password/presentation/view/change_password_view.dart';
 import '../../on_boarding.dart';
 
@@ -20,7 +18,6 @@ class RoutesManager {
   static const String forgetPassword = '/forgetPasswordRoute';
   static const String registerRoute = '/registerRoute';
   static const String loginRoute = '/loginRoute';
-  static const String layoutRoute = '/layoutRoute';
   static const String editProfileView = '/editProfileView';
   static const String editVehicle = '/editVehicle';
   static const String loginView = '/loginView';

@@ -85,20 +85,10 @@ extension GetItInjectableX on _i174.GetIt {
     final dioModule = _$DioModule();
     gh.lazySingleton<_i361.Dio>(() => dioModule.providerDio());
     gh.factory<_i680.ApiService>(() => _i680.ApiService(gh<_i361.Dio>()));
-    gh.factory<_i994.AuthOnLineDataSource>(
-        () => _i140.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
-    gh.factory<_i723.AuthRepo>(
-        () => _i662.AuthRepoImpl(gh<_i994.AuthOnLineDataSource>()));
-    gh.factory<_i844.LogoutUseCases>(
-        () => _i844.LogoutUseCases(gh<_i723.AuthRepo>()));
-    gh.factory<_i1038.LoginUseCases>(
-        () => _i1038.LoginUseCases(gh<_i723.AuthRepo>()));
-    gh.factory<_i48.LogoutViewModel>(
-        () => _i48.LogoutViewModel(gh<_i844.LogoutUseCases>()));
-    gh.factory<_i629.LoginViewModel>(
-        () => _i629.LoginViewModel(gh<_i1038.LoginUseCases>()));
     gh.factory<_i649.GetProfileDataSource>(
         () => _i592.GetProfileDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i994.AuthOnLineDataSource>(
+        () => _i140.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i740.ForgetPasswordOnlineDatasource>(
         () => _i470.ForgetPasswordOnlineDatasourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i804.ChangePasswordOnlineDataSource>(
@@ -110,6 +100,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i802.ChangePasswordRepository>(() =>
         _i489.ChangePasswordRepositoryImpl(
             gh<_i804.ChangePasswordOnlineDataSource>()));
+    gh.factory<_i723.AuthRepo>(
+        () => _i662.AuthRepoImpl(gh<_i994.AuthOnLineDataSource>()));
     gh.factory<_i282.ChangePasswordUseCase>(() =>
         _i282.ChangePasswordUseCase(gh<_i802.ChangePasswordRepository>()));
     gh.factory<_i493.GetProfileUseCase>(
@@ -130,6 +122,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i353.ResetPasswordViewModel(gh<_i174.ResetPasswordUseCase>()));
     gh.factory<_i986.VerifyPasswordViewModel>(
         () => _i986.VerifyPasswordViewModel(gh<_i135.VerifyUseCase>()));
+    gh.factory<_i1038.LoginUseCases>(
+        () => _i1038.LoginUseCases(gh<_i723.AuthRepo>()));
+    gh.factory<_i844.LogoutUseCases>(
+        () => _i844.LogoutUseCases(gh<_i723.AuthRepo>()));
+    gh.factory<_i48.LogoutViewModel>(
+        () => _i48.LogoutViewModel(gh<_i844.LogoutUseCases>()));
+    gh.factory<_i629.LoginViewModel>(
+        () => _i629.LoginViewModel(gh<_i1038.LoginUseCases>()));
     return this;
   }
 }
