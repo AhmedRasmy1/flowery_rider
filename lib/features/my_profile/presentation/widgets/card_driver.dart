@@ -1,13 +1,12 @@
-import 'package:flowery_rider/core/resources/color_manager.dart';
-import 'package:flowery_rider/core/resources/routes_manager.dart';
-import 'package:flowery_rider/core/resources/style_manager.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
+import '../../../../core/resources/style_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/cashed_image.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../../edit_profile/presentation/pages/edit_profile_view.dart';
 import '../../domain/entities/profile_data_entity.dart';
 
 class CardDriver extends StatelessWidget {
@@ -32,7 +31,6 @@ class CardDriver extends StatelessWidget {
           style: getBoldStyle(color: ColorManager.black, fontSize: 18),
         ),
         onTap: () {
-
           Navigator.pushNamed(context, RoutesManager.editProfileView);
         },
         subtitle: Column(
@@ -67,7 +65,9 @@ class CardDriver extends StatelessWidget {
               height: AppSize.s50,
               width: AppSize.s50,
               sizeIndicator: AppSize.s10,
-              url: profileData?.nIDImg ?? ''),/// wrong ////////////////
+              url: profileData?.nIDImg ?? ''),
+
+          /// wrong ////////////////
         ),
         trailing: SvgPicture.asset(AssetsManager.arrowRight),
       ),

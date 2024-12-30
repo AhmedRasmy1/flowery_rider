@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:flowery_rider/core/resources/color_manager.dart';
+import '../resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 

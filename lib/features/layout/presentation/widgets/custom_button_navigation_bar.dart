@@ -1,10 +1,11 @@
-import '../../../../core/resources/style_manager.dart';
-import '../../../../core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../core/resources/style_manager.dart';
+import '../../../../core/resources/values_manager.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({
@@ -32,7 +33,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
           icon: buildIcon(AssetsManager.profile, 2, currentIndex),
           label: AppLocalizations.of(context)!.profile,
         ),
-
       ],
       selectedFontSize: AppSize.s12,
       selectedLabelStyle: getLightStyle(color: ColorManager.lightGrey2),

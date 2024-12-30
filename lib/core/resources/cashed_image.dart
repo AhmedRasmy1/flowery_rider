@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flowery_rider/core/resources/color_manager.dart';
-
+import 'color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../api/api_constants.dart';
 
 String getFileExtensionFromUrl(String url) {
   List<String> parts = url.split('.');
@@ -35,10 +33,10 @@ class CashedImage extends StatelessWidget {
         ? SvgPicture.network(
             url.isNotEmpty ? url : '',
             fit: BoxFit.fill,
-            placeholderBuilder: (context) =>  Center(
+            placeholderBuilder: (context) => Center(
               child: SizedBox(
-                height: sizeIndicator??20,
-                width: sizeIndicator??20,
+                height: sizeIndicator ?? 20,
+                width: sizeIndicator ?? 20,
                 child: CircularProgressIndicator(
                   color: ColorManager.pink,
                 ),
@@ -52,11 +50,10 @@ class CashedImage extends StatelessWidget {
             fit: boxFit ?? BoxFit.fill,
             placeholder: (context, url) => Center(
               child: SizedBox(
-                  height: sizeIndicator??20,
-                  width: sizeIndicator??20,
+                  height: sizeIndicator ?? 20,
+                  width: sizeIndicator ?? 20,
                   child: CircularProgressIndicator(
                     color: ColorManager.pink,
-
                   )),
             ),
             errorWidget: (context, url, error) => const Center(

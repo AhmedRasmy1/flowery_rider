@@ -1,5 +1,5 @@
-import 'package:flowery_rider/features/forget_password/presentation/widgets/show_error_dialogue.dart';
-import 'package:flowery_rider/features/forget_password/presentation/widgets/show_loading_dialog.dart';
+import 'show_error_dialogue.dart';
+import 'show_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

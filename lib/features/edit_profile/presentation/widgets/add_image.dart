@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:flowery_rider/core/resources/assets_manager.dart';
-import 'package:flowery_rider/core/resources/color_manager.dart';
+import '../../../../core/resources/assets_manager.dart';
+import '../../../../core/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,9 +11,10 @@ import '../../../../core/widgets/image_size.dart';
 
 class AddPicture extends StatefulWidget {
   const AddPicture({
-    super.key, required this.urlImage,
+    super.key,
+    required this.urlImage,
   });
-final String urlImage;
+  final String urlImage;
   @override
   State<AddPicture> createState() => _TabBodySellerState();
 }
@@ -68,16 +69,13 @@ class _TabBodySellerState extends State<AddPicture> {
                 ? Stack(
                     children: [
                       Container(
-
                         clipBehavior: Clip.antiAlias,
                         height: 85,
                         width: 85,
                         decoration: BoxDecoration(
                           // color: ColorManager.pink,
-                          border: Border.all(
-                              color: ColorManager.pink,
-                              width: 1
-                          ),
+                          border:
+                              Border.all(color: ColorManager.pink, width: 1),
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: Image.file(
@@ -104,43 +102,41 @@ class _TabBodySellerState extends State<AddPicture> {
                     ],
                   )
                 : Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(5),
-                  clipBehavior: Clip.antiAlias,
-                  height: 85,
-                  width: 85,
-                  decoration: BoxDecoration(
-                    // color: ColorManager.pink,
-                    border: Border.all(
-                      color: ColorManager.pink,
-                      width: 2
-                    ),
-                    borderRadius: BorderRadius.circular(50),
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        clipBehavior: Clip.antiAlias,
+                        height: 85,
+                        width: 85,
+                        decoration: BoxDecoration(
+                          // color: ColorManager.pink,
+                          border:
+                              Border.all(color: ColorManager.pink, width: 2),
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Image.network(
+                          widget.urlImage,
+                          fit: BoxFit.fill,
+                          width: double.infinity,
+                        ),
+                      ),
+                      Positioned(
+                        bottom: -3,
+                        right: -4,
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: ColorManager.white),
+                          child: SvgPicture.asset(
+                            AssetsManager.camera,
+                            width: 16,
+                            height: 16,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  child: Image.network(
-                    widget.urlImage,
-                    fit: BoxFit.fill,
-                    width: double.infinity,
-                  ),
-                ),
-                Positioned(
-                  bottom: -3,
-                  right: -4,
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: ColorManager.white),
-                    child: SvgPicture.asset(
-                      AssetsManager.camera,
-                      width: 16,
-                      height: 16,
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
       ),

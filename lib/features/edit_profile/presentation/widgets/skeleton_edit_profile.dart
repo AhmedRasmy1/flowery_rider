@@ -1,11 +1,10 @@
-import 'package:flowery_rider/core/functions/extenstions.dart';
+import '../../../../core/functions/extenstions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/app_constants.dart';
-import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/font_manager.dart';
 import '../../../../core/resources/values_manager.dart';
@@ -24,14 +23,12 @@ class SkeletonEditProfile extends StatelessWidget {
           backgroundColor: Colors.white,
           body: ListView(
             children: [
-
               Padding(
                 padding: const EdgeInsets.only(
                     top: AppPadding.p8,
                     left: AppPadding.p16,
                     right: AppPadding.p16),
                 child: Form(
-
                   child: Column(
                     children: [
                       CustomAppBar(
@@ -52,19 +49,17 @@ class SkeletonEditProfile extends StatelessWidget {
                               color: ColorManager.greyTooLight,
                               borderRadius: BorderRadius.circular(50),
                             ),
-
                           ),
                           Positioned(
                               bottom: -1,
                               right: -1,
                               child: Container(
                                 height: 15,
-                                  width: 15,
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: ColorManager.greyTooLight
-                                  ),
+                                width: 15,
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: ColorManager.greyTooLight),
                               ))
                         ],
                       ),
@@ -76,23 +71,22 @@ class SkeletonEditProfile extends StatelessWidget {
                             width: context.screenWidth /
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
-
                               labelText:
-                              AppLocalizations.of(context)!.firstName,
+                                  AppLocalizations.of(context)!.firstName,
                               hintText: AppLocalizations.of(context)!
                                   .enterYourFirstName,
                               obscureText: false,
                               validator: (value) => validateNotEmpty(
                                   value,
                                   AppLocalizations.of(context)!
-                                      .entervalidfirstName), controller: TextEditingController(),
+                                      .entervalidfirstName),
+                              controller: TextEditingController(),
                             ),
                           ),
                           SizedBox(
                             width: context.screenWidth /
                                 AppConstants.screenWidthRatio,
                             child: CustomTextFormField(
-
                               labelText: AppLocalizations.of(context)!.lastName,
                               hintText: AppLocalizations.of(context)!
                                   .enterYourLastName,
@@ -100,7 +94,8 @@ class SkeletonEditProfile extends StatelessWidget {
                               validator: (value) => validateNotEmpty(
                                   value,
                                   AppLocalizations.of(context)!
-                                      .entervalidLastName), controller: TextEditingController(),
+                                      .entervalidLastName),
+                              controller: TextEditingController(),
                             ),
                           ),
                         ],
@@ -108,12 +103,12 @@ class SkeletonEditProfile extends StatelessWidget {
                       const SizedBox(height: AppSize.s24),
                       CustomTextFormField(
                         keyboardType: TextInputType.emailAddress,
-
                         labelText: AppLocalizations.of(context)!.email,
                         hintText: AppLocalizations.of(context)!.enterYourEmail,
                         obscureText: false,
                         validator: (value) => validateNotEmpty(value,
-                            AppLocalizations.of(context)!.enterValidEmail), controller: TextEditingController(),
+                            AppLocalizations.of(context)!.enterValidEmail),
+                        controller: TextEditingController(),
                       ),
                       const SizedBox(height: AppSize.s24),
                       CustomTextFormField(
@@ -133,11 +128,10 @@ class SkeletonEditProfile extends StatelessWidget {
                           child: InkWell(
                             onTap: () {
                               /// go to change Password
-
                             },
                             child: Padding(
                               padding:
-                              const EdgeInsets.only(right: AppPadding.p16),
+                                  const EdgeInsets.only(right: AppPadding.p16),
                               child: Text(
                                 AppLocalizations.of(context)!.change,
                                 style: TextStyle(
@@ -148,24 +142,23 @@ class SkeletonEditProfile extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ), controller: TextEditingController(),
+                        ),
+                        controller: TextEditingController(),
                       ),
                       const SizedBox(height: AppSize.s24),
                       Focus(
-                        onFocusChange: (hasFocus) {
-
-                        },
+                        onFocusChange: (hasFocus) {},
                         child: CustomTextFormField(
                           keyboardType: TextInputType.phone,
-
                           labelText: AppLocalizations.of(context)!.phoneNumber,
                           hintText:
-                          AppLocalizations.of(context)!.enterPhoneNumber,
+                              AppLocalizations.of(context)!.enterPhoneNumber,
                           obscureText: false,
                           validator: (value) => validateNotEmpty(
                               value,
                               AppLocalizations.of(context)!
-                                  .enterValidPhoneNumber), controller: TextEditingController(),
+                                  .enterValidPhoneNumber),
+                          controller: TextEditingController(),
                         ),
                       ),
                       const SizedBox(height: AppSize.s24),

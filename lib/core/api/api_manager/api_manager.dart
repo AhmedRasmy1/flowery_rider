@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
-import '../../../features/my_profile/data/models/response/profile_data_model.dart';
+
 import '../../../features/change_password/data/model/change_password_request.dart';
 import '../../../features/change_password/data/model/change_password_response.dart';
 import '../../../features/forget_password/data/model/forget_password_request/forget_password_request.dart';
@@ -11,6 +11,7 @@ import '../../../features/forget_password/data/model/forget_password_request/ver
 import '../../../features/forget_password/data/model/forget_password_response/forget_password_response.dart';
 import '../../../features/forget_password/data/model/forget_password_response/reset_password_response.dart';
 import '../../../features/forget_password/data/model/forget_password_response/verify_response.dart';
+import '../../../features/my_profile/data/models/response/profile_data_model.dart';
 import '../api_constants.dart';
 
 part 'api_manager.g.dart';

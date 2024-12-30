@@ -1,7 +1,6 @@
-import 'package:flowery_rider/core/functions/extenstions.dart';
-import 'package:flowery_rider/core/resources/assets_manager.dart';
-import 'package:flowery_rider/features/edit_profile/presentation/widgets/add_image.dart';
-import 'package:flowery_rider/features/edit_profile/presentation/widgets/skeleton_edit_profile.dart';
+import '../../../../core/functions/extenstions.dart';
+import '../../../../core/resources/assets_manager.dart';
+import '../widgets/add_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
@@ -24,24 +23,23 @@ class EditProfileView extends StatefulWidget {
 
 class _EditProfileViewState extends State<EditProfileView> {
   final TextEditingController _firstNameController = TextEditingController(
-      text: CacheService.getData(key: CacheConstants.firstName
-      ),
-      );
+    text: CacheService.getData(key: CacheConstants.firstName),
+  );
   final TextEditingController _lastNameController = TextEditingController(
-      text: CacheService.getData(key: CacheConstants.lastName),
-      );
+    text: CacheService.getData(key: CacheConstants.lastName),
+  );
   final TextEditingController _emailController = TextEditingController(
-      text: CacheService.getData(key: CacheConstants.email),
-      );
+    text: CacheService.getData(key: CacheConstants.email),
+  );
   final TextEditingController _phoneController = TextEditingController(
-      text: CacheService.getData(key: CacheConstants.phone),
-      );
+    text: CacheService.getData(key: CacheConstants.phone),
+  );
   final TextEditingController _passwordController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Color buttonColor = ColorManager.pink;
-String urlImage= CacheService.getData(key: CacheConstants.urlImage);
-String gender= CacheService.getData(key: CacheConstants.gender);
+  String urlImage = CacheService.getData(key: CacheConstants.urlImage);
+  String gender = CacheService.getData(key: CacheConstants.gender);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -69,7 +67,9 @@ String gender= CacheService.getData(key: CacheConstants.gender);
                             },
                           ),
                           const SizedBox(height: AppSize.s24),
-                          AddPicture(urlImage: urlImage,),
+                          AddPicture(
+                            urlImage: urlImage,
+                          ),
                           const SizedBox(height: AppSize.s24),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,7 +79,8 @@ String gender= CacheService.getData(key: CacheConstants.gender);
                                     AppConstants.screenWidthRatio,
                                 child: CustomTextFormField(
                                   controller: _firstNameController,
-                                  labelText: AppLocalizations.of(context)!.firstName,
+                                  labelText:
+                                      AppLocalizations.of(context)!.firstName,
                                   hintText: AppLocalizations.of(context)!
                                       .enterYourFirstName,
                                   obscureText: false,
@@ -94,9 +95,10 @@ String gender= CacheService.getData(key: CacheConstants.gender);
                                     AppConstants.screenWidthRatio,
                                 child: CustomTextFormField(
                                   controller: _lastNameController,
-                                  labelText: AppLocalizations.of(context)!.lastName,
-                                  hintText:
-                                      AppLocalizations.of(context)!.enterYourLastName,
+                                  labelText:
+                                      AppLocalizations.of(context)!.lastName,
+                                  hintText: AppLocalizations.of(context)!
+                                      .enterYourLastName,
                                   obscureText: false,
                                   validator: (value) => validateNotEmpty(
                                       value,
@@ -111,10 +113,11 @@ String gender= CacheService.getData(key: CacheConstants.gender);
                             keyboardType: TextInputType.emailAddress,
                             controller: _emailController,
                             labelText: AppLocalizations.of(context)!.email,
-                            hintText: AppLocalizations.of(context)!.enterYourEmail,
+                            hintText:
+                                AppLocalizations.of(context)!.enterYourEmail,
                             obscureText: false,
-                            validator: (value) => validateNotEmpty(
-                                value, AppLocalizations.of(context)!.enterValidEmail),
+                            validator: (value) => validateNotEmpty(value,
+                                AppLocalizations.of(context)!.enterValidEmail),
                           ),
                           const SizedBox(height: AppSize.s24),
                           CustomTextFormField(
@@ -130,14 +133,15 @@ String gender= CacheService.getData(key: CacheConstants.gender);
                             // hintText: AppStrings.enterYourPassword,
                             // obscureText: true,
                             suffix: Padding(
-                              padding: const EdgeInsets.only(left: AppPadding.p16),
+                              padding:
+                                  const EdgeInsets.only(left: AppPadding.p16),
                               child: InkWell(
                                 onTap: () {
                                   /// go to change Password
                                 },
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(right: AppPadding.p16),
+                                  padding: const EdgeInsets.only(
+                                      right: AppPadding.p16),
                                   child: Text(
                                     AppLocalizations.of(context)!.change,
                                     style: TextStyle(
@@ -154,7 +158,8 @@ String gender= CacheService.getData(key: CacheConstants.gender);
                           CustomTextFormField(
                             keyboardType: TextInputType.phone,
                             controller: _phoneController,
-                            labelText: AppLocalizations.of(context)!.phoneNumber,
+                            labelText:
+                                AppLocalizations.of(context)!.phoneNumber,
                             hintText:
                                 AppLocalizations.of(context)!.enterPhoneNumber,
                             obscureText: false,
@@ -185,10 +190,9 @@ String gender= CacheService.getData(key: CacheConstants.gender);
                                     Radio<String>(
                                       fillColor: WidgetStateProperty.all<Color>(
                                           ColorManager.pink),
-                                      value:'male',
-                                      groupValue:gender,
-                                      onChanged: (String? value) {
-                                      },
+                                      value: 'male',
+                                      groupValue: gender,
+                                      onChanged: (String? value) {},
                                     ),
                                     Text(
                                       AppLocalizations.of(context)!.male,
@@ -210,8 +214,7 @@ String gender= CacheService.getData(key: CacheConstants.gender);
                                           ColorManager.pink),
                                       value: 'female',
                                       groupValue: gender,
-                                      onChanged: (String? value) {
-                                      },
+                                      onChanged: (String? value) {},
                                     ),
                                     Text(
                                       AppLocalizations.of(context)!.female,
@@ -226,7 +229,6 @@ String gender= CacheService.getData(key: CacheConstants.gender);
                             ],
                           ),
                           const SizedBox(height: AppSize.s48),
-
                         ],
                       ),
                     ),
@@ -236,12 +238,12 @@ String gender= CacheService.getData(key: CacheConstants.gender);
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: CustomElevatedButton(buttonColor: buttonColor, title: 'Update', onPressed: (){
-
-              }),
+              child: CustomElevatedButton(
+                  buttonColor: buttonColor, title: 'Update', onPressed: () {}),
             ),
-            SizedBox(height: 40,)
-
+            SizedBox(
+              height: 40,
+            )
           ],
         ),
       ),

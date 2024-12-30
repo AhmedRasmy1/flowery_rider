@@ -1,4 +1,4 @@
-import 'package:flowery_rider/features/forget_password/data/data_source/forget_password_online_datasource.dart';
+import '../data_source/forget_password_online_datasource.dart';
 import '../../domain/entities/forget_password_entity.dart';
 import '../../domain/entities/verify_password_entity.dart';
 import '../../domain/repositories/forget_password_repo.dart';
