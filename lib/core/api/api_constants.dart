@@ -1,10 +1,9 @@
 class ApiConstants {
-  static const String baseUrl = "https://flower.elevateegy.com/api/v1/drivers/";
-  static const String signupRoute = "auth/signup";
-  static const String loginRoute = "signin";
-  static const String logoutRoute = 'logout';
+  static const String baseUrl = "https://flower.elevateegy.com/api/v1/";
+  static const String signupRoute = "drivers/auth/signup";
+  static const String loginRoute = "drivers/signin";
+  static const String logoutRoute = 'drivers/logout';
   static const String profile = "drivers/profile-data";
-
   static const String forgetPasswordRoute = "drivers/forgotPassword";
   static const String verifyResetCode = "drivers/verifyResetCode";
   static const String resetPasswordRoute = "drivers/resetPassword";

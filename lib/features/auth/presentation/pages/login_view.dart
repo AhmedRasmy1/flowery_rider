@@ -1,4 +1,5 @@
 import 'package:flowery_rider/core/functions/extenstions.dart';
+import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -55,6 +56,7 @@ class _LoginScreenState extends State<LoginView> {
                 EasyLoading.dismiss();
               });
             } else if (state is SuccessLoginState) {
+
               Navigator.pushReplacementNamed(
                   context, RoutesManager.layoutRoute);
             } else if (state is ErrorLoginState) {
