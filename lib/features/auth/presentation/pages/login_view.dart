@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginView> {
                         InkWell(
                           onTap: () {
                             Navigator.pushNamed(
-                                context, RoutesManager.forgetPassword);
+                                context, RoutesManager.forgetPasswordScreen);
                           },
                           child: Column(
                             children: [
