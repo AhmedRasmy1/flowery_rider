@@ -7,7 +7,6 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/cashed_image.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../../edit_profile/presentation/pages/edit_profile_view.dart';
 import '../../domain/entities/profile_data_entity.dart';
 
 class CardDriver extends StatelessWidget {
