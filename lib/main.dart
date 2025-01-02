@@ -43,7 +43,7 @@ class FlowerRider extends StatelessWidget {
             onGenerateRoute: RouteGenerator.getRoute,
             home: LoginView(),
             // initialRoute: RoutesManager.onBoarding,
-            initialRoute: RoutesManager.loginRoute,
+            initialRoute: RoutesManager.onBoarding,
           );
         },
       ),

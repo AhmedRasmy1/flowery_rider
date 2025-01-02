@@ -72,5 +72,8 @@
   "passwordChangedSuccessfully": "Password Changed Successfully",
   "done": "Done",
   "cancel": "Cancel",
-  "ok": "Ok"
+  "ok": "Ok",
+  "apply": "Apply now",
+  "welcomeTo": "Welcome to",
+  "register": "Register"
 }

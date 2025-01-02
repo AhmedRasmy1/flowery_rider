@@ -72,5 +72,8 @@
   "passwordChangedSuccessfully": "تم تغيير كلمة السر بنجاح",
   "done": "تمام",
   "cancel": "إلغاء",
-  "ok": "تمام"
+  "ok": "تمام",
+  "welcomeTo": " مرحبا بك في",
+  "apply": "انشاء حساب",
+  "register": "تسجيل"
 }

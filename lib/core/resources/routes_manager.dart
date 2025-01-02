@@ -1,6 +1,7 @@
 import 'package:flowery_rider/features/auth/presentation/pages/apply_view.dart';
 import 'package:flowery_rider/features/auth/presentation/pages/login_view.dart';
 import 'package:flowery_rider/features/layout/presentation/pages/layout_view.dart';
+import 'package:flowery_rider/on_boarding.dart';
 import '../../features/forget_password/presentation/view/email_verification_view.dart';
 import '../../features/forget_password/presentation/view/forget_password_screen.dart';
 import '../../features/forget_password/presentation/view/reset_password_view.dart';
@@ -9,7 +10,6 @@ import 'package:flutter/material.dart';
 import '../../features/edit_profile/presentation/pages/edit_profile_view.dart';
 import '../../features/edit_vehicle/presentation/pages/edit_vehicle_view.dart';
 import '../../features/change_password/presentation/view/change_password_view.dart';
-import '../../on_boarding.dart';
 
 class RoutesManager {
   static const String onBoarding = '/';
@@ -29,7 +29,7 @@ class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
       case RoutesManager.onBoarding:
-        return MaterialPageRoute(builder: (_) => const OnBoarding());
+        return MaterialPageRoute(builder: (_) => const OnboardingView());
       case RoutesManager.layoutRoute:
         return MaterialPageRoute(builder: (_) => const LayoutView());
       case RoutesManager.registerRoute:
