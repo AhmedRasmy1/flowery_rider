@@ -1,3 +1,5 @@
+import 'package:flowery_rider/core/resources/routes_manager.dart';
+
 import '../../../../core/functions/extenstions.dart';
 import '../../../../core/resources/assets_manager.dart';
 import '../widgets/add_image.dart';
@@ -137,6 +139,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                                   const EdgeInsets.only(left: AppPadding.p16),
                               child: InkWell(
                                 onTap: () {
+                                  Navigator.pushNamed(context, RoutesManager.changePasswordViewRoute);
                                   /// go to change Password
                                 },
                                 child: Padding(

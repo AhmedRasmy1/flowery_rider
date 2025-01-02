@@ -9,7 +9,6 @@ class LayoutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
     return SafeArea(
       child: BlocProvider(
         create: (context) => LayoutCubit(),
@@ -24,7 +23,7 @@ class LayoutBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // PermissionService.checkLocationServiceAndPermission();
+
 
     /// location
     var cubit = LayoutCubit.get(context);

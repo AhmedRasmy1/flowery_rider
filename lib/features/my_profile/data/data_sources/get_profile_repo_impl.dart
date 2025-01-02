@@ -1,5 +1,6 @@
 
 
+import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/api/api_extentions.dart';
@@ -17,9 +18,10 @@ class GetProfileDataSourceImpl implements GetProfileDataSource {
   @override
   Future<Result<ProfileDataModelEntity?>> getProfile(String token) {
     return executeApi(() async {
+      String token=CacheService.getData(key: CacheConstants.userToken);
       var response = await apiService.getProfile(
-          token,
-        // "Bearer $cachedToken",
+
+         "Bearer $token",
       );
       var data = response.toProfileDataModelEntity();
       return data;

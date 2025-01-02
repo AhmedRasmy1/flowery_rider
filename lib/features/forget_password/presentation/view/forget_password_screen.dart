@@ -76,76 +76,78 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     settings: RouteSettings(arguments: email)));
           }
         },
-        child:Scaffold(
-          body: Form(
-            key: _formKey,
-            onChanged: validateInputs,
-            child: Container(
-              padding: const EdgeInsets.all(16.0),
-              child: Center(
-                child: Column(
-                  children: [
-                    CustomAppBar(
-                      title: AppLocalizations.of(context)!.password,
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    const SizedBox(height: AppSize.s40),
-                    Text(
-                      AppLocalizations.of(context)!.forgetPassword,
-                      style: TextStyle(
-                        fontSize: AppSize.s20,
-                        fontWeight: FontWeight.bold,
+        child:SafeArea(
+          child: Scaffold(
+            body: Form(
+              key: _formKey,
+              onChanged: validateInputs,
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                child: Center(
+                  child: Column(
+                    children: [
+                      CustomAppBar(
+                        title: AppLocalizations.of(context)!.password,
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
                       ),
-                    ),
-                    const SizedBox(height: AppSize.s24),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .forgetPasswordMessageHeader,
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: AppSize.s24),
-                    CustomTextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: _emailController,
-                      labelText: AppLocalizations.of(context)!.email,
-                      hintText: AppLocalizations.of(context)!.enterYourEmail,
-                      obscureText: false,
-                      validator: (value) =>
-                          validateNotEmpty(value, AppStrings.enterValidEmail),
-                    ),
-                    const SizedBox(height: AppSize.s48),
-                    BlocBuilder<ForgetPasswordViewModel, ForgetPasswordState>(
-                      builder: (context, state) {
-                        if (state is LoadingForgetPasswordState) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else {
-                          return SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                if (isButtonEnabled == true) {
-                                  forgetPassword();
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: ColorManager.pink),
-                              child: Text(
-                                AppLocalizations.of(context)!.confirmButton,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: ColorManager.white,
+                      const SizedBox(height: AppSize.s40),
+                      Text(
+                        AppLocalizations.of(context)!.forgetPassword,
+                        style: TextStyle(
+                          fontSize: AppSize.s20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: AppSize.s24),
+                      Text(
+                        AppLocalizations.of(context)!
+                            .forgetPasswordMessageHeader,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: AppSize.s24),
+                      CustomTextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _emailController,
+                        labelText: AppLocalizations.of(context)!.email,
+                        hintText: AppLocalizations.of(context)!.enterYourEmail,
+                        obscureText: false,
+                        validator: (value) =>
+                            validateNotEmpty(value, AppStrings.enterValidEmail),
+                      ),
+                      const SizedBox(height: AppSize.s48),
+                      BlocBuilder<ForgetPasswordViewModel, ForgetPasswordState>(
+                        builder: (context, state) {
+                          if (state is LoadingForgetPasswordState) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else {
+                            return SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (isButtonEnabled == true) {
+                                    forgetPassword();
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: ColorManager.pink),
+                                child: Text(
+                                  AppLocalizations.of(context)!.confirmButton,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorManager.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }
-                      },
-                    ),
-
-                  ],
+                            );
+                          }
+                        },
+                      ),
+          
+                    ],
+                  ),
                 ),
               ),
             ),

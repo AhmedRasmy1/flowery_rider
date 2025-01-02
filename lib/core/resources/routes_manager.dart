@@ -41,8 +41,6 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case RoutesManager.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
-      case RoutesManager.layoutRoute:
-        return MaterialPageRoute(builder: (_) => const LayoutView());
       case RoutesManager.editProfileView:
         return MaterialPageRoute(builder: (_) => const EditProfileView());
       case RoutesManager.editVehicle:
