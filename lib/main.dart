@@ -41,7 +41,6 @@ class FlowerRider extends StatelessWidget {
             ],
             debugShowCheckedModeBanner: false,
             onGenerateRoute: RouteGenerator.getRoute,
-            home: LoginView(),
             // initialRoute: RoutesManager.onBoarding,
             initialRoute: RoutesManager.onBoarding,
           );
