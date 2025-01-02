@@ -23,7 +23,10 @@ class OnboardingView extends StatelessWidget {
                 child: Lottie.asset(
                   'assets/images/welcomePhoto.json',
                   height: 300,
+                  width: MediaQuery.of(context).size.width,
                   fit: BoxFit.fill,
+                  repeat: true,
+                  animate: true,
                 ),
               ),
               SizedBox(
@@ -31,10 +34,10 @@ class OnboardingView extends StatelessWidget {
               ),
               Text(
                 AppLocalizations.of(context)!.welcomeTo,
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
               ),
               Text(AppLocalizations.of(context)!.appName,
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
+                  style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20)),
               SizedBox(
                 height: 24,
               ),
