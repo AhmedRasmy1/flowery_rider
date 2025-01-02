@@ -1,4 +1,5 @@
 import 'package:flowery_rider/core/functions/extenstions.dart';
+import 'package:flowery_rider/core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../core/resources/color_manager.dart';
@@ -42,7 +43,9 @@ class OnboardingView extends StatelessWidget {
                   width: context.screenWidth * 0.9,
                   height: context.screenHeight * 0.063,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, RoutesManager.loginRoute);
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorManager.pink,
                       shape: RoundedRectangleBorder(

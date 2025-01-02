@@ -1,6 +1,6 @@
-import 'package:flowery_rider/features/auth/presentation/pages/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -14,6 +14,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheService.cacheInitialization();
   configureDependencies();
+  EasyLoading.init();
   Bloc.observer = MyBlocObserver();
   runApp(const FlowerRider());
 }
