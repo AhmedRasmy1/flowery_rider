@@ -309,6 +309,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                                 _emailController.text,
                                 _lastNameController.text);
                           }),
+
                     ),
                     SizedBox(
                       height: 40,
