@@ -1,6 +1,7 @@
 import 'package:flowery_rider/core/resources/color_manager.dart';
 import 'package:flowery_rider/core/resources/routes_manager.dart';
 import 'package:flowery_rider/core/resources/style_manager.dart';
+import 'package:flowery_rider/features/edit_profile/presentation/pages/edit_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -33,6 +34,7 @@ class CardDriver extends StatelessWidget {
         onTap: () {
 
           Navigator.pushNamed(context, RoutesManager.editProfileView);
+          // Navigator.push(context, MaterialPageRoute(builder: (context) =>EditProfileView() ,));
         },
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

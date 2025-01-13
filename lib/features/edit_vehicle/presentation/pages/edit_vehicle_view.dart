@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flowery_rider/core/resources/cashed_image.dart';
+
 import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -40,6 +42,7 @@ class _EditVehicleViewState extends State<EditVehicleView> {
   File? logeImageFile;
   String typeVehicle =
       CacheService.getData(key: CacheConstants.vehicleType) ?? '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -225,6 +228,41 @@ class _EditVehicleViewState extends State<EditVehicleView> {
                             ),
                           ),
                         ),
+                        logeImageFile != null
+                            ? Container(
+                          clipBehavior: Clip.antiAlias,
+                          margin: EdgeInsets.symmetric(vertical: 18),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: ColorManager.placeHolderColor
+                                  ),
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.grey),
+                                child: AspectRatio(
+                                  aspectRatio: 16 / 9,
+                                  child: Image.file(
+                                    logeImageFile!,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              )
+                            : Container(
+                              clipBehavior: Clip.antiAlias,
+                                margin: EdgeInsets.symmetric(vertical: 18),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: ColorManager.placeHolderColor
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.grey),
+                                child: AspectRatio(
+                                  aspectRatio: 16 / 9,
+                                  child: Image.network(
+                                    'https://flower.elevateegy.com/uploads/${_vehicleLicenseController.text}',
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              )
                       ],
                     ),
                   ),

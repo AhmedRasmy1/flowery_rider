@@ -20,6 +20,7 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.initialValue,
     this.onChanged,
+    this.autofillHints,
   });
 
   final TextEditingController controller;
@@ -33,13 +34,14 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final TextInputType? keyboardType;
   final void Function(String)? onChanged;
+  final Iterable<String>? autofillHints;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: initialValue,
       readOnly: enabled ?? false,
-
+      autofillHints: autofillHints,
       // enabled:enabled ,
       controller: controller,
       keyboardType: keyboardType,

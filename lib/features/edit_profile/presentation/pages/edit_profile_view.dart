@@ -1,7 +1,13 @@
 import 'package:flowery_rider/core/resources/routes_manager.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/api/api_constants.dart';
+import '../../../../core/api/upload_image_api.dart';
+import '../../../../core/di/di.dart';
 import '../../../../core/functions/extenstions.dart';
 import '../../../../core/resources/assets_manager.dart';
+import '../../../my_profile/presentation/manager/get_profile_data_cubit.dart';
+import '../manager/edit_profile_cubit.dart';
 import '../widgets/add_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -15,6 +21,7 @@ import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
+import '../widgets/constant.dart';
 
 class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
@@ -24,6 +31,7 @@ class EditProfileView extends StatefulWidget {
 }
 
 class _EditProfileViewState extends State<EditProfileView> {
+  late EditProfileCubit viewModel;
   final TextEditingController _firstNameController = TextEditingController(
     text: CacheService.getData(key: CacheConstants.firstName),
   );
@@ -42,212 +50,274 @@ class _EditProfileViewState extends State<EditProfileView> {
   Color buttonColor = ColorManager.pink;
   String urlImage = CacheService.getData(key: CacheConstants.urlImage);
   String gender = CacheService.getData(key: CacheConstants.gender);
+
+  @override
+  void initState() {
+    viewModel = getIt<EditProfileCubit>();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: AppPadding.p8,
-                        left: AppPadding.p16,
-                        right: AppPadding.p16),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) {
+        // getIt<GetProfileDataCubit>().getProfileData(
+        //     CacheService.getData(key: CacheConstants.userToken));
+      },
+      child: BlocProvider(
+        create: (context) => viewModel,
+        child: BlocConsumer<EditProfileCubit, EditProfileState>(
+          listener: (context, state) {
+            // TODO: implement listener
+          },
+          builder: (context, state) {
+            return SafeArea(
+              child: Scaffold(
+                backgroundColor: Colors.white,
+                body: Column(
+                  children: [
+                    Expanded(
+                      child: ListView(
                         children: [
-                          CustomAppBar(
-                            title: AppLocalizations.of(context)!.editProfile,
-                            color: ColorManager.black,
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          const SizedBox(height: AppSize.s24),
-                          AddPicture(
-                            urlImage: urlImage,
-                          ),
-                          const SizedBox(height: AppSize.s24),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: context.screenWidth /
-                                    AppConstants.screenWidthRatio,
-                                child: CustomTextFormField(
-                                  controller: _firstNameController,
-                                  labelText:
-                                      AppLocalizations.of(context)!.firstName,
-                                  hintText: AppLocalizations.of(context)!
-                                      .enterYourFirstName,
-                                  obscureText: false,
-                                  validator: (value) => validateNotEmpty(
-                                      value,
-                                      AppLocalizations.of(context)!
-                                          .entervalidfirstName),
-                                ),
-                              ),
-                              SizedBox(
-                                width: context.screenWidth /
-                                    AppConstants.screenWidthRatio,
-                                child: CustomTextFormField(
-                                  controller: _lastNameController,
-                                  labelText:
-                                      AppLocalizations.of(context)!.lastName,
-                                  hintText: AppLocalizations.of(context)!
-                                      .enterYourLastName,
-                                  obscureText: false,
-                                  validator: (value) => validateNotEmpty(
-                                      value,
-                                      AppLocalizations.of(context)!
-                                          .entervalidLastName),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: AppSize.s24),
-                          CustomTextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            controller: _emailController,
-                            labelText: AppLocalizations.of(context)!.email,
-                            hintText:
-                                AppLocalizations.of(context)!.enterYourEmail,
-                            obscureText: false,
-                            validator: (value) => validateNotEmpty(value,
-                                AppLocalizations.of(context)!.enterValidEmail),
-                          ),
-                          const SizedBox(height: AppSize.s24),
-                          CustomTextFormField(
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: AppPadding.p16, right: AppPadding.p16),
-                              child: SvgPicture.asset(AssetsManager.password),
-                            ),
-                            enabled: true,
-                            // keyboardType: TextInputType.visiblePassword,
-                            controller: _passwordController,
-                            labelText: AppLocalizations.of(context)!.password,
-                            // hintText: AppStrings.enterYourPassword,
-                            // obscureText: true,
-                            suffix: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: AppPadding.p16),
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.pushNamed(context, RoutesManager.changePasswordViewRoute);
-                                  /// go to change Password
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: AppPadding.p16),
-                                  child: Text(
-                                    AppLocalizations.of(context)!.change,
-                                    style: TextStyle(
-                                      color: ColorManager.pink,
-                                      fontSize: FontSize.s14,
-                                      fontWeight: FontWeightManager.semiBold,
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: AppPadding.p8,
+                                left: AppPadding.p16,
+                                right: AppPadding.p16),
+                            child: Form(
+                              key: _formKey,
+                              child: Column(
+                                children: [
+                                  CustomAppBar(
+                                    title: AppLocalizations.of(context)!
+                                        .editProfile,
+                                    color: ColorManager.black,
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  const SizedBox(height: AppSize.s24),
+                                  AddPicture(
+                                    urlImage: urlImage,
+                                  ),
+                                  const SizedBox(height: AppSize.s24),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                        width: context.screenWidth /
+                                            AppConstants.screenWidthRatio,
+                                        child: CustomTextFormField(
+                                          controller: _firstNameController,
+                                          labelText:
+                                              AppLocalizations.of(context)!
+                                                  .firstName,
+                                          hintText:
+                                              AppLocalizations.of(context)!
+                                                  .enterYourFirstName,
+                                          obscureText: false,
+                                          validator: (value) =>
+                                              validateNotEmpty(
+                                                  value,
+                                                  AppLocalizations.of(context)!
+                                                      .entervalidfirstName),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: context.screenWidth /
+                                            AppConstants.screenWidthRatio,
+                                        child: CustomTextFormField(
+                                          controller: _lastNameController,
+                                          labelText:
+                                              AppLocalizations.of(context)!
+                                                  .lastName,
+                                          hintText:
+                                              AppLocalizations.of(context)!
+                                                  .enterYourLastName,
+                                          obscureText: false,
+                                          validator: (value) =>
+                                              validateNotEmpty(
+                                                  value,
+                                                  AppLocalizations.of(context)!
+                                                      .entervalidLastName),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: AppSize.s24),
+                                  CustomTextFormField(
+                                    keyboardType: TextInputType.emailAddress,
+                                    controller: _emailController,
+                                    labelText:
+                                        AppLocalizations.of(context)!.email,
+                                    hintText: AppLocalizations.of(context)!
+                                        .enterYourEmail,
+                                    obscureText: false,
+                                    validator: (value) => validateNotEmpty(
+                                        value,
+                                        AppLocalizations.of(context)!
+                                            .enterValidEmail),
+                                  ),
+                                  const SizedBox(height: AppSize.s24),
+                                  CustomTextFormField(
+                                    prefixIcon: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: AppPadding.p16,
+                                          right: AppPadding.p16),
+                                      child: SvgPicture.asset(
+                                          AssetsManager.password),
+                                    ),
+                                    enabled: true,
+                                    controller: _passwordController,
+                                    labelText:
+                                        AppLocalizations.of(context)!.password,
+                                    suffix: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: AppPadding.p16),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context,
+                                              RoutesManager
+                                                  .changePasswordViewRoute);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: AppPadding.p16),
+                                          child: Text(
+                                            AppLocalizations.of(context)!
+                                                .change,
+                                            style: TextStyle(
+                                              color: ColorManager.pink,
+                                              fontSize: FontSize.s14,
+                                              fontWeight:
+                                                  FontWeightManager.semiBold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  const SizedBox(height: AppSize.s24),
+                                  CustomTextFormField(
+                                    keyboardType: TextInputType.phone,
+                                    controller: _phoneController,
+                                    labelText: AppLocalizations.of(context)!
+                                        .phoneNumber,
+                                    hintText: AppLocalizations.of(context)!
+                                        .enterPhoneNumber,
+                                    obscureText: false,
+                                    validator: (value) => validateNotEmpty(
+                                        value,
+                                        AppLocalizations.of(context)!
+                                            .enterValidPhoneNumber),
+                                  ),
+                                  const SizedBox(height: AppSize.s24),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        AppLocalizations.of(context)!.gender,
+                                        style: TextStyle(
+                                          color: ColorManager.black,
+                                          fontSize: FontSize.s22,
+                                          fontWeight:
+                                              FontWeightManager.semiBold,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: AppSize.s24,
+                                      ),
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Radio<String>(
+                                              fillColor:
+                                                  WidgetStateProperty.all<
+                                                      Color>(ColorManager.pink),
+                                              value: 'male',
+                                              groupValue: gender,
+                                              onChanged: (String? value) {},
+                                            ),
+                                            Text(
+                                              AppLocalizations.of(context)!
+                                                  .male,
+                                              style: TextStyle(
+                                                color: ColorManager.black,
+                                                fontSize: FontSize.s17,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Radio<String>(
+                                              fillColor:
+                                                  WidgetStateProperty.all<
+                                                      Color>(ColorManager.pink),
+                                              value: 'female',
+                                              groupValue: gender,
+                                              onChanged: (String? value) {},
+                                            ),
+                                            Text(
+                                              AppLocalizations.of(context)!
+                                                  .female,
+                                              style: TextStyle(
+                                                color: ColorManager.black,
+                                                fontSize: FontSize.s17,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: AppSize.s48),
+                                ],
                               ),
                             ),
                           ),
-                          const SizedBox(height: AppSize.s24),
-                          CustomTextFormField(
-                            keyboardType: TextInputType.phone,
-                            controller: _phoneController,
-                            labelText:
-                                AppLocalizations.of(context)!.phoneNumber,
-                            hintText:
-                                AppLocalizations.of(context)!.enterPhoneNumber,
-                            obscureText: false,
-                            validator: (value) => validateNotEmpty(
-                                value,
-                                AppLocalizations.of(context)!
-                                    .enterValidPhoneNumber),
-                          ),
-                          const SizedBox(height: AppSize.s24),
-                          Row(
-                            children: [
-                              Text(
-                                AppLocalizations.of(context)!.gender,
-                                style: TextStyle(
-                                  color: ColorManager.black,
-                                  fontSize: FontSize.s22,
-                                  fontWeight: FontWeightManager.semiBold,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: AppSize.s24,
-                              ),
-                              Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Radio<String>(
-                                      fillColor: WidgetStateProperty.all<Color>(
-                                          ColorManager.pink),
-                                      value: 'male',
-                                      groupValue: gender,
-                                      onChanged: (String? value) {},
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)!.male,
-                                      style: TextStyle(
-                                        color: ColorManager.black,
-                                        fontSize: FontSize.s17,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Radio<String>(
-                                      fillColor: WidgetStateProperty.all<Color>(
-                                          ColorManager.pink),
-                                      value: 'female',
-                                      groupValue: gender,
-                                      onChanged: (String? value) {},
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)!.female,
-                                      style: TextStyle(
-                                        color: ColorManager.black,
-                                        fontSize: FontSize.s17,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: AppSize.s48),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: CustomElevatedButton(
+                          buttonColor: buttonColor,
+                          title: 'Update',
+                          onPressed: () {
+                           if(logeImageFile!=null){
+                             UploadImageApiManger imageApiManger =
+                             UploadImageApiManger();
+                             imageApiManger.uploadImage(
+                                 imageFile: logeImageFile!,
+                                 endPoint: ApiConstants.uploadImageProfile);
+                           }
+                            viewModel.editProfileData(
+                                _phoneController.text,
+                                _firstNameController.text,
+                                _emailController.text,
+                                _lastNameController.text);
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: CustomElevatedButton(
-                  buttonColor: buttonColor, title: 'Update', onPressed: () {}),
-            ),
-            SizedBox(
-              height: 40,
-            )
-          ],
+            );
+          },
         ),
       ),
     );

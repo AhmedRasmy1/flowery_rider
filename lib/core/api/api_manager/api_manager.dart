@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flowery_rider/features/edit_profile/data/models/response/edit_profile_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -8,6 +9,7 @@ import '../../../features/auth/data/models/response/login_response_dto.dart';
 import '../../../features/auth/data/models/response/logout_response.dart';
 import '../../../features/change_password/data/model/change_password_request.dart';
 import '../../../features/change_password/data/model/change_password_response.dart';
+import '../../../features/edit_profile/data/models/request/edit_profile_request.dart';
 import '../../../features/forget_password/data/model/forget_password_request/forget_password_request.dart';
 import '../../../features/forget_password/data/model/forget_password_request/reset_password_request.dart';
 import '../../../features/forget_password/data/model/forget_password_request/verify_request.dart';
@@ -39,6 +41,11 @@ abstract class ApiService {
   Future<ProfileDataModel> getProfile(
     @Header("Authorization") String token,
   );
+  @PUT(ApiConstants.editProfile)
+  Future<EditProfileResponse> editProfile(
+      @Header("Authorization") String token,
+      @Body() EditProfileRequest editProfileRequest
+      );
 
   @POST(ApiConstants.forgetPasswordRoute)
   Future<ForgetPasswordResponse> forgetPassword(
@@ -55,4 +62,8 @@ abstract class ApiService {
   Future<ChangePasswordResponse> changePassword(
       @Body() ChangePasswordRequest changePasswordRequest,
       @Header("Authorization") String token);
+
+
+
+
 }
