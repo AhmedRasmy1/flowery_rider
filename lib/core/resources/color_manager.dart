@@ -22,4 +22,5 @@ class ColorManager {
   static const Color percentageColor = Color(0xff0CB359);
   static const Color offWhite = Color(0xffA6A6A6);
   static const Color lightPink = Color(0xfff9ecf0);
+
 }

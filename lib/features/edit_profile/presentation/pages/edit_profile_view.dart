@@ -68,7 +68,22 @@ class _EditProfileViewState extends State<EditProfileView> {
         create: (context) => viewModel,
         child: BlocConsumer<EditProfileCubit, EditProfileState>(
           listener: (context, state) {
-            // TODO: implement listener
+            if(state is SuccessEditProfileState){
+              // Navigator.pop(context);
+            }
+            if(state is ErrorEditProfileState){
+              Navigator.pop(context);
+            }
+            if(state is LoadingEditProfileState){
+              showDialog(
+                barrierDismissible: true,
+
+                context: context, builder: (context) => AlertDialog(
+                backgroundColor: Colors.transparent,
+
+                content: CircularProgressIndicator(color: Colors.pink,),
+              ),);
+            }
           },
           builder: (context, state) {
             return SafeArea(
