@@ -64,8 +64,6 @@ class OrderDetailsView extends StatelessWidget {
                                 color: ColorManager.blackPrice)),
                       ],
                     ),
-
-
                   ],
                 ),
               ),
