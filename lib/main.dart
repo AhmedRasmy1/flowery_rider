@@ -1,3 +1,4 @@
+import 'package:flowery_rider/features/order_details/presentation/pages/order_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -44,6 +45,7 @@ class FlowerRider extends StatelessWidget {
             onGenerateRoute: RouteGenerator.getRoute,
             // initialRoute: RoutesManager.onBoarding,
             initialRoute: RoutesManager.onBoarding,
+            // home: OrderDetailsView(),
           );
         },
       ),

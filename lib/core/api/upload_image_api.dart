@@ -8,6 +8,8 @@ import 'dio_provider.dart';
 import 'model/upLoad_image_response.dart';
 
 class UploadImageApiManger {
+  String token = CacheService.getData(key: CacheConstants.userToken);
+
   Future<UpLoadImageResponse> uploadImage(
       {required File imageFile, required String endPoint}) async {
     FormData data = FormData();
@@ -19,59 +21,65 @@ class UploadImageApiManger {
             filename: imageFile.path.split('.').first),
       ),
     );
+    var headers = {
+      'token': token,
+      'Authorization': "Bearer $token",
+    };
     Dio dio = dioProvider();
-    var response =
-        await dio.put('${ApiConstants.baseUrl}$endPoint', data: data);
+    var response = await dio.put('${ApiConstants.baseUrl}$endPoint',
+        data: data,
+        options: Options(
+          method: 'PUT',
+          headers: headers,
+        ));
     return UpLoadImageResponse.fromJson(response.data);
   }
 }
 
-
-
-class UploadImageApiManger2 {
-  Future<UpLoadImageResponse> uploadImage({
-    required File imageFile,
-    required String endPoint,
-
-
-    required String name,
-  }) async {
-    String  token=CacheService.getData(key: CacheConstants.userToken);
-
-    FormData data = FormData.fromMap({
-      'files': [
-        await MultipartFile.fromFile(
-          imageFile.path,
-          filename: imageFile.path.split('/').last,
-        )
-      ],
-      'name': name,
-    });
-
-
-    var headers = {
-      'token': token,
-      'Authorization':"Bearer $token",
-    };
-
-
-    Dio dio = Dio();
-
-
-    var response = await dio.request(
-      'https://flower.elevateegy.com/api/v1/vehicle/6737bf29346d8ae782f75920',
-      options: Options(
-        method: 'PUT',
-        headers: headers,
-      ),
-      data: data,
-    );
-
-    // التحقق من الاستجابة
-    if (response.statusCode == 200) {
-      return UpLoadImageResponse.fromJson(response.data);
-    } else {
-      throw Exception('Failed to upload image: ${response.statusMessage}');
-    }
-  }
-}
+// class UploadImageApiManger2 {
+//   Future<UpLoadImageResponse> uploadImage({
+//     required File imageFile,
+//     required String endPoint,
+//
+//
+//     required String name,
+//   }) async {
+//     String  token=CacheService.getData(key: CacheConstants.userToken);
+//
+//     FormData data = FormData.fromMap({
+//       'files': [
+//         await MultipartFile.fromFile(
+//           imageFile.path,
+//           filename: imageFile.path.split('/').last,
+//         )
+//       ],
+//       'name': name,
+//     });
+//
+//
+//     var headers = {
+//       'token': token,
+//       'Authorization':"Bearer $token",
+//     };
+//
+//
+//     Dio dio = Dio();
+//
+//
+//     var response = await dio.request(
+//       'https://flower.elevateegy.com/api/v1/vehicle/6737bf29346d8ae782f75920',
+//       options: Options(
+//         method: 'PUT',
+//         headers: headers,
+//       ),
+//       data: data,
+//     );
+//
+//     // التحقق من الاستجابة
+//     if (response.statusCode == 200) {
+//       return UpLoadImageResponse.fromJson(response.data);
+//     } else {
+//       throw Exception('Failed to upload image: ${response.statusMessage}');
+//     }
+//   }
+// }

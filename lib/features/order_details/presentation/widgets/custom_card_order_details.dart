@@ -11,15 +11,13 @@ class CustomCardOrderDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Card(
+    return Card(
       color: Colors.white,
       margin: EdgeInsets.all(0),
       child: ListTile(
         splashColor: ColorManager.pink.withOpacity(.5),
 
-        onTap: () {
-          
-        },
+        onTap: () {},
         contentPadding: EdgeInsets.all(10),
         minTileHeight: 8,
         minVerticalPadding: 10,
@@ -33,14 +31,13 @@ class CustomCardOrderDetails extends StatelessWidget {
         ),
         trailing: Text(
           'X1',
-          style: getSemiBoldStyle(
-              color: ColorManager.pink, fontSize: AppSize.s14),
+          style:
+              getSemiBoldStyle(color: ColorManager.pink, fontSize: AppSize.s14),
         ),
         leading: SvgPicture.asset(AssetsManager.floweryLogo),
         subtitle: Text(
           'EGP 600 ',
-          style: getSemiBoldStyle(
-              color: ColorManager.black, fontSize: 13),
+          style: getSemiBoldStyle(color: ColorManager.black, fontSize: 13),
         ),
       ),
     );

@@ -34,7 +34,6 @@ class CardDriver extends StatelessWidget {
         onTap: () {
 
           Navigator.pushNamed(context, RoutesManager.editProfileView);
-          // Navigator.push(context, MaterialPageRoute(builder: (context) =>EditProfileView() ,));
         },
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +67,7 @@ class CardDriver extends StatelessWidget {
               height: AppSize.s50,
               width: AppSize.s50,
               sizeIndicator: AppSize.s10,
-              url: profileData?.nIDImg ?? ''),/// wrong ////////////////
+              url: profileData?.photo ?? ''),
         ),
         trailing: SvgPicture.asset(AssetsManager.arrowRight),
       ),

@@ -53,7 +53,7 @@ class _EditProfileViewState extends State<EditProfileView> {
 
   @override
   void initState() {
-    viewModel = getIt<EditProfileCubit>();
+    viewModel = getIt.get<EditProfileCubit>();
     super.initState();
   }
 
