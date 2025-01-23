@@ -28,23 +28,13 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeAuthRepo_0 extends _i1.SmartFake implements _i2.AuthRepo {
-  _FakeAuthRepo_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeAuthRepo_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeResult_1<T> extends _i1.SmartFake implements _i3.Result<T> {
-  _FakeResult_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeResult_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [LogoutUseCases].
@@ -56,37 +46,29 @@ class MockLogoutUseCases extends _i1.Mock implements _i4.LogoutUseCases {
   }
 
   @override
-  _i2.AuthRepo get authRepo => (super.noSuchMethod(
-        Invocation.getter(#authRepo),
-        returnValue: _FakeAuthRepo_0(
-          this,
-          Invocation.getter(#authRepo),
-        ),
-      ) as _i2.AuthRepo);
+  _i2.AuthRepo get authRepo =>
+      (super.noSuchMethod(
+            Invocation.getter(#authRepo),
+            returnValue: _FakeAuthRepo_0(this, Invocation.getter(#authRepo)),
+          )
+          as _i2.AuthRepo);
 
   @override
   set authRepo(_i2.AuthRepo? _authRepo) => super.noSuchMethod(
-        Invocation.setter(
-          #authRepo,
-          _authRepo,
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.setter(#authRepo, _authRepo),
+    returnValueForMissingStub: null,
+  );
 
   @override
   _i5.Future<_i3.Result<_i6.LogoutEntity>> logout(String? token) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #logout,
-          [token],
-        ),
-        returnValue: _i5.Future<_i3.Result<_i6.LogoutEntity>>.value(
-            _FakeResult_1<_i6.LogoutEntity>(
-          this,
-          Invocation.method(
-            #logout,
-            [token],
-          ),
-        )),
-      ) as _i5.Future<_i3.Result<_i6.LogoutEntity>>);
+            Invocation.method(#logout, [token]),
+            returnValue: _i5.Future<_i3.Result<_i6.LogoutEntity>>.value(
+              _FakeResult_1<_i6.LogoutEntity>(
+                this,
+                Invocation.method(#logout, [token]),
+              ),
+            ),
+          )
+          as _i5.Future<_i3.Result<_i6.LogoutEntity>>);
 }

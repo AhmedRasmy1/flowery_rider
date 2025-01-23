@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flowery_rider/features/home/data/response/driver_orders_response.dart';
+import 'package:flowery_rider/features/home/data/response/pending__orders__response.dart';
 import 'package:flowery_rider/features/edit_profile/data/models/response/edit_profile_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
@@ -49,10 +51,8 @@ abstract class ApiService {
     @Header("Authorization") String token,
   );
   @PUT(ApiConstants.editProfile)
-  Future<EditProfileResponse> editProfile(
-      @Header("Authorization") String token,
-      @Body() EditProfileRequest editProfileRequest
-      );
+  Future<EditProfileResponse> editProfile(@Header("Authorization") String token,
+      @Body() EditProfileRequest editProfileRequest);
 
   @POST(ApiConstants.forgetPasswordRoute)
   Future<ForgetPasswordResponse> forgetPassword(
@@ -70,7 +70,7 @@ abstract class ApiService {
       @Body() ChangePasswordRequest changePasswordRequest,
       @Header("Authorization") String token);
 
-
-
-
+  @GET(ApiConstants.getPendingDriverOrdersRoute)
+  Future<PendingOrdersResponse> getHomeData(
+      @Header("Authorization") String token);
 }

@@ -1,5 +1,6 @@
 import 'package:flowery_rider/features/auth/presentation/pages/apply_view.dart';
 import 'package:flowery_rider/features/auth/presentation/pages/login_view.dart';
+import 'package:flowery_rider/features/home/presentation/pages/home_view.dart';
 import 'package:flowery_rider/features/layout/presentation/pages/layout_view.dart';
 import 'package:flowery_rider/on_boarding.dart';
 import '../../features/forget_password/presentation/view/email_verification_view.dart';
@@ -23,6 +24,7 @@ class RoutesManager {
   static const String resetPasswordRoute = '/resetPassword';
   static const String changePasswordViewRoute = '/chanePasswordViewRoute';
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
+  static const String homeViewScreen = '/homeViewScreen';
 }
 
 class RouteGenerator {
@@ -50,7 +52,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
       case RoutesManager.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
-
+      case RoutesManager.homeViewScreen:
+        return MaterialPageRoute(builder: (_) => const HomeView());
       default:
         return unDefinedRoute();
     }

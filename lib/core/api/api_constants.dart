@@ -9,6 +9,7 @@ class ApiConstants {
   static const String verifyResetCode = "drivers/verifyResetCode";
   static const String resetPasswordRoute = "drivers/resetPassword";
   static const String changePasswordRoute = "drivers/change-password";
+  static const String getPendingDriverOrdersRoute = "orders/pending-orders";
   static const String uploadImageProfile = "drivers/upload-photo";
   static const String editProfile = "drivers/editProfile";
 }
