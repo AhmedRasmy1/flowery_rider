@@ -1,12 +1,15 @@
 
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/common/api_result.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/entities/logout_entity.dart';
+import '../../domain/entities/register_entities/register_entity.dart';
 import '../../domain/repositories/auth_repo.dart';
 import '../data_sources/auth_online_data_source.dart';
 import '../models/request/login_model_dto.dart';
+import '../models/request/register_request_dto.dart';
 
 @Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {

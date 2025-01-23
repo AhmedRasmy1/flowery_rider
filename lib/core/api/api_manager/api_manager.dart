@@ -14,6 +14,7 @@ import '../../../features/forget_password/data/model/forget_password_request/ver
 import '../../../features/forget_password/data/model/forget_password_response/forget_password_response.dart';
 import '../../../features/forget_password/data/model/forget_password_response/reset_password_response.dart';
 import '../../../features/forget_password/data/model/forget_password_response/verify_response.dart';
+import '../../../features/get_all_vehicles/data/models/vehicles_response_dto.dart';
 import '../../../features/my_profile/data/models/response/profile_data_model.dart';
 import '../api_constants.dart';
 
@@ -37,8 +38,8 @@ abstract class ApiService {
 
   @GET(ApiConstants.profile)
   Future<ProfileDataModel> getProfile(
-    @Header("Authorization") String token,
-  );
+      @Header("Authorization") String token,
+      );
 
   @POST(ApiConstants.forgetPasswordRoute)
   Future<ForgetPasswordResponse> forgetPassword(
@@ -55,4 +56,7 @@ abstract class ApiService {
   Future<ChangePasswordResponse> changePassword(
       @Body() ChangePasswordRequest changePasswordRequest,
       @Header("Authorization") String token);
+
+  @GET(ApiConstants.getAllVehiclesRoute)
+  Future<VehiclesResponseDto> getAllVehicles();
 }
