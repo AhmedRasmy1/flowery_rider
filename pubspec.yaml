@@ -11,15 +11,15 @@ environment:
 
 dependencies:
   another_flushbar: ^1.12.30
-  bloc: ^8.1.4
-  bloc_test: ^9.1.7
+  bloc: ^9.0.0
+  bloc_test: ^10.0.0
   cached_network_image: ^3.4.1
   carousel_slider: ^5.0.0
   device_preview: ^1.2.0
   dio: ^5.7.0
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  flutter_bloc: ^9.0.0
   flutter_easyloading: ^3.0.5
   flutter_localizations:
     sdk: flutter

@@ -1,12 +1,8 @@
 import 'package:flowery_rider/core/resources/color_manager.dart';
-import 'package:flowery_rider/core/resources/style_manager.dart';
-import 'package:flowery_rider/core/resources/values_manager.dart';
 import 'package:flowery_rider/core/widgets/custom_app_bar.dart';
 import 'package:flowery_rider/core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/custom_card_address.dart';
-import '../widgets/custom_card_order_details.dart';
 import '../widgets/order_detailsV_view_body.dart';
 
 class OrderDetailsView extends StatefulWidget {

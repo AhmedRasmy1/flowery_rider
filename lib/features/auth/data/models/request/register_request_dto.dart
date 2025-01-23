@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 
 class RegisterRequestDto {
@@ -40,9 +38,13 @@ class RegisterRequestDto {
       lastName: json['lastName'],
       vehicleType: json['vehicleType'],
       vehicleNumber: json['vehicleNumber'],
-      vehicleLicense: json['vehicleLicense'] != null ? MultipartFile.fromString(json['vehicleLicense']) : null,
+      vehicleLicense: json['vehicleLicense'] != null
+          ? MultipartFile.fromString(json['vehicleLicense'])
+          : null,
       NID: json['NID'],
-      NIDImg: json['NIDImg'] != null ? MultipartFile.fromString(json['NIDImg']) : null,
+      NIDImg: json['NIDImg'] != null
+          ? MultipartFile.fromString(json['NIDImg'])
+          : null,
       email: json['email'],
       password: json['password'],
       rePassword: json['rePassword'],

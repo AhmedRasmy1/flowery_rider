@@ -4,12 +4,14 @@ import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../view_model/register/register_cubit.dart';
 
 class ChooseGender extends StatefulWidget {
-  const ChooseGender({required this.viewModel,super.key, });
+  const ChooseGender({
+    required this.viewModel,
+    super.key,
+  });
 
   final RegisterViewModel viewModel;
 
@@ -27,9 +29,8 @@ class _ChooseGenderState extends State<ChooseGender> {
       children: [
         Text(
           'Gender',
-          style: getSemiBoldStyle(
-              color:  ColorManager.grey,
-              fontSize: AppSize.s18),
+          style:
+              getSemiBoldStyle(color: ColorManager.grey, fontSize: AppSize.s18),
         ),
         const Spacer(),
         Row(
@@ -67,12 +68,12 @@ class _ChooseGenderState extends State<ChooseGender> {
               groupValue: _selectedValue,
               onChanged: (String? value) {
                 setState(() {
-                   widget.viewModel.isSelectGender2 = true;
-                   widget.viewModel.isSelectGender = false;
+                  widget.viewModel.isSelectGender2 = true;
+                  widget.viewModel.isSelectGender = false;
                   _selectedValue = value;
                   _isActive = !_isActive;
-                   CacheService.setData(
-                       key: CacheConstants.selectGender, value: value);
+                  CacheService.setData(
+                      key: CacheConstants.selectGender, value: value);
                 });
               },
             ),

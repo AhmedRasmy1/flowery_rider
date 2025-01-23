@@ -9,7 +9,7 @@ import 'vehicles_online_data_source.dart';
 
 @Injectable(as: VehiclesOnlineDataSource)
 class VehiclesOnlineDataSourceImpl extends VehiclesOnlineDataSource {
-  ApiService _vehicleRetrofit;
+  final ApiService _vehicleRetrofit;
 
   VehiclesOnlineDataSourceImpl(this._vehicleRetrofit);
 

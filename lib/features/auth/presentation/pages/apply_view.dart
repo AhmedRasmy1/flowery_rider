@@ -20,7 +20,6 @@ import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widgets/add_image.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -97,8 +96,7 @@ class _RegisterViewState extends State<RegisterView> {
               //   EasyLoading.dismiss();
               // });
             } else if (state is SuccessRegisterState) {
-              Navigator.pushReplacementNamed(
-                  context, RoutesManager.loginRoute);
+              Navigator.pushReplacementNamed(context, RoutesManager.loginRoute);
             } else if (state is ErrorRegisterState) {
               Text('something went wrong');
               // MotionToast.error(
@@ -217,25 +215,22 @@ class _RegisterViewState extends State<RegisterView> {
                                   XFile? xFile = await ImagePicker()
                                       .pickImage(source: ImageSource.gallery);
                                   if (xFile != null) {
-                                    File originalImageFile =
-                                        File(xFile.path);
+                                    File originalImageFile = File(xFile.path);
                                     setState(() {
                                       _vehicleLiceController.text =
                                           originalImageFile.path;
-                                      _vehicleLicenseImage=originalImageFile;
+                                      _vehicleLicenseImage = originalImageFile;
                                     });
-
                                   }
                                 }, camera: () async {
                                   XFile? xFile = await ImagePicker()
                                       .pickImage(source: ImageSource.camera);
                                   if (xFile != null) {
-                                    File originalImageFile =
-                                        File(xFile.path);
+                                    File originalImageFile = File(xFile.path);
                                     setState(() {
                                       _vehicleLiceController.text =
                                           originalImageFile.path;
-                                       _vehicleLicenseImage=originalImageFile;
+                                      _vehicleLicenseImage = originalImageFile;
                                     });
                                   }
                                 });
@@ -295,10 +290,10 @@ class _RegisterViewState extends State<RegisterView> {
                                   if (xFile != null) {
                                     File originalImageFile = File(xFile.path);
                                     setState(() {
-                                      _idImageController.text = originalImageFile.path;
-                                      _idImage=originalImageFile;
+                                      _idImageController.text =
+                                          originalImageFile.path;
+                                      _idImage = originalImageFile;
                                     });
-
                                   }
                                 }, camera: () async {
                                   XFile? xFile = await ImagePicker()
@@ -306,8 +301,9 @@ class _RegisterViewState extends State<RegisterView> {
                                   if (xFile != null) {
                                     File originalImageFile = File(xFile.path);
                                     setState(() {
-                                      _idImageController.text = originalImageFile.path;
-                                      _idImage=originalImageFile;
+                                      _idImageController.text =
+                                          originalImageFile.path;
+                                      _idImage = originalImageFile;
                                     });
                                   }
                                 });
@@ -375,51 +371,51 @@ class _RegisterViewState extends State<RegisterView> {
                       height: context.screenHeight * 0.063,
                       child: ElevatedButton(
                         onPressed: _registerWithFiles,
-                          // print(selectedVehicleId);
-                          // print(_firstNameController.text);
-                          // print(_secondNameController.text);
-                          // print(selectedVehicleId);
-                          // print(_vehicleNumberController.text);
-                          // print(_vehicleLicenseImage);
-                          // print(_idNumberController.text);
-                          // print(_idImage);
-                          // print(_emailController.text);
-                          // print(_passwordController.text);
-                          // print(_confirmPasswordController.text);
-                          // print(_phoneController.text);
+                        // print(selectedVehicleId);
+                        // print(_firstNameController.text);
+                        // print(_secondNameController.text);
+                        // print(selectedVehicleId);
+                        // print(_vehicleNumberController.text);
+                        // print(_vehicleLicenseImage);
+                        // print(_idNumberController.text);
+                        // print(_idImage);
+                        // print(_emailController.text);
+                        // print(_passwordController.text);
+                        // print(_confirmPasswordController.text);
+                        // print(_phoneController.text);
 
-                          // if (_formKey.currentState?.validate() ?? false) {
-                          // viewModel.register(
-                          //   'cairo',
-                          //   _firstNameController.text,
-                          //   _secondNameController.text,
-                          //   selectedVehicleId!,
-                          //   _vehicleNumberController.text,
-                          //   _vehicleLicenseImage!,
-                          //   _idNumberController.text,
-                          //   _idImage!,
-                          //   _emailController.text,
-                          //   _passwordController.text,
-                          //   _confirmPasswordController.text,
-                          //   'female',
-                          //   _phoneController.text,
-                          // );
-                          // viewModel.register(
-                          //   'cairot',
-                          //   'shadwo',
-                          //   'ahmedu',
-                          //   "${selectedVehicleId}",
-                          //   '6789',
-                          //   _vehicleLicenseImage!,
-                          //   '12345678912390',
-                          //   _idImage!,
-                          //   'shadwahmed30@gmail.com',
-                          //   'ahmedShadw2342@',
-                          //   'ahmedShadw2342@',
-                          //   'female',
-                          //   '+20102345676',
-                          // );
-                          // }
+                        // if (_formKey.currentState?.validate() ?? false) {
+                        // viewModel.register(
+                        //   'cairo',
+                        //   _firstNameController.text,
+                        //   _secondNameController.text,
+                        //   selectedVehicleId!,
+                        //   _vehicleNumberController.text,
+                        //   _vehicleLicenseImage!,
+                        //   _idNumberController.text,
+                        //   _idImage!,
+                        //   _emailController.text,
+                        //   _passwordController.text,
+                        //   _confirmPasswordController.text,
+                        //   'female',
+                        //   _phoneController.text,
+                        // );
+                        // viewModel.register(
+                        //   'cairot',
+                        //   'shadwo',
+                        //   'ahmedu',
+                        //   "${selectedVehicleId}",
+                        //   '6789',
+                        //   _vehicleLicenseImage!,
+                        //   '12345678912390',
+                        //   _idImage!,
+                        //   'shadwahmed30@gmail.com',
+                        //   'ahmedShadw2342@',
+                        //   'ahmedShadw2342@',
+                        //   'female',
+                        //   '+20102345676',
+                        // );
+                        // }
                         //},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: ColorManager.pink,
@@ -459,7 +455,7 @@ class _RegisterViewState extends State<RegisterView> {
           child: file == null
               ? const Icon(Icons.file_upload_outlined,
                   size: 24, color: ColorManager.grey)
-              : Container(
+              : SizedBox(
                   height: 40,
                   width: 40,
                   child: Image.file(file, fit: BoxFit.fill)),
@@ -467,6 +463,7 @@ class _RegisterViewState extends State<RegisterView> {
       ],
     );
   }
+
   void _registerWithFiles() async {
     try {
       if (_idImage != null && _vehicleLicenseImage != null) {
@@ -476,7 +473,8 @@ class _RegisterViewState extends State<RegisterView> {
           filename: _idImage!.path.split('/').last,
         );
 
-        MultipartFile vehicleLicenseImageMultipart = await MultipartFile.fromFile(
+        MultipartFile vehicleLicenseImageMultipart =
+            await MultipartFile.fromFile(
           _vehicleLicenseImage!.path,
           filename: _vehicleLicenseImage!.path.split('/').last,
         );
@@ -504,5 +502,4 @@ class _RegisterViewState extends State<RegisterView> {
       print("Error during registration: $e");
     }
   }
-
 }

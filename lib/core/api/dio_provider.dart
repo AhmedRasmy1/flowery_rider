@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import '../utils/cashed_data_shared_preferences.dart';
-
 Dio dioProvider() {
   Dio dio = Dio();
   // dio.options.headers["Content-Type"] = "multipart/form-data";

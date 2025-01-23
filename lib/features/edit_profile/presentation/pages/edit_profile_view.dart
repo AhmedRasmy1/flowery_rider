@@ -6,7 +6,6 @@ import '../../../../core/api/upload_image_api.dart';
 import '../../../../core/di/di.dart';
 import '../../../../core/functions/extenstions.dart';
 import '../../../../core/resources/assets_manager.dart';
-import '../../../my_profile/presentation/manager/get_profile_data_cubit.dart';
 import '../manager/edit_profile_cubit.dart';
 import '../widgets/add_image.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +56,6 @@ class _EditProfileViewState extends State<EditProfileView> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -69,21 +67,23 @@ class _EditProfileViewState extends State<EditProfileView> {
         create: (context) => viewModel,
         child: BlocConsumer<EditProfileCubit, EditProfileState>(
           listener: (context, state) {
-            if(state is SuccessEditProfileState){
+            if (state is SuccessEditProfileState) {
               // Navigator.pop(context);
             }
-            if(state is ErrorEditProfileState){
+            if (state is ErrorEditProfileState) {
               Navigator.pop(context);
             }
-            if(state is LoadingEditProfileState){
+            if (state is LoadingEditProfileState) {
               showDialog(
                 barrierDismissible: true,
-
-                context: context, builder: (context) => AlertDialog(
-                backgroundColor: Colors.transparent,
-
-                content: CircularProgressIndicator(color: Colors.pink,),
-              ),);
+                context: context,
+                builder: (context) => AlertDialog(
+                  backgroundColor: Colors.transparent,
+                  content: CircularProgressIndicator(
+                    color: Colors.pink,
+                  ),
+                ),
+              );
             }
           },
           builder: (context, state) {
@@ -312,13 +312,13 @@ class _EditProfileViewState extends State<EditProfileView> {
                           buttonColor: buttonColor,
                           title: 'Update',
                           onPressed: () {
-                           if(logeImageFile!=null){
-                             UploadImageApiManger imageApiManger =
-                             UploadImageApiManger();
-                             imageApiManger.uploadImage(
-                                 imageFile: logeImageFile!,
-                                 endPoint: ApiConstants.uploadImageProfile);
-                           }
+                            if (logeImageFile != null) {
+                              UploadImageApiManger imageApiManger =
+                                  UploadImageApiManger();
+                              imageApiManger.uploadImage(
+                                  imageFile: logeImageFile!,
+                                  endPoint: ApiConstants.uploadImageProfile);
+                            }
                             viewModel.editProfileData(
                                 _phoneController.text,
                                 _firstNameController.text,

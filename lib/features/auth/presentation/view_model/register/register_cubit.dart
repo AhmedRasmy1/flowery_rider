@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
 import 'package:flowery_rider/features/auth/domain/entities/register_entity.dart';
 import 'package:flowery_rider/features/auth/domain/use_cases/use_cases.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,40 +14,42 @@ class RegisterViewModel extends Cubit<RegisterState> {
   bool isSelectGender = false;
   bool isSelectGender2 = false;
 
-
-  Future<void> register(String country,
-      String firstName,
-      String lastName,
-      String vehicleType,
-      String vehicleNumber,
-      MultipartFile vehicleLicense,
-      String NID,
-      MultipartFile NIDImg,
-      String email,
-      String password,
-      String rePassword,
-      String gender,
-      String phone,) async {
+  Future<void> register(
+    String country,
+    String firstName,
+    String lastName,
+    String vehicleType,
+    String vehicleNumber,
+    MultipartFile vehicleLicense,
+    String NID,
+    MultipartFile NIDImg,
+    String email,
+    String password,
+    String rePassword,
+    String gender,
+    String phone,
+  ) async {
     emit(LoadingRegisterState());
     // String gender =
-       // CacheService.getData(key: CacheConstants.selectGender) ?? '';
+    // CacheService.getData(key: CacheConstants.selectGender) ?? '';
     print("=======================================");
     print("Fetching addresses with token:");
 
     var result = await _registerUseCase.register(
-       country,
-       firstName,
-       lastName,
-       vehicleType,
-       vehicleNumber,
-       vehicleLicense,
-       NID,
-       NIDImg,
-       email,
-       password,
-       rePassword,
-       gender,
-       phone,);
+      country,
+      firstName,
+      lastName,
+      vehicleType,
+      vehicleNumber,
+      vehicleLicense,
+      NID,
+      NIDImg,
+      email,
+      password,
+      rePassword,
+      gender,
+      phone,
+    );
 
     switch (result) {
       case Success<RegisterEntity>():
@@ -64,4 +63,3 @@ class RegisterViewModel extends Cubit<RegisterState> {
     }
   }
 }
-

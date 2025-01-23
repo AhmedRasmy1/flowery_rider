@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flowery_rider/features/auth/presentation/widgets/vehicle_type_selection.dart';
 import 'package:flowery_rider/features/get_all_vehicles/presentation/manager/vehicles_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +27,6 @@ class CardVehicle extends StatefulWidget {
   State<CardVehicle> createState() => _CardVehicleState();
 }
 
-
 class _CardVehicleState extends State<CardVehicle> {
   late VehiclesViewModel viewModel;
   @override
@@ -36,15 +34,14 @@ class _CardVehicleState extends State<CardVehicle> {
     viewModel = getIt.get<VehiclesViewModel>()..getAllVehicles();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    String vehicleType='moto';
+    String vehicleType = 'moto';
     return BlocProvider(
       create: (context) => viewModel,
       child: BlocBuilder<VehiclesViewModel, VehiclesState>(
-
         builder: (context, state) {
-
           if (state is SuccessVehiclesState) {
             List<VehiclesEntity> vehiclesTypes = state.vehicles.vehicles ?? [];
             log(vehiclesTypes[6].id.toString());
@@ -52,13 +49,12 @@ class _CardVehicleState extends State<CardVehicle> {
 
             for (int i = 0; i < vehiclesTypes.length; i++) {
               if (vehiclesTypes[i].id.toString() ==
-                  widget.profileData?.vehicleType.toString()
-              ) {
+                  widget.profileData?.vehicleType.toString()) {
                 print('//////////////////////////////////');
                 log(vehiclesTypes[i].id.toString());
                 print('//////////////////////////////////');
                 print(vehiclesTypes[i].id);
-                vehicleType = vehiclesTypes[i].type??'sdsa';
+                vehicleType = vehiclesTypes[i].type ?? 'sdsa';
                 break;
               }
             }
@@ -72,8 +68,8 @@ class _CardVehicleState extends State<CardVehicle> {
                   Navigator.pushNamed(context, RoutesManager.editVehicle);
                 },
                 title: Text(AppLocalizations.of(context)!.vehicleInfo,
-                    style: getBoldStyle(
-                        color: ColorManager.black, fontSize: 18)),
+                    style:
+                        getBoldStyle(color: ColorManager.black, fontSize: 18)),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -90,7 +86,6 @@ class _CardVehicleState extends State<CardVehicle> {
                       height: AppSize.s8,
                     ),
                     Text(
-
                       widget.profileData?.vehicleNumber ?? '',
                       style: getRegularStyle(
                           color: ColorManager.black, fontSize: 16),
@@ -118,7 +113,7 @@ class _CardVehicleState extends State<CardVehicle> {
                     height: AppSize.s8,
                   ),
                   Text(
-                  '',
+                    '',
                     style: getRegularStyle(
                         color: ColorManager.black, fontSize: 16),
                   ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
+  const OrderDetailsScreen({super.key});
+
   @override
   _OrderDetailsScreenState createState() => _OrderDetailsScreenState();
 }
@@ -59,7 +61,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 4.0),
                     height: 5.0,
-                    color: index <= _currentStep ? Colors.green : Colors.grey[300],
+                    color:
+                        index <= _currentStep ? Colors.green : Colors.grey[300],
                   ),
                 );
               }),
@@ -72,11 +75,21 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               controller: _pageController,
               physics: NeverScrollableScrollPhysics(), // تعطيل التمرير اليدوي
               children: [
-                Center(child: Text('Step 1: Order Accepted', style: TextStyle(fontSize: 18.0))),
-                Center(child: Text('Step 2: Preparing Order', style: TextStyle(fontSize: 18.0))),
-                Center(child: Text('Step 3: Out for Delivery', style: TextStyle(fontSize: 18.0))),
-                Center(child: Text('Step 4: Delivered', style: TextStyle(fontSize: 18.0))),
-                Center(child: Text('Step 5: Completed', style: TextStyle(fontSize: 18.0))),
+                Center(
+                    child: Text('Step 1: Order Accepted',
+                        style: TextStyle(fontSize: 18.0))),
+                Center(
+                    child: Text('Step 2: Preparing Order',
+                        style: TextStyle(fontSize: 18.0))),
+                Center(
+                    child: Text('Step 3: Out for Delivery',
+                        style: TextStyle(fontSize: 18.0))),
+                Center(
+                    child: Text('Step 4: Delivered',
+                        style: TextStyle(fontSize: 18.0))),
+                Center(
+                    child: Text('Step 5: Completed',
+                        style: TextStyle(fontSize: 18.0))),
               ],
             ),
           ),
