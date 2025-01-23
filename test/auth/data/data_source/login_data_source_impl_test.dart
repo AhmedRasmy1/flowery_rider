@@ -8,8 +8,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'login_data_source_impl_test.mocks.dart';
-
 @GenerateMocks([ApiService])
 void main() {
   late MockApiService mockApiService;
@@ -22,7 +20,7 @@ void main() {
 
   test(
       'when call login function it should call '
-          'api service and get login entity', () async {
+      'api service and get login entity', () async {
     final mockResponse = LoginResponseDto();
 
     var loginModelDto = LoginModelDto(email: 'email', password: 'password');

@@ -1,4 +1,3 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -72,14 +71,6 @@ import '../../features/forget_password/presentation/view_models/reset_password_v
     as _i353;
 import '../../features/forget_password/presentation/view_models/verify_password_view_model/verify_password_cubit.dart'
     as _i986;
-import '../../features/home/data/datasources/home_data_source.dart' as _i426;
-import '../../features/home/data/datasources/home_data_source_impl.dart'
-    as _i375;
-import '../../features/home/data/repository/home_repo_impl.dart' as _i1013;
-import '../../features/home/domain/repositories/home_repo.dart' as _i1021;
-import '../../features/home/domain/Use_case/home_use_case.dart' as _i743;
-import '../../features/home/presentation/view_model/home_view_model.dart'
-    as _i77;
 import '../../features/get_all_vehicles/data/data_sources/vehicles_online_data_source.dart'
     as _i710;
 import '../../features/get_all_vehicles/data/data_sources/vehicles_online_data_source_impl.dart'
@@ -92,6 +83,14 @@ import '../../features/get_all_vehicles/domain/use_cases/vehicles_use_case.dart'
     as _i103;
 import '../../features/get_all_vehicles/presentation/manager/vehicles_cubit.dart'
     as _i953;
+import '../../features/home/data/datasources/home_data_source.dart' as _i426;
+import '../../features/home/data/datasources/home_data_source_impl.dart'
+    as _i375;
+import '../../features/home/data/repository/home_repo_impl.dart' as _i1013;
+import '../../features/home/domain/repositories/home_repo.dart' as _i1021;
+import '../../features/home/domain/Use_case/home_use_case.dart' as _i743;
+import '../../features/home/presentation/view_model/home_view_model.dart'
+    as _i77;
 import '../../features/my_profile/data/data_sources/get_profile_repo.dart'
     as _i649;
 import '../../features/my_profile/data/data_sources/get_profile_repo_impl.dart'
@@ -121,10 +120,10 @@ extension GetItInjectableX on _i174.GetIt {
     final dioModule = _$DioModule();
     gh.lazySingleton<_i361.Dio>(() => dioModule.providerDio());
     gh.factory<_i680.ApiService>(() => _i680.ApiService(gh<_i361.Dio>()));
-    gh.factory<_i426.HomeDataSource>(
-        () => _i375.HomeDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i710.VehiclesOnlineDataSource>(
         () => _i347.VehiclesOnlineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i426.HomeDataSource>(
+        () => _i375.HomeDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i649.GetProfileDataSource>(
         () => _i592.GetProfileDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i994.AuthOnLineDataSource>(
@@ -179,8 +178,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i103.VehiclesUseCase(gh<_i566.VehiclesRepo>()));
     gh.factory<_i986.VerifyPasswordViewModel>(
         () => _i986.VerifyPasswordViewModel(gh<_i135.VerifyUseCase>()));
-    gh.factory<_i844.LogoutUseCases>(
-        () => _i844.LogoutUseCases(gh<_i723.AuthRepo>()));
     gh.factory<_i1038.LoginUseCases>(
         () => _i1038.LoginUseCases(gh<_i723.AuthRepo>()));
     gh.factory<_i844.LogoutUseCases>(

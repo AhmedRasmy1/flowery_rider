@@ -1,6 +1,3 @@
-
-import 'package:flowery_rider/features/home/domain/home_entity.dart';
-
 import '../../domain/pending_entity.dart';
 
 sealed class HomeState {}

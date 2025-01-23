@@ -1,4 +1,3 @@
-
 import 'package:flowery_rider/core/api/api_manager/api_manager.dart';
 import 'package:flowery_rider/core/common/api_result.dart';
 import 'package:flowery_rider/features/change_password/data/data_source/change_password_online_data_source_impl.dart';
@@ -7,8 +6,6 @@ import 'package:flowery_rider/features/change_password/domain/entities/change_pa
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
-import 'change_password_online_data_source_impl_test.mocks.dart';
 
 @GenerateMocks([ApiService])
 void main() {

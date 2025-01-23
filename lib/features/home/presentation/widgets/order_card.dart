@@ -6,12 +6,10 @@ import 'package:flutter/material.dart';
 import '../../../../core/resources/color_manager.dart';
 
 class OrderCard extends StatelessWidget {
-
   final Order orderPending;
-OrderCard(this.orderPending);
+  const OrderCard(this.orderPending, {super.key});
 
   @override
-
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
@@ -45,41 +43,35 @@ OrderCard(this.orderPending);
               ],
             ),
             SizedBox(height: 16),
-
-
             StoreInfo(
               title: 'store address',
               name: orderPending.store.name.toString(),
               address: orderPending.store.address.toString(),
               img: orderPending.store.image,
-
-            ), SizedBox(height: 16),
-            PickupAndUserInfo(
-              title: 'user address',
-              name:  orderPending.user.firstName?.name ??"",
-              address: orderPending.user.phone ?? "",
-
-              iconImg: Icons.account_circle_rounded,
-
             ),
             SizedBox(height: 16),
-
-
+            PickupAndUserInfo(
+              title: 'user address',
+              name: orderPending.user.firstName?.name ?? "",
+              address: orderPending.user.phone ?? "",
+              iconImg: Icons.account_circle_rounded,
+            ),
+            SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [  Text(
-                orderPending.totalPrice.toString(),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+              children: [
+                Text(
+                  orderPending.totalPrice.toString(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
                 ),
-              ),
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     side: BorderSide(color: ColorManager.pink),
-
                     foregroundColor: ColorManager.pink,
                   ),
                   child: Text('Reject'),
@@ -89,7 +81,10 @@ OrderCard(this.orderPending);
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.pink,
                   ),
-                  child: Text('Accept',style: TextStyle(color: Colors.white),),
+                  child: Text(
+                    'Accept',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),
