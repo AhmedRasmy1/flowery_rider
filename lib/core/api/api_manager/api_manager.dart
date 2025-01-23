@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flowery_rider/features/home/data/response/driver_orders_response.dart';
+import 'package:flowery_rider/features/home/data/response/pending__orders__response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -55,4 +57,12 @@ abstract class ApiService {
   Future<ChangePasswordResponse> changePassword(
       @Body() ChangePasswordRequest changePasswordRequest,
       @Header("Authorization") String token);
+
+
+  @GET(ApiConstants.getPendingDriverOrdersRoute)
+  Future<PendingOrdersResponse> getHomeData(
+      @Header("Authorization") String token
+      );
+
+
 }
