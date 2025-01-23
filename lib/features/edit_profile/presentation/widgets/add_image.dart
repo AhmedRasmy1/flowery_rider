@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../core/widgets/add_image.dart';
 import '../../../../core/widgets/crop_Image_edite.dart';
 import '../../../../core/widgets/image_size.dart';
+import 'constant.dart';
 
 class AddPicture extends StatefulWidget {
   const AddPicture({
@@ -20,7 +21,7 @@ class AddPicture extends StatefulWidget {
 }
 
 class _TabBodySellerState extends State<AddPicture> {
-  File? logeImageFile;
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +36,16 @@ class _TabBodySellerState extends State<AddPicture> {
                 await ImagePicker().pickImage(source: ImageSource.gallery);
             if (xFile != null) {
               File originalImageFile = File(xFile.path);
-
               /// open edite image
               File? editeImageFiled = await cropImage(originalImageFile);
               if (editeImageFiled != null) {
                 /// change size image
                 File resizedImageFile = await resizeAndCompressImage(
                     imageFile: editeImageFiled, width: 800, quality: 95);
+
                 setState(() {
                   logeImageFile = resizedImageFile;
+
                 });
               }
             }
@@ -56,8 +58,10 @@ class _TabBodySellerState extends State<AddPicture> {
               if (editeImageFiled != null) {
                 File resizedImageFile = await resizeAndCompressImage(
                     imageFile: editeImageFiled, width: 800, quality: 95);
+
                 setState(() {
                   logeImageFile = resizedImageFile;
+
                 });
               }
             }
@@ -69,19 +73,25 @@ class _TabBodySellerState extends State<AddPicture> {
                 ? Stack(
                     children: [
                       Container(
-                        clipBehavior: Clip.antiAlias,
-                        height: 85,
-                        width: 85,
                         decoration: BoxDecoration(
                           // color: ColorManager.pink,
                           border:
-                              Border.all(color: ColorManager.pink, width: 1),
+                          Border.all(color: ColorManager.pink, width: 3),
                           borderRadius: BorderRadius.circular(50),
                         ),
-                        child: Image.file(
-                          logeImageFile!,
-                          fit: BoxFit.fill,
-                          width: double.infinity,
+                        child: Container(
+                          clipBehavior: Clip.antiAlias,
+                          height: 85,
+                          width: 85,
+                          decoration: BoxDecoration(
+
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Image.file(
+                            logeImageFile!,
+                            fit: BoxFit.fill,
+                            width: double.infinity,
+                          ),
                         ),
                       ),
                       Positioned(
@@ -104,20 +114,28 @@ class _TabBodySellerState extends State<AddPicture> {
                 : Stack(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(5),
-                        clipBehavior: Clip.antiAlias,
-                        height: 85,
-                        width: 85,
                         decoration: BoxDecoration(
                           // color: ColorManager.pink,
                           border:
-                              Border.all(color: ColorManager.pink, width: 2),
+                              Border.all(color: ColorManager.pink, width: 3),
                           borderRadius: BorderRadius.circular(50),
                         ),
-                        child: Image.network(
-                          widget.urlImage,
-                          fit: BoxFit.fill,
-                          width: double.infinity,
+                        child: Container(
+                          padding: EdgeInsets.all(0),
+                          clipBehavior: Clip.antiAlias,
+                          height: 85,
+                          width: 85,
+                          decoration: BoxDecoration(
+                            // color: ColorManager.pink,
+                            // border:
+                            //     Border.all(color: ColorManager.pink, width: 2),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Image.network(
+                            widget.urlImage,
+                            fit: BoxFit.fill,
+                            width: double.infinity,
+                          ),
                         ),
                       ),
                       Positioned(

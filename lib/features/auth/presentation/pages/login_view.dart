@@ -1,5 +1,6 @@
 import 'package:flowery_rider/core/functions/extenstions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:motion_toast/motion_toast.dart';
@@ -50,15 +51,22 @@ class _LoginScreenState extends State<LoginView> {
         body: BlocListener<LoginViewModel, LoginState>(
           listener: (context, state) {
             if (state is LoadingLoginState) {
-              EasyLoading.show(status: 'loading...');
-              Future.delayed(const Duration(milliseconds: 600), () {
-                EasyLoading.dismiss();
-              });
+              showDialog(
+                barrierDismissible: true,
+                context: context,
+                builder: (context) => AlertDialog(
+                  backgroundColor: Colors.transparent,
+                  content: Center(
+                      child: CircularProgressIndicator(
+                    color: ColorManager.pink,
+                  )),
+                ),
+              );
             } else if (state is SuccessLoginState) {
-
               Navigator.pushReplacementNamed(
                   context, RoutesManager.layoutRoute);
             } else if (state is ErrorLoginState) {
+              Navigator.pop(context);
               MotionToast.error(
                 description: const Text("Invalid Email or Password"),
                 title: const Text("Error"),
@@ -66,161 +74,81 @@ class _LoginScreenState extends State<LoginView> {
               ).show(context);
             }
           },
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(AppPadding.p16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: context.screenHeight * 0.06),
-                    Text(
-                      AppLocalizations.of(context)!.login,
-                      style: TextStyle(
-                        color: ColorManager.grey,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    const SizedBox(height: AppSize.s20),
-                    CustomTextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: _emailController,
-                      labelText: AppLocalizations.of(context)!.email,
-                      hintText: AppLocalizations.of(context)!.enterYourEmail,
-                      validator: (value) =>
-                          validateNotEmpty(value, 'Enter valid Email'),
-                    ),
-                    const SizedBox(height: AppSize.s24),
-                    CustomTextFormField(
-                      controller: _passwordController,
-                      labelText: AppLocalizations.of(context)!.password,
-                      hintText: AppLocalizations.of(context)!.enterYourPassword,
-                      validator: (value) => validatePasswordMatch(
-                        password: _passwordController.text,
-                        confirmPassword: _passwordController.text,
-                        message: "Passwords don't match",
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Checkbox(
-                          value: rememberMe,
-                          onChanged: (value) {
-                            setState(() {
-                              rememberMe = value ?? false;
-                              viewModel.rememberMe = rememberMe;
-                            });
-                          },
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.rememberMe,
-                          style: TextStyle(
-                            color: ColorManager.grey,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13,
-                          ),
-                        ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutesManager.forgetPasswordScreen);
-                          },
-                          child: Column(
-                            children: [
-                              Text(
-                                AppLocalizations.of(context)!.forgetPassword,
-                                style: TextStyle(
-                                  color: ColorManager.grey,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 13,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: ColorManager.darkGrey,
-                                  decorationStyle: TextDecorationStyle.solid,
-                                  decorationThickness: 1.5,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: AppSize.s100),
-                    if (_errorMessage != null)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppPadding.p24),
-                        child: Text(
-                          _errorMessage!,
-                          style:
-                          const TextStyle(color: Colors.red, fontSize: 14),
+          child: AutofillGroup(
+            child: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(AppPadding.p16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: context.screenHeight * 0.06),
+                      Text(
+                        AppLocalizations.of(context)!.login,
+                        style: TextStyle(
+                          color: ColorManager.grey,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
                         ),
                       ),
-                    Center(
-                      child: SizedBox(
-                        width: context.screenWidth * 0.91,
-                        height: context.screenHeight * 0.063,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _errorMessage = null;
-                            });
-                            if (_formKey.currentState?.validate() ?? false) {
-                              viewModel.login(
-                                _emailController.text,
-                                _passwordController.text,
-                              );
-                              print(_emailController.text);
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: ColorManager.pink,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                          ),
-                          child: Text(
-                            AppLocalizations.of(context)!.login,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16,
-                            ),
-                          ),
+                      const SizedBox(height: AppSize.s20),
+                      CustomTextFormField(
+                        autofillHints: const [AutofillHints.email],
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _emailController,
+                        labelText: AppLocalizations.of(context)!.email,
+                        hintText: AppLocalizations.of(context)!.enterYourEmail,
+                        validator: (value) =>
+                            validateNotEmpty(value, 'Enter valid Email'),
+                      ),
+                      const SizedBox(height: AppSize.s24),
+                      CustomTextFormField(
+                        autofillHints: const [AutofillHints.password],
+                        controller: _passwordController,
+                        obscureText: true,
+                        labelText: AppLocalizations.of(context)!.password,
+                        hintText:
+                            AppLocalizations.of(context)!.enterYourPassword,
+                        validator: (value) => validatePasswordMatch(
+                          password: _passwordController.text,
+                          confirmPassword: _passwordController.text,
+                          message: "Passwords don't match",
                         ),
                       ),
-                    ),
-                    const SizedBox(height: AppSize.s20),
-
-
-                    const SizedBox(height: AppSize.s20),
-                    Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Row(
                         children: [
+                          Checkbox(
+                            value: rememberMe,
+                            onChanged: (value) {
+                              setState(() {
+                                rememberMe = value ?? false;
+                                viewModel.rememberMe = rememberMe;
+                              });
+                            },
+                          ),
                           Text(
-                            AppLocalizations.of(context)!.notHaveAnAccount,
+                            AppLocalizations.of(context)!.rememberMe,
                             style: TextStyle(
-                              color: ColorManager.placeHolderColor,
+                              color: ColorManager.grey,
                               fontWeight: FontWeight.w600,
-                              fontSize: 16,
+                              fontSize: 13,
                             ),
                           ),
+                          const Spacer(),
                           InkWell(
                             onTap: () {
                               Navigator.pushNamed(
-                                  context, RoutesManager.registerRoute);
+                                  context, RoutesManager.forgetPasswordScreen);
                             },
                             child: Column(
                               children: [
                                 Text(
-                                  AppLocalizations.of(context)!.signUp,
+                                  AppLocalizations.of(context)!.forgetPassword,
                                   style: TextStyle(
-                                    color: ColorManager.pink,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 16,
+                                    color: ColorManager.grey,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 13,
                                     decoration: TextDecoration.underline,
                                     decorationColor: ColorManager.darkGrey,
                                     decorationStyle: TextDecorationStyle.solid,
@@ -232,8 +160,93 @@ class _LoginScreenState extends State<LoginView> {
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: AppSize.s100),
+                      if (_errorMessage != null)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: AppPadding.p24),
+                          child: Text(
+                            _errorMessage!,
+                            style: const TextStyle(
+                                color: Colors.red, fontSize: 14),
+                          ),
+                        ),
+                      Center(
+                        child: SizedBox(
+                          width: context.screenWidth * 0.91,
+                          height: context.screenHeight * 0.063,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              TextInput.finishAutofillContext(shouldSave: true);
+                              setState(() {
+                                _errorMessage = null;
+                              });
+                              if (_formKey.currentState?.validate() ?? false) {
+                                viewModel.login(
+                                  _emailController.text,
+                                  _passwordController.text,
+                                );
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: ColorManager.pink,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                            ),
+                            child: Text(
+                              AppLocalizations.of(context)!.login,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: AppSize.s20),
+                      const SizedBox(height: AppSize.s20),
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.notHaveAnAccount,
+                              style: TextStyle(
+                                color: ColorManager.placeHolderColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, RoutesManager.registerRoute);
+                              },
+                              child: Column(
+                                children: [
+                                  Text(
+                                    AppLocalizations.of(context)!.signUp,
+                                    style: TextStyle(
+                                      color: ColorManager.pink,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 16,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: ColorManager.darkGrey,
+                                      decorationStyle:
+                                          TextDecorationStyle.solid,
+                                      decorationThickness: 1.5,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

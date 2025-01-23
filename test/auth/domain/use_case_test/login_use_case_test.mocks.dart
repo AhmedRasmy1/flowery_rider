@@ -5,11 +5,14 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
+import 'package:dio/dio.dart' as _i8;
 import 'package:flowery_rider/core/common/api_result.dart' as _i2;
 import 'package:flowery_rider/features/auth/domain/entities/login_entity.dart'
     as _i5;
 import 'package:flowery_rider/features/auth/domain/entities/logout_entity.dart'
     as _i6;
+import 'package:flowery_rider/features/auth/domain/entities/register_entity.dart'
+    as _i7;
 import 'package:flowery_rider/features/auth/domain/repositories/auth_repo.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
@@ -87,4 +90,63 @@ class MockAuthRepo extends _i1.Mock implements _i3.AuthRepo {
           ),
         )),
       ) as _i4.Future<_i2.Result<_i6.LogoutEntity>>);
+
+  @override
+  _i4.Future<_i2.Result<_i7.RegisterEntity>> signUp(
+    String? country,
+    String? firstName,
+    String? lastName,
+    String? vehicleType,
+    String? vehicleNumber,
+    _i8.MultipartFile? vehicleLicense,
+    String? NID,
+    _i8.MultipartFile? NIDImg,
+    String? email,
+    String? password,
+    String? rePassword,
+    String? gender,
+    String? phone,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signUp,
+          [
+            country,
+            firstName,
+            lastName,
+            vehicleType,
+            vehicleNumber,
+            vehicleLicense,
+            NID,
+            NIDImg,
+            email,
+            password,
+            rePassword,
+            gender,
+            phone,
+          ],
+        ),
+        returnValue: _i4.Future<_i2.Result<_i7.RegisterEntity>>.value(
+            _FakeResult_0<_i7.RegisterEntity>(
+          this,
+          Invocation.method(
+            #signUp,
+            [
+              country,
+              firstName,
+              lastName,
+              vehicleType,
+              vehicleNumber,
+              vehicleLicense,
+              NID,
+              NIDImg,
+              email,
+              password,
+              rePassword,
+              gender,
+              phone,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.Result<_i7.RegisterEntity>>);
 }

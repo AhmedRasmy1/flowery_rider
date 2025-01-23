@@ -28,7 +28,7 @@ class GetProfileDataCubit extends Cubit<GetProfileDataState> {
           CacheService.setData(key: CacheConstants.email, value: result.data?.driver?.email);
           CacheService.setData(key: CacheConstants.phone, value:result.data?.driver?.phone);
           CacheService.setData(key: CacheConstants.gender, value: result.data?.driver?.gender);
-          CacheService.setData(key: CacheConstants.urlImage, value: result.data?.driver?.nIDImg);
+          CacheService.setData(key: CacheConstants.urlImage, value: result.data?.driver?.photo);
           CacheService.setData(key: CacheConstants.vehicleNumber, value: result.data?.driver?.vehicleNumber);
           CacheService.setData(key: CacheConstants.vehicleLicense, value: result.data?.driver?.vehicleLicense);
           CacheService.setData(key: CacheConstants.vehicleType, value: result.data?.driver?.vehicleType);

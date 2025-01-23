@@ -9,4 +9,9 @@ class AssetsManager {
   static const String camera = 'assets/images/camera.svg';
   static const String password = 'assets/images/password.svg';
   static const String upLoadImage = 'assets/images/upload_image.svg';
+  static const String whatsapp = 'assets/images/whatsapp.svg';
+  static const String call = 'assets/images/call.svg';
+  static const String floweryLogo = 'assets/images/Flowery_logo.svg';
+  static const String location = 'assets/images/location.svg';
+  static const String test = 'assets/images/test.svg';
 }
