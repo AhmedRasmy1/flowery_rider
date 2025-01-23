@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:flowery_rider/features/get_all_vehicles/presentation/manager/vehicles_state.dart';
+import '../../../get_all_vehicles/presentation/manager/vehicles_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';

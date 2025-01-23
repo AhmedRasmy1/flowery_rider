@@ -1,6 +1,5 @@
-
-import 'package:flowery_rider/core/resources/color_manager.dart';
-import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';
@@ -35,14 +34,14 @@ class _MyProfileState extends State<MyProfile> {
           create: (context) => viewModel,
           child: BlocBuilder<GetProfileDataCubit, GetProfileDataState>(
             builder: (context, state) {
-              if(state is SuccessGetProfileDataState){
-                 var profileData =state.profileDataModelEntity?.driver;
-                return ProfileBody( profileData: profileData,);
-              }
-              else{
+              if (state is SuccessGetProfileDataState) {
+                var profileData = state.profileDataModelEntity?.driver;
+                return ProfileBody(
+                  profileData: profileData,
+                );
+              } else {
                 return SkeletonProfile();
               }
-
             },
           ),
         ),
@@ -50,5 +49,3 @@ class _MyProfileState extends State<MyProfile> {
     );
   }
 }
-
-

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart' hide DioMediaType;
-import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
+import '../utils/cashed_data_shared_preferences.dart';
 import 'package:http_parser/http_parser.dart';
 import 'api_constants.dart';
 import 'dio_provider.dart';

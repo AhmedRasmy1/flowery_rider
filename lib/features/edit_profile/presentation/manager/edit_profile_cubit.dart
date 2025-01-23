@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:flowery_rider/features/edit_profile/data/models/request/edit_profile_request.dart';
-import 'package:flowery_rider/features/edit_profile/domain/entities/profile_edit_data_entity.dart';
+import '../../data/models/request/edit_profile_request.dart';
+import '../../domain/entities/profile_edit_data_entity.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
@@ -11,6 +11,7 @@ import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../domain/use_cases/edit_profile_usecase.dart';
 
 part 'edit_profile_state.dart';
+
 @Injectable()
 class EditProfileCubit extends Cubit<EditProfileState> {
   EditProfileCubit(this._editProfileUseCase) : super(EditProfileInitial());
@@ -33,9 +34,11 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       case Success<EditProfileDataEntity?>():
         if (!isClosed) {
           log('Success');
-          CacheService.setData(key: CacheConstants.firstName,
+          CacheService.setData(
+              key: CacheConstants.firstName,
               value: result.data?.driver?.firstName);
-          CacheService.setData(key: CacheConstants.lastName,
+          CacheService.setData(
+              key: CacheConstants.lastName,
               value: result.data?.driver?.lastName);
           CacheService.setData(
               key: CacheConstants.email, value: result.data?.driver?.email);

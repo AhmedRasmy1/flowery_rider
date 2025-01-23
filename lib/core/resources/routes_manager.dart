@@ -1,8 +1,8 @@
-import 'package:flowery_rider/features/auth/presentation/pages/apply_view.dart';
-import 'package:flowery_rider/features/auth/presentation/pages/login_view.dart';
-import 'package:flowery_rider/features/home/presentation/pages/home_view.dart';
-import 'package:flowery_rider/features/layout/presentation/pages/layout_view.dart';
-import 'package:flowery_rider/on_boarding.dart';
+import '../../features/auth/presentation/pages/apply_view.dart';
+import '../../features/auth/presentation/pages/login_view.dart';
+import '../../features/home/presentation/pages/home_view.dart';
+import '../../features/layout/presentation/pages/layout_view.dart';
+import '../../on_boarding.dart';
 import '../../features/forget_password/presentation/view/email_verification_view.dart';
 import '../../features/forget_password/presentation/view/forget_password_screen.dart';
 import '../../features/forget_password/presentation/view/reset_password_view.dart';

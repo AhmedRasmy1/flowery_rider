@@ -1,6 +1,6 @@
-import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
-import 'package:flowery_rider/features/edit_profile/data/models/request/edit_profile_request.dart';
-import 'package:flowery_rider/features/edit_profile/domain/entities/profile_edit_data_entity.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../models/request/edit_profile_request.dart';
+import '../../domain/entities/profile_edit_data_entity.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/api/api_extentions.dart';
 import '../../../../core/api/api_manager/api_manager.dart';

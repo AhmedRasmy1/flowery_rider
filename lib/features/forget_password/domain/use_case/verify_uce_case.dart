@@ -1,6 +1,7 @@
-import '../entities/verify_password_entity.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../core/common/api_result.dart';
+import '../entities/verify_password_entity.dart';
 import '../repositories/forget_password_repo.dart';
 
 @injectable

@@ -1,19 +1,22 @@
-import 'package:device_info_plus/device_info_plus.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 PermissionStatus? permissionStorageStatus;
 PermissionStatus? permissionCameraStatus;
 PermissionStatus? permissionNotificationStatus;
 
 Future<bool> isPermissionStorageGranted() async {
-  if (Platform.isAndroid && await DeviceInfoPlugin().androidInfo.then((info) => info.version.sdkInt >= 33)) {
-
+  if (Platform.isAndroid &&
+      await DeviceInfoPlugin()
+          .androidInfo
+          .then((info) => info.version.sdkInt >= 33)) {
     final imagePermissionStatus = await Permission.photos.status;
     final videoPermissionStatus = await Permission.videos.status;
 
-    if (imagePermissionStatus == PermissionStatus.denied || videoPermissionStatus == PermissionStatus.denied) {
+    if (imagePermissionStatus == PermissionStatus.denied ||
+        videoPermissionStatus == PermissionStatus.denied) {
       final requestedImagePermission = await Permission.photos.request();
       final requestedVideoPermission = await Permission.videos.request();
 
@@ -24,7 +27,6 @@ Future<bool> isPermissionStorageGranted() async {
           videoPermissionStatus == PermissionStatus.granted;
     }
   } else {
-
     permissionStorageStatus = await Permission.storage.status;
 
     if (permissionStorageStatus == PermissionStatus.denied) {
@@ -36,7 +38,6 @@ Future<bool> isPermissionStorageGranted() async {
   }
 }
 
-
 Future<bool> isPermissionCameraGranted() async {
   permissionCameraStatus = await Permission.camera.status;
 
@@ -46,9 +47,4 @@ Future<bool> isPermissionCameraGranted() async {
   } else {
     return permissionCameraStatus == PermissionStatus.granted;
   }
-
 }
-
-
-
-

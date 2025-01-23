@@ -1,4 +1,4 @@
-import 'package:flowery_rider/features/home/domain/repositories/home_repo.dart';
+import '../repositories/home_repo.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/common/api_result.dart';

@@ -1,7 +1,6 @@
-
-import 'package:flowery_rider/core/di/di.dart';
-import 'package:flowery_rider/core/resources/font_manager.dart';
-import 'package:flowery_rider/features/get_all_vehicles/presentation/manager/vehicles_state.dart';
+import '../../../../core/di/di.dart';
+import '../../../../core/resources/font_manager.dart';
+import '../../../get_all_vehicles/presentation/manager/vehicles_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -119,7 +118,6 @@ class _VehicleTypeState extends State<VehicleType> {
                 ),
               ),
             );
-
           } else if (state is LoadingVehiclesState) {
             return Text("Loading....");
           } else {

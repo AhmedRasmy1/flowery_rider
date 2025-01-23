@@ -1,5 +1,5 @@
-import 'package:flowery_rider/core/resources/color_manager.dart';
-import 'package:flowery_rider/features/auth/presentation/widgets/logout_view.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../auth/presentation/widgets/logout_view.dart';
 import 'package:flutter/material.dart';
 import 'option_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

@@ -1,15 +1,15 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flowery_rider/core/di/di.dart';
-import 'package:flowery_rider/core/functions/extenstions.dart';
-import 'package:flowery_rider/core/resources/color_manager.dart';
-import 'package:flowery_rider/core/widgets/custom_app_bar.dart';
-import 'package:flowery_rider/features/auth/presentation/view_model/register/register_cubit.dart';
-import 'package:flowery_rider/features/auth/presentation/view_model/register/register_state.dart';
-import 'package:flowery_rider/features/auth/presentation/widgets/chooseGender.dart';
-import 'package:flowery_rider/features/auth/presentation/widgets/country_selection.dart';
-import 'package:flowery_rider/features/auth/presentation/widgets/vehicle_type_selection.dart';
+import '../../../../core/di/di.dart';
+import '../../../../core/functions/extenstions.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../view_model/register/register_cubit.dart';
+import '../view_model/register/register_state.dart';
+import '../widgets/chooseGender.dart';
+import '../widgets/country_selection.dart';
+import '../widgets/vehicle_type_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';

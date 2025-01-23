@@ -1,4 +1,4 @@
-import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motion_toast/motion_toast.dart';
@@ -28,12 +28,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   @override
   void initState() {
     super.initState();
-    changePasswordViewModel =
-        getIt.get<ChangePasswordViewModel>();
-
+    changePasswordViewModel = getIt.get<ChangePasswordViewModel>();
   }
-
-
 
   final _formKey = GlobalKey<FormState>();
 
@@ -75,8 +71,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 ).show(context);
               } else if (state is ChangePasswordSuccessState) {
                 MotionToast.success(
-                  description: Text(
-                      AppLocalizations.of(context)!.passwordChangedSuccessfully),
+                  description: Text(AppLocalizations.of(context)!
+                      .passwordChangedSuccessfully),
                   animationType: AnimationType.fromLeft,
                 ).show(context);
                 Navigator.pushNamed(context, RoutesManager.loginView);
@@ -170,9 +166,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 if (isButtonEnabled == true) {
-                                  String savedToken=CacheService.getData(key: CacheConstants.userToken);
+                                  String savedToken = CacheService.getData(
+                                      key: CacheConstants.userToken);
                                   //  String savedToken = CacheService.getData(
-                                   //   key: CacheConstants.userToken);
+                                  //   key: CacheConstants.userToken);
                                   String token = "Bearer $savedToken";
                                   changePassword(token);
                                 }

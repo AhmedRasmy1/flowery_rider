@@ -1,4 +1,4 @@
-import 'package:flowery_rider/features/home/domain/pending_entity.dart';
+import '../../domain/pending_entity.dart';
 
 import '../../../../core/common/api_result.dart';
 

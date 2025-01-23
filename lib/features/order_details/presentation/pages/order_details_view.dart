@@ -1,6 +1,6 @@
-import 'package:flowery_rider/core/resources/color_manager.dart';
-import 'package:flowery_rider/core/widgets/custom_app_bar.dart';
-import 'package:flowery_rider/core/widgets/custom_elevated_button.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/order_detailsV_view_body.dart';

@@ -1,6 +1,6 @@
-import 'package:flowery_rider/core/resources/color_manager.dart';
-import 'package:flowery_rider/core/resources/routes_manager.dart';
-import 'package:flowery_rider/core/resources/style_manager.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
+import '../../../../core/resources/style_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

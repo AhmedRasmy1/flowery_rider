@@ -1,5 +1,5 @@
-import 'package:flowery_rider/core/functions/extenstions.dart';
-import 'package:flowery_rider/core/resources/routes_manager.dart';
+import 'core/functions/extenstions.dart';
+import 'core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../core/resources/color_manager.dart';
@@ -19,7 +19,6 @@ class OnboardingView extends StatelessWidget {
             children: [
               Expanded(
                 child: ListView(
-                
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0, left: 0),
@@ -37,10 +36,12 @@ class OnboardingView extends StatelessWidget {
                     ),
                     Text(
                       AppLocalizations.of(context)!.welcomeTo,
-                      style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                     ),
                     Text(AppLocalizations.of(context)!.appName,
-                        style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20)),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800, fontSize: 20)),
                     SizedBox(
                       height: 24,
                     ),
@@ -50,7 +51,8 @@ class OnboardingView extends StatelessWidget {
                         height: context.screenHeight * 0.063,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, RoutesManager.loginRoute);
+                            Navigator.pushNamed(
+                                context, RoutesManager.loginRoute);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: ColorManager.pink,
@@ -76,7 +78,8 @@ class OnboardingView extends StatelessWidget {
                         height: context.screenHeight * 0.063,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, RoutesManager.registerRoute);
+                            Navigator.pushNamed(
+                                context, RoutesManager.registerRoute);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
@@ -97,8 +100,6 @@ class OnboardingView extends StatelessWidget {
                         ),
                       ),
                     ),
-                
-                
                   ],
                 ),
               ),

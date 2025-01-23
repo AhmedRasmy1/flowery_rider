@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:flowery_rider/features/get_all_vehicles/domain/entities/vehicles_response_entity.dart';
-import 'package:flowery_rider/features/get_all_vehicles/domain/use_cases/vehicles_use_case.dart';
-import 'package:flowery_rider/features/get_all_vehicles/presentation/manager/vehicles_state.dart';
+import '../../domain/entities/vehicles_response_entity.dart';
+import '../../domain/use_cases/vehicles_use_case.dart';
+import 'vehicles_state.dart';
 import '../../../../../../core/common/api_result.dart';
 import 'package:injectable/injectable.dart';
 

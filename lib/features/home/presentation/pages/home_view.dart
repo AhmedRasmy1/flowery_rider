@@ -1,6 +1,6 @@
-import 'package:flowery_rider/core/resources/color_manager.dart';
-import 'package:flowery_rider/features/home/data/response/driver_orders_response.dart';
-import 'package:flowery_rider/features/home/domain/home_entity.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../data/response/driver_orders_response.dart';
+import '../../domain/home_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flowery_rider/features/auth/domain/entities/register_entity.dart';
-import 'package:flowery_rider/features/auth/domain/use_cases/use_cases.dart';
+import '../../../domain/entities/register_entity.dart';
+import '../../../domain/use_cases/use_cases.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../../core/common/api_result.dart';

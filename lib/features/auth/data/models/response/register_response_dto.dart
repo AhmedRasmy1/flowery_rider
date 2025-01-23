@@ -1,4 +1,4 @@
-import 'package:flowery_rider/features/auth/domain/entities/register_entity.dart';
+import '../../../domain/entities/register_entity.dart';
 
 class RegisterResponseDto {
   RegisterResponseDto({
@@ -29,9 +29,7 @@ class RegisterResponseDto {
 
   RegisterEntity toRegisterEntity() {
     return RegisterEntity(
-        message: message,
-        driver: driver?.toDriverEntity(),
-        token: token);
+        message: message, driver: driver?.toDriverEntity(), token: token);
   }
 }
 

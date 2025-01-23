@@ -1,4 +1,4 @@
-import 'package:flowery_rider/core/resources/routes_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api/api_constants.dart';
