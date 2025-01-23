@@ -57,6 +57,7 @@ class _EditProfileViewState extends State<EditProfileView> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return PopScope(

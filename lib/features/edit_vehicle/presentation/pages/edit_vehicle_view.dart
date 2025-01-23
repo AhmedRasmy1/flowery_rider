@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flowery_rider/core/resources/cashed_image.dart';
 
 import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +9,6 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
-import '../../../../core/resources/font_manager.dart';
-import '../../../../core/resources/style_manager.dart';
-import '../../../../core/resources/theme_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../../../core/widgets/add_image.dart';
@@ -21,6 +17,8 @@ import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/image_size.dart';
 import 'package:path/path.dart' as path;
+
+import '../widgets/vehicle_type.dart';
 
 class EditVehicleView extends StatefulWidget {
   const EditVehicleView({super.key});
@@ -69,84 +67,85 @@ class _EditVehicleViewState extends State<EditVehicleView> {
                           },
                         ),
                         const SizedBox(height: AppSize.s36),
-                        DropdownButtonFormField<String>(
-                          value: null,
-                          onChanged: (type) {
-                            setState(() {});
-                          },
-                          hint: Text(typeVehicle),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return AppLocalizations.of(context)!
-                                  .pleaseSelectVehicleType;
-                            }
-                            return null;
-                          },
-                          items: vehicleType.map((vehicleType) {
-                            return DropdownMenuItem<String>(
-                              value: vehicleType,
-                              child: Text(vehicleType),
-                            );
-                          }).toList(),
-                          isExpanded: true,
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            labelText:
-                                AppLocalizations.of(context)!.vehicleType,
-                            labelStyle: getRegularStyle(
-                              color: ColorManager.grey,
-                              fontSize: FontSize.s16,
-                            ),
-                            hintStyle: getRegularStyle(
-                              color: ColorManager.placeHolderColor,
-                              fontSize: FontSize.s14,
-                            ),
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            contentPadding:
-                                const EdgeInsets.all(AppPadding.p18),
-                            enabledBorder: outLintInputBorderMethod(
-                              BorderSide(
-                                color: ColorManager.black,
-                                width: AppSize.w1_5,
-                              ),
-                              const BorderRadius.all(
-                                  Radius.circular(AppSize.s5)),
-                            ),
-                            focusedBorder: outLintInputBorderMethod(
-                              BorderSide(
-                                color: ColorManager.grey,
-                                width: AppSize.w1_5,
-                              ),
-                              const BorderRadius.all(
-                                  Radius.circular(AppSize.s5)),
-                            ),
-                            errorBorder: outLintInputBorderMethod(
-                              BorderSide(
-                                color: ColorManager.error,
-                                width: AppSize.w1_5,
-                              ),
-                              const BorderRadius.all(
-                                  Radius.circular(AppSize.s5)),
-                            ),
-                            focusedErrorBorder: outLintInputBorderMethod(
-                              BorderSide(
-                                color: ColorManager.error,
-                                width: AppSize.w1_5,
-                              ),
-                              const BorderRadius.all(
-                                  Radius.circular(AppSize.s5)),
-                            ),
-                            disabledBorder: outLintInputBorderMethod(
-                              BorderSide(
-                                color: ColorManager.grey,
-                                width: AppSize.w1_5,
-                              ),
-                              const BorderRadius.all(
-                                  Radius.circular(AppSize.s5)),
-                            ),
-                          ),
-                        ),
+                        VehicleType(typeVehicle: typeVehicle,),
+                        // DropdownButtonFormField<String>(
+                        //   value: null,
+                        //   onChanged: (type) {
+                        //     setState(() {});
+                        //   },
+                        //   hint: Text(typeVehicle),
+                        //   validator: (value) {
+                        //     if (value == null || value.isEmpty) {
+                        //       return AppLocalizations.of(context)!
+                        //           .pleaseSelectVehicleType;
+                        //     }
+                        //     return null;
+                        //   },
+                        //   items: vehicleType.map((vehicleType) {
+                        //     return DropdownMenuItem<String>(
+                        //       value: vehicleType,
+                        //       child: Text(vehicleType),
+                        //     );
+                        //   }).toList(),
+                        //   isExpanded: true,
+                        //   decoration: InputDecoration(
+                        //     fillColor: Colors.white,
+                        //     filled: true,
+                        //     labelText:
+                        //         AppLocalizations.of(context)!.vehicleType,
+                        //     labelStyle: getRegularStyle(
+                        //       color: ColorManager.grey,
+                        //       fontSize: FontSize.s16,
+                        //     ),
+                        //     hintStyle: getRegularStyle(
+                        //       color: ColorManager.placeHolderColor,
+                        //       fontSize: FontSize.s14,
+                        //     ),
+                        //     floatingLabelBehavior: FloatingLabelBehavior.always,
+                        //     contentPadding:
+                        //         const EdgeInsets.all(AppPadding.p18),
+                        //     enabledBorder: outLintInputBorderMethod(
+                        //       BorderSide(
+                        //         color: ColorManager.black,
+                        //         width: AppSize.w1_5,
+                        //       ),
+                        //       const BorderRadius.all(
+                        //           Radius.circular(AppSize.s5)),
+                        //     ),
+                        //     focusedBorder: outLintInputBorderMethod(
+                        //       BorderSide(
+                        //         color: ColorManager.grey,
+                        //         width: AppSize.w1_5,
+                        //       ),
+                        //       const BorderRadius.all(
+                        //           Radius.circular(AppSize.s5)),
+                        //     ),
+                        //     errorBorder: outLintInputBorderMethod(
+                        //       BorderSide(
+                        //         color: ColorManager.error,
+                        //         width: AppSize.w1_5,
+                        //       ),
+                        //       const BorderRadius.all(
+                        //           Radius.circular(AppSize.s5)),
+                        //     ),
+                        //     focusedErrorBorder: outLintInputBorderMethod(
+                        //       BorderSide(
+                        //         color: ColorManager.error,
+                        //         width: AppSize.w1_5,
+                        //       ),
+                        //       const BorderRadius.all(
+                        //           Radius.circular(AppSize.s5)),
+                        //     ),
+                        //     disabledBorder: outLintInputBorderMethod(
+                        //       BorderSide(
+                        //         color: ColorManager.grey,
+                        //         width: AppSize.w1_5,
+                        //       ),
+                        //       const BorderRadius.all(
+                        //           Radius.circular(AppSize.s5)),
+                        //     ),
+                        //   ),
+                        // ),
                         const SizedBox(height: AppSize.s24),
                         CustomTextFormField(
                           controller: _vehicleNumberController,
@@ -228,41 +227,41 @@ class _EditVehicleViewState extends State<EditVehicleView> {
                             ),
                           ),
                         ),
-                        logeImageFile != null
-                            ? Container(
-                          clipBehavior: Clip.antiAlias,
-                          margin: EdgeInsets.symmetric(vertical: 18),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: ColorManager.placeHolderColor
-                                  ),
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: Colors.grey),
-                                child: AspectRatio(
-                                  aspectRatio: 16 / 9,
-                                  child: Image.file(
-                                    logeImageFile!,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              )
-                            : Container(
-                              clipBehavior: Clip.antiAlias,
-                                margin: EdgeInsets.symmetric(vertical: 18),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: ColorManager.placeHolderColor
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: Colors.grey),
-                                child: AspectRatio(
-                                  aspectRatio: 16 / 9,
-                                  child: Image.network(
-                                    'https://flower.elevateegy.com/uploads/${_vehicleLicenseController.text}',
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              )
+                        // logeImageFile != null
+                        //     ? Container(
+                        //   clipBehavior: Clip.antiAlias,
+                        //   margin: EdgeInsets.symmetric(vertical: 18),
+                        //         decoration: BoxDecoration(
+                        //           border: Border.all(
+                        //             color: ColorManager.placeHolderColor
+                        //           ),
+                        //             borderRadius: BorderRadius.circular(8),
+                        //             color: Colors.grey),
+                        //         child: AspectRatio(
+                        //           aspectRatio: 16 / 9,
+                        //           child: Image.file(
+                        //             logeImageFile!,
+                        //             fit: BoxFit.fill,
+                        //           ),
+                        //         ),
+                        //       )
+                        //     : Container(
+                        //       clipBehavior: Clip.antiAlias,
+                        //         margin: EdgeInsets.symmetric(vertical: 18),
+                        //         decoration: BoxDecoration(
+                        //             border: Border.all(
+                        //                 color: ColorManager.placeHolderColor
+                        //             ),
+                        //             borderRadius: BorderRadius.circular(8),
+                        //             color: Colors.grey),
+                        //         child: AspectRatio(
+                        //           aspectRatio: 16 / 9,
+                        //           child: Image.network(
+                        //             'https://flower.elevateegy.com/uploads/${_vehicleLicenseController.text}',
+                        //             fit: BoxFit.fill,
+                        //           ),
+                        //         ),
+                        //       )
                       ],
                     ),
                   ),
@@ -284,12 +283,12 @@ class _EditVehicleViewState extends State<EditVehicleView> {
   }
 }
 
-List<String> vehicleType = [
-  'Car',
-  'Motorcycle',
-  'Truck',
-  'Bus',
-  'Electric Vehicle',
-  'Heavy Vehicle',
-  'Sports Vehicle',
-];
+// List<String> vehicleType = [
+//   'Car',
+//   'Motorcycle',
+//   'Truck',
+//   'Bus',
+//   'Electric Vehicle',
+//   'Heavy Vehicle',
+//   'Sports Vehicle',
+// ];

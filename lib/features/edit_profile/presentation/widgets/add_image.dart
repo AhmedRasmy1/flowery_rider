@@ -1,8 +1,5 @@
 import 'dart:io';
 
-import 'package:flowery_rider/core/api/api_constants.dart';
-
-import '../../../../core/api/upload_image_api.dart';
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import 'package:flutter/material.dart';

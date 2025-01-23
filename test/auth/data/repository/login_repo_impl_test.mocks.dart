@@ -10,10 +10,14 @@ import 'package:flowery_rider/features/auth/data/data_sources/auth_online_data_s
     as _i3;
 import 'package:flowery_rider/features/auth/data/models/request/login_model_dto.dart'
     as _i6;
+import 'package:flowery_rider/features/auth/data/models/request/register_request_dto.dart'
+    as _i9;
 import 'package:flowery_rider/features/auth/domain/entities/login_entity.dart'
     as _i5;
 import 'package:flowery_rider/features/auth/domain/entities/logout_entity.dart'
     as _i7;
+import 'package:flowery_rider/features/auth/domain/entities/register_entity.dart'
+    as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -82,4 +86,22 @@ class MockAuthOnLineDataSource extends _i1.Mock
           ),
         )),
       ) as _i4.Future<_i2.Result<_i7.LogoutEntity>>);
+
+  @override
+  _i4.Future<_i2.Result<_i8.RegisterEntity>> signUp(
+          _i9.RegisterRequestDto? registerRequestDto) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signUp,
+          [registerRequestDto],
+        ),
+        returnValue: _i4.Future<_i2.Result<_i8.RegisterEntity>>.value(
+            _FakeResult_0<_i8.RegisterEntity>(
+          this,
+          Invocation.method(
+            #signUp,
+            [registerRequestDto],
+          ),
+        )),
+      ) as _i4.Future<_i2.Result<_i8.RegisterEntity>>);
 }

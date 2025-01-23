@@ -1,121 +1,105 @@
 import 'package:flutter/material.dart';
 
-/// Flutter code sample for [AutofillGroup].
-
-void main() => runApp(const AutofillGroupExampleApp());
-
-class AutofillGroupExampleApp extends StatelessWidget {
-  const AutofillGroupExampleApp({super.key});
-
+class OrderDetailsScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('AutofillGroup Sample')),
-        body: const AutofillGroupExample(),
-      ),
-    );
+  _OrderDetailsScreenState createState() => _OrderDetailsScreenState();
+}
+
+class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
+  final PageController _pageController = PageController();
+  int _currentStep = 0;
+
+  // الانتقال للصفحة التالية
+  void _nextStep() {
+    if (_currentStep < 4) {
+      _currentStep++;
+      _pageController.animateToPage(
+        _currentStep,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+      setState(() {});
+    }
   }
-}
 
-class AutofillGroupExample extends StatefulWidget {
-  const AutofillGroupExample({super.key});
-
-  @override
-  State<AutofillGroupExample> createState() => _AutofillGroupExampleState();
-}
-
-class _AutofillGroupExampleState extends State<AutofillGroupExample> {
-  bool isSameAddress = true;
-  final TextEditingController shippingAddress1 = TextEditingController();
-  final TextEditingController shippingAddress2 = TextEditingController();
-  final TextEditingController billingAddress1 = TextEditingController();
-  final TextEditingController billingAddress2 = TextEditingController();
-
-  final TextEditingController creditCardNumber = TextEditingController();
-  final TextEditingController creditCardSecurityCode = TextEditingController();
-
-  final TextEditingController phoneNumber = TextEditingController();
+  // العودة للصفحة السابقة
+  void _previousStep() {
+    if (_currentStep > 0) {
+      _currentStep--;
+      _pageController.animateToPage(
+        _currentStep,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        const Text('Shipping address'),
-        // The address fields are grouped together as some platforms are
-        // capable of autofilling all of these fields in one go.
-        AutofillGroup(
-          child: Column(
-            children: <Widget>[
-              TextField(
-                controller: shippingAddress1,
-                autofillHints: const <String>[AutofillHints.streetAddressLine1],
-              ),
-              TextField(
-                controller: shippingAddress2,
-                autofillHints: const <String>[AutofillHints.streetAddressLine2],
-              ),
-            ],
-          ),
-        ),
-        const Text('Billing address'),
-        Checkbox(
-          value: isSameAddress,
-          onChanged: (bool? newValue) {
-            if (newValue != null) {
-              setState(() {
-                isSameAddress = newValue;
-              });
-            }
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Order details'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
           },
         ),
-        // Again the address fields are grouped together for the same reason.
-        if (!isSameAddress)
-          AutofillGroup(
-            child: Column(
-              children: <Widget>[
-                TextField(
-                  controller: billingAddress1,
-                  autofillHints: const <String>[
-                    AutofillHints.streetAddressLine1,
-                  ],
+      ),
+      body: Column(
+        children: [
+          // Progress Bar
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(5, (index) {
+                return Expanded(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 4.0),
+                    height: 5.0,
+                    color: index <= _currentStep ? Colors.green : Colors.grey[300],
+                  ),
+                );
+              }),
+            ),
+          ),
+
+          // PageView
+          Expanded(
+            child: PageView(
+              controller: _pageController,
+              physics: NeverScrollableScrollPhysics(), // تعطيل التمرير اليدوي
+              children: [
+                Center(child: Text('Step 1: Order Accepted', style: TextStyle(fontSize: 18.0))),
+                Center(child: Text('Step 2: Preparing Order', style: TextStyle(fontSize: 18.0))),
+                Center(child: Text('Step 3: Out for Delivery', style: TextStyle(fontSize: 18.0))),
+                Center(child: Text('Step 4: Delivered', style: TextStyle(fontSize: 18.0))),
+                Center(child: Text('Step 5: Completed', style: TextStyle(fontSize: 18.0))),
+              ],
+            ),
+          ),
+
+          // Navigation Buttons
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: _currentStep > 0 ? _previousStep : null,
+                  child: Text('Previous'),
                 ),
-                TextField(
-                  controller: billingAddress2,
-                  autofillHints: const <String>[
-                    AutofillHints.streetAddressLine2,
-                  ],
+                ElevatedButton(
+                  onPressed: _currentStep < 4 ? _nextStep : null,
+                  child: Text('Next'),
                 ),
               ],
             ),
           ),
-        const Text('Credit Card Information'),
-        // The credit card number and the security code are grouped together
-        // as some platforms are capable of autofilling both fields.
-        AutofillGroup(
-          child: Column(
-            children: <Widget>[
-              TextField(
-                controller: creditCardNumber,
-                autofillHints: const <String>[AutofillHints.creditCardNumber],
-              ),
-              TextField(
-                controller: creditCardSecurityCode,
-                autofillHints: const <String>[
-                  AutofillHints.creditCardSecurityCode,
-                ],
-              ),
-            ],
-          ),
-        ),
-        const Text('Contact Phone Number'),
-        // The phone number field can still be autofilled despite lacking an
-        // `AutofillScope`.
-        TextField(
-          controller: phoneNumber,
-          autofillHints: const <String>[AutofillHints.telephoneNumber],
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

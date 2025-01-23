@@ -76,7 +76,7 @@ class OnboardingView extends StatelessWidget {
                         height: context.screenHeight * 0.063,
                         child: ElevatedButton(
                           onPressed: () {
-                            // Navigator.pushNamed(context, RoutesManager.register);
+                            Navigator.pushNamed(context, RoutesManager.registerRoute);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
