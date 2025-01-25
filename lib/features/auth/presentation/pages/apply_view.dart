@@ -1,7 +1,6 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import 'package:flowery_rider/core/di/di.dart';
 import 'package:flowery_rider/core/functions/extenstions.dart';
 import 'package:flowery_rider/core/resources/color_manager.dart';
@@ -89,11 +88,9 @@ class _RegisterViewState extends State<RegisterView> {
                   showErrorDialog(context, message);
                 }  if (state is SuccessRegisterState) {
 
-                  var userToken=state.registerEntity.token;
-                  print("Before----------- close loading state");
+                  var userToken=state.registerEntities?.token;
                   Navigator.of(context).pop();
-                  Navigator.of(context).pop();
-                  print("we close loading state");
+
                   Navigator.pushNamed(context, RoutesManager.successApply);
 
                 }
@@ -346,9 +343,7 @@ class _RegisterViewState extends State<RegisterView> {
                             SizedBox(
                               height: 41,
                             ),
-                            ChooseGender(
-                              viewModel: viewModel,
-                            ),
+                            ChooseGender(viewModel: viewModel),
                             SizedBox(
                               height: 41,
                             ),
@@ -421,21 +416,20 @@ class _RegisterViewState extends State<RegisterView> {
 
 
         // Call register function
-        viewModel.register(
-          'cairo',
-          _firstNameController.text,
-          _secondNameController.text,
-          selectedVehicleId ?? '',
-          _vehicleNumberController.text,
-          _vehicleLicenseImage as File ,
-          _idNumberController.text,
-          _idImage as File,
-          _emailController.text,
-          _passwordController.text,
-          _confirmPasswordController.text,
-          'female',
-          _phoneController.text,
-        );
+        viewModel.doIntent(RegisterAction(
+            country:'cairo' ,
+            firstName: _firstNameController.text,
+            lastName: _secondNameController.text,
+            vehicleType: selectedVehicleId??"",
+            vehicleNumber:  _vehicleNumberController.text,
+            vehicleLicense:_vehicleLicenseImage as File,
+            nid: _idNumberController.text,
+            nidImg:_idImage as File,
+            email:  _emailController.text,
+            password:_passwordController.text ,
+            rePassword: _confirmPasswordController.text,
+            gender: 'female',
+            phone:_phoneController.text));
       } else {
         print("Please provide all required files.");
       }

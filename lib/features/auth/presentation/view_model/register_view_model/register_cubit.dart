@@ -1,6 +1,4 @@
-import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,59 +8,53 @@ import '../../../domain/entities/register_entities/register_entity.dart';
 import '../../../domain/use_cases/register_use_case.dart';
 import 'register_state.dart';
 
+
+
+
 @injectable
 class RegisterViewModel extends Cubit<RegisterState> {
   final RegisterUseCase _registerUseCase;
+
+  // static RegisterViewModel get(context) => BlocProvider.of(context);
 
   RegisterViewModel(this._registerUseCase) : super(InitialState());
   bool isSelectGender = false;
   bool isSelectGender2 = false;
 
+  void doIntent(RegisterAction intent) async {
+    switch (intent) {
+      case RegisterAction():
+        _register(intent);
+    }
+  }
 
-  Future<void> register(String country,
-      String firstName,
-      String lastName,
-      String vehicleType,
-      String vehicleNumber,
-      File vehicleLicense,
-      String nid,
-      File nidImg,
-      String email,
-      String password,
-      String rePassword,
-      String gender,
-      String phone,) async {
-
+  void _register(RegisterAction registerAction) async {
     emit(LoadingRegisterState());
-    // String gender =
-    // CacheService.getData(key: CacheConstants.selectGender) ?? '';
-    print("=======================================");
-    print("Fetching addresses with token:");
-
+    String gender =
+        CacheService.getData(key: CacheConstants.selectGender) ?? '';
     var result = await _registerUseCase.register(
-      country,
-      firstName,
-      lastName,
-      vehicleType,
-      vehicleNumber,
-      vehicleLicense,
-      nid,
-      nidImg,
-      email,
-      password,
-      rePassword,
-      gender,
-      phone,);
+
+        registerAction.country,
+        registerAction.firstName,
+        registerAction.lastName,
+        registerAction.vehicleType,
+        registerAction.vehicleNumber,
+        registerAction.vehicleLicense,
+        registerAction.nid,
+        registerAction.nidImg,
+        registerAction.email,
+        registerAction.password,
+        registerAction.rePassword,
+        gender,
+        registerAction.phone,
+     );
 
     switch (result) {
-      case Success<RegisterEntity>():
-        print("=======================================");
-        print(RegisterEntity);
+      case Success<RegisterEntity?>():
         emit(SuccessRegisterState(result.data));
-      case Fail<RegisterEntity>():
+      case Fail<RegisterEntity?>():
+      // print(result.exception);
         emit(ErrorRegisterState(result.exception));
-        print("=======================================");
-        print("Error Occurred: ${result.exception}");
     }
   }
 }
