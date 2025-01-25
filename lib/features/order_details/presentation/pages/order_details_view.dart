@@ -6,6 +6,7 @@ import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import '../view_model/start_order_cubit.dart';
+import '../widgets/firebase_functions.dart';
 import '../widgets/order_detailsV_view_body.dart';
 
 class OrderDetailsView extends StatefulWidget {
@@ -27,11 +28,13 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
   int currentStep = 0;
   late StartOrderCubit viewModel;
 
-  void nextStep() {
-    if (currentStep < 5) {
+  void nextStep() async{
+    if (currentStep < 4) {
       setState(() {
         currentStep++;
       });
+      /// add firebase
+      await  startOrder();
       _pageController.animateToPage(
         currentStep,
         duration: const Duration(milliseconds: 1),
@@ -119,7 +122,9 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                             : buttonTitle[4],
                         onPressed: currentStep < 4
                             ? nextStep
-                            : () {
+                            : () async{
+                          /// finish  add firebase
+
                           /// //// /// // ////
                         },
                       ),
@@ -143,7 +148,6 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
 }
 
 List<String> buttonTitle = [
-
   'Arrived at Pickup point',
   'Start deliver',
   'Arrived to the user',

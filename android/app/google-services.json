@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "845994738611",
+    "project_id": "flowery-ecommerce",
+    "storage_bucket": "flowery-ecommerce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845994738611:android:21ebaf1b1a1a58c3f541c6",
+        "android_client_info": {
+          "package_name": "com.example.flower_ecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgTY2g3HkaANARRP0cKxC9HcSCAbthMz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845994738611:android:b31168573d3afe4bf541c6",
+        "android_client_info": {
+          "package_name": "com.example.flowery_rider"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgTY2g3HkaANARRP0cKxC9HcSCAbthMz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
