@@ -1,25 +1,25 @@
-import '../../../../core/resources/routes_manager.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/api/api_constants.dart';
 import '../../../../core/api/upload_image_api.dart';
 import '../../../../core/di/di.dart';
 import '../../../../core/functions/extenstions.dart';
-import '../../../../core/resources/assets_manager.dart';
-import '../manager/edit_profile_cubit.dart';
-import '../widgets/add_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg/svg.dart';
 import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/app_constants.dart';
+import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/font_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
+import '../manager/edit_profile_cubit.dart';
+import '../widgets/add_image.dart';
 import '../widgets/constant.dart';
 
 class EditProfileView extends StatefulWidget {

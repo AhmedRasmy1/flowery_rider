@@ -1,5 +1,5 @@
-import 'package:flowery_rider/core/di/di.dart';
-import 'package:flowery_rider/features/order_details/presentation/widgets/skeleton_order_details.dart';
+import '../../../../core/di/di.dart';
+import '../widgets/skeleton_order_details.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
@@ -10,14 +10,9 @@ import '../widgets/firebase_functions.dart';
 import '../widgets/order_detailsV_view_body.dart';
 
 class OrderDetailsView extends StatefulWidget {
-
   const OrderDetailsView({super.key, required this.orderId});
 
   final String orderId;
-
-
-
-
 
   @override
   State<OrderDetailsView> createState() => _OrderDetailsViewState();
@@ -28,13 +23,14 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
   int currentStep = 0;
   late StartOrderCubit viewModel;
 
-  void nextStep() async{
+  void nextStep() async {
     if (currentStep < 4) {
       setState(() {
         currentStep++;
       });
+
       /// add firebase
-      await  startOrder();
+      await startOrder();
       _pageController.animateToPage(
         currentStep,
         duration: const Duration(milliseconds: 1),
@@ -51,7 +47,6 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider(
       create: (context) => viewModel..startOrder(widget.orderId),
       child: SafeArea(
@@ -77,7 +72,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                           return Expanded(
                             child: Container(
                               margin:
-                              const EdgeInsets.symmetric(horizontal: 4.0),
+                                  const EdgeInsets.symmetric(horizontal: 4.0),
                               height: 5.0,
                               decoration: BoxDecoration(
                                   color: index <= currentStep
@@ -93,7 +88,6 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                           controller: _pageController,
                           physics: const NeverScrollableScrollPhysics(),
                           children: [
-
                             OrderDetailsViewBody(
                               status: 'Accepted',
                             ),
@@ -122,21 +116,19 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                             : buttonTitle[4],
                         onPressed: currentStep < 4
                             ? nextStep
-                            : () async{
-                          /// finish  add firebase
+                            : () async {
+                                /// finish  add firebase
 
-                          /// //// /// // ////
-                        },
+                                /// //// /// // ////
+                              },
                       ),
                     ],
                   ),
                 ),
               );
-            }
-            else if (state is LoadingStartOrderState) {
+            } else if (state is LoadingStartOrderState) {
               return OrderDetailsSkeleton();
-            }
-            else if (state is ErrorStartOrderState) {
+            } else if (state is ErrorStartOrderState) {
               return Center(child: Text('error'));
             }
             return Center(child: Text('error'));

@@ -1,7 +1,7 @@
-import 'package:flowery_rider/core/common/api_result.dart';
-import 'package:flowery_rider/features/order_details/data/data_sources/start_order_data_sources_repo.dart';
-import 'package:flowery_rider/features/order_details/domain/entities/start_order_entity.dart';
-import 'package:flowery_rider/features/order_details/domain/repo/start_order_repo.dart';
+import '../../../../core/common/api_result.dart';
+import '../data_sources/start_order_data_sources_repo.dart';
+import '../../domain/entities/start_order_entity.dart';
+import '../../domain/repo/start_order_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: StartOrderRepo)

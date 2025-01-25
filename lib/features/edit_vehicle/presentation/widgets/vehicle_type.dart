@@ -1,15 +1,16 @@
-import '../../../../core/di/di.dart';
-import '../../../../core/resources/font_manager.dart';
-import '../../../get_all_vehicles/presentation/manager/vehicles_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../core/di/di.dart';
 import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/font_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/theme_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../get_all_vehicles/domain/entities/vehicles_response_entity.dart';
 import '../../../get_all_vehicles/presentation/manager/vehicles_cubit.dart';
+import '../../../get_all_vehicles/presentation/manager/vehicles_state.dart';
 
 class VehicleType extends StatefulWidget {
   final String typeVehicle;

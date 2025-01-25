@@ -4,11 +4,13 @@ import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../view_model/register_view_model/register_cubit.dart';
 
 class ChooseGender extends StatefulWidget {
-  const ChooseGender({required this.viewModel,super.key, });
+  const ChooseGender({
+    required this.viewModel,
+    super.key,
+  });
 
   final RegisterViewModel viewModel;
 
@@ -26,9 +28,8 @@ class _ChooseGenderState extends State<ChooseGender> {
       children: [
         Text(
           'Gender',
-          style: getSemiBoldStyle(
-              color:  ColorManager.grey,
-              fontSize: AppSize.s18),
+          style:
+              getSemiBoldStyle(color: ColorManager.grey, fontSize: AppSize.s18),
         ),
         const Spacer(),
         Row(

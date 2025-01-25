@@ -1,36 +1,31 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart' hide DioMediaType;
-import 'package:flowery_rider/core/api/api_manager/register_dio_provider.dart';
+import 'register_dio_provider.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:injectable/injectable.dart';
-import 'package:retrofit/http.dart';
 
 import '../../../features/auth/data/models/response/register_response_dto.dart';
 import '../api_constants.dart';
 
 @injectable
 @singleton
-
 class RegisterApiManager {
-
-  Future<RegisterResponseDto> signUp(
-      {
-        required String country,
-        required String firstName ,
-        required String lastName ,
-        required String vehicleType,
-        required String vehicleNumber,
-        required File vehicleLicense,
-        required String nid,
-        required File nidImg ,
-        required String email,
-        required String password,
-        required String rePassword,
-        required String gender,
-        required String phone,
-
-      }) async {
+  Future<RegisterResponseDto> signUp({
+    required String country,
+    required String firstName,
+    required String lastName,
+    required String vehicleType,
+    required String vehicleNumber,
+    required File vehicleLicense,
+    required String nid,
+    required File nidImg,
+    required String email,
+    required String password,
+    required String rePassword,
+    required String gender,
+    required String phone,
+  }) async {
     FormData data = FormData();
 
     data.fields.addAll([

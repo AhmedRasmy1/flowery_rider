@@ -73,8 +73,6 @@ abstract class ApiService {
       @Header("Authorization") String token);
 
   @GET(ApiConstants.getAllVehiclesRoute)
-  Future<VehiclesResponseDto> getAllVehicles();
-
   @GET(ApiConstants.getPendingDriverOrdersRoute)
   Future<PendingOrdersResponse> getHomeData(
       @Header("Authorization") String token);

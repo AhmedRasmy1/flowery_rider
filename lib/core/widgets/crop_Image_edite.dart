@@ -1,7 +1,9 @@
 import 'dart:io';
-import '../resources/color_manager.dart';
+
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
+
+import '../resources/color_manager.dart';
 
 Future<File?> cropImage(File imgFile) async {
   final croppedFile = await ImageCropper().cropImage(

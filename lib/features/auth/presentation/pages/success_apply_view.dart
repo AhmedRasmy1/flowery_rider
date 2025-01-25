@@ -1,6 +1,6 @@
-import 'package:flowery_rider/core/functions/extenstions.dart';
-import 'package:flowery_rider/core/resources/color_manager.dart';
-import 'package:flowery_rider/core/resources/routes_manager.dart';
+import '../../../../core/functions/extenstions.dart';
+import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 
 class SuccessApplyView extends StatelessWidget {
@@ -9,20 +9,21 @@ class SuccessApplyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 158,),
+            SizedBox(
+              height: 158,
+            ),
             Image.asset("assets/images/check-circle.png"),
-
             SizedBox(height: 20),
             Text(
               'Your application has been \n submitted!',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18,
-                fontWeight:FontWeight.w600,
+                fontWeight: FontWeight.w600,
               ),
             ),
             SizedBox(height: 10),
@@ -31,7 +32,7 @@ class SuccessApplyView extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
-                fontWeight:FontWeight.w400,
+                fontWeight: FontWeight.w400,
                 color: ColorManager.grey,
               ),
             ),
@@ -41,7 +42,6 @@ class SuccessApplyView extends StatelessWidget {
               height: context.screenHeight * 0.063,
               child: ElevatedButton(
                 onPressed: () {
-
                   Navigator.pushNamed(context, RoutesManager.loginView);
                 },
                 style: ElevatedButton.styleFrom(
@@ -52,16 +52,14 @@ class SuccessApplyView extends StatelessWidget {
                 ),
                 child: Text(
                   'Login',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white
-                  ),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
             ),
-            Image.asset("assets/images/bgForSuccessfullyRegister.png",
-            fit: BoxFit.cover,
-            width: double.infinity,
+            Image.asset(
+              "assets/images/bgForSuccessfullyRegister.png",
+              fit: BoxFit.cover,
+              width: double.infinity,
             ),
           ],
         ),

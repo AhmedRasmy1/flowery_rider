@@ -4,7 +4,6 @@ class ApiConstants {
   static const String getAllVehiclesRoute = "vehicles";
   static const String loginRoute = "drivers/signin";
   static const String logoutRoute = 'drivers/logout';
-  static const String getAllVehiclesRoute = "vehicles";
   static const String profile = "drivers/profile-data";
   static const String forgetPasswordRoute = "drivers/forgotPassword";
   static const String verifyResetCode = "drivers/verifyResetCode";

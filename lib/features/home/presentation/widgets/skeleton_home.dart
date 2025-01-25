@@ -1,6 +1,5 @@
-import 'package:flowery_rider/core/di/di.dart';
-import 'package:flowery_rider/features/home/presentation/widgets/storeInfo.dart';
-import 'package:flowery_rider/features/home/presentation/widgets/userinfo.dart';
+import 'storeInfo.dart';
+import 'userinfo.dart';
 
 import 'package:skeletonizer/skeletonizer.dart';
 

@@ -1,5 +1,4 @@
-import 'package:flowery_rider/core/resources/routes_manager.dart';
-import 'package:flowery_rider/features/order_details/presentation/pages/order_details_view.dart';
+import '../../../order_details/presentation/pages/order_details_view.dart';
 
 import '../../data/response/pending__orders__response.dart';
 import 'storeInfo.dart';
@@ -72,9 +71,7 @@ class OrderCard extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     side: BorderSide(color: ColorManager.pink),

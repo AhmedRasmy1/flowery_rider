@@ -1,5 +1,3 @@
-import 'package:flowery_rider/core/di/di.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/resources/color_manager.dart';
@@ -19,7 +17,6 @@ class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
   final PageController _pageController = PageController();
   int currentStep = 0;
 
-
   void nextStep() {
     if (currentStep < 5) {
       setState(() {
@@ -32,7 +29,6 @@ class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
       );
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -72,11 +68,9 @@ class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
                     controller: _pageController,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
-
                       OrderDetailsViewBody(
                         status: 'Accepted',
                       ),
-
                     ],
                   ),
                 ),
@@ -85,13 +79,14 @@ class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
                   buttonColor: currentStep < 4
                       ? ColorManager.pink
                       : ColorManager.placeHolderColor,
-                  title:
-                  currentStep < 5 ? buttonTitle[currentStep] : buttonTitle[4],
+                  title: currentStep < 5
+                      ? buttonTitle[currentStep]
+                      : buttonTitle[4],
                   onPressed: currentStep < 5
                       ? nextStep
                       : () {
-                    /// //// /// // ////
-                  },
+                          /// //// /// // ////
+                        },
                 ),
               ],
             ),

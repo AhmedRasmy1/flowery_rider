@@ -11,13 +11,11 @@ import 'package:flowery_rider/features/auth/data/data_sources/auth_online_data_s
 import 'package:flowery_rider/features/auth/data/models/request/login_model_dto.dart'
     as _i6;
 import 'package:flowery_rider/features/auth/data/models/request/register_request_dto.dart'
-    as _i9;
+    as _i8;
 import 'package:flowery_rider/features/auth/domain/entities/login_entity.dart'
     as _i5;
 import 'package:flowery_rider/features/auth/domain/entities/logout_entity.dart'
     as _i7;
-import 'package:flowery_rider/features/auth/domain/entities/register_entity.dart'
-    as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -34,8 +32,13 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeResult_0<T> extends _i1.SmartFake implements _i2.Result<T> {
-  _FakeResult_0(Object parent, Invocation parentInvocation)
-      : super(parent, parentInvocation);
+  _FakeResult_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [AuthOnLineDataSource].
@@ -49,27 +52,54 @@ class MockAuthOnLineDataSource extends _i1.Mock
 
   @override
   _i4.Future<_i2.Result<_i5.LoginEntitie>> login(
-    _i6.LoginModelDto? loginModelDto,
-  ) =>
+          _i6.LoginModelDto? loginModelDto) =>
       (super.noSuchMethod(
-        Invocation.method(#login, [loginModelDto]),
-        returnValue: _i4.Future<_i2.Result<_i5.LoginEntitie>>.value(
-          _FakeResult_0<_i5.LoginEntitie>(
-            this,
-            Invocation.method(#login, [loginModelDto]),
-          ),
+        Invocation.method(
+          #login,
+          [loginModelDto],
         ),
+        returnValue: _i4.Future<_i2.Result<_i5.LoginEntitie>>.value(
+            _FakeResult_0<_i5.LoginEntitie>(
+          this,
+          Invocation.method(
+            #login,
+            [loginModelDto],
+          ),
+        )),
       ) as _i4.Future<_i2.Result<_i5.LoginEntitie>>);
 
   @override
   _i4.Future<_i2.Result<_i7.LogoutEntity>> logout(String? token) =>
       (super.noSuchMethod(
-        Invocation.method(#logout, [token]),
-        returnValue: _i4.Future<_i2.Result<_i7.LogoutEntity>>.value(
-          _FakeResult_0<_i7.LogoutEntity>(
-            this,
-            Invocation.method(#logout, [token]),
-          ),
+        Invocation.method(
+          #logout,
+          [token],
         ),
+        returnValue: _i4.Future<_i2.Result<_i7.LogoutEntity>>.value(
+            _FakeResult_0<_i7.LogoutEntity>(
+          this,
+          Invocation.method(
+            #logout,
+            [token],
+          ),
+        )),
       ) as _i4.Future<_i2.Result<_i7.LogoutEntity>>);
+
+  @override
+  _i4.Future<_i2.Result<dynamic>> signUp(
+          _i8.RegisterRequestDto? registerRequestDto) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signUp,
+          [registerRequestDto],
+        ),
+        returnValue:
+            _i4.Future<_i2.Result<dynamic>>.value(_FakeResult_0<dynamic>(
+          this,
+          Invocation.method(
+            #signUp,
+            [registerRequestDto],
+          ),
+        )),
+      ) as _i4.Future<_i2.Result<dynamic>>);
 }

@@ -1,6 +1,5 @@
 import '../../../domain/entities/start_order_entity.dart';
 
-
 class StartOrderModel {
   String? message;
   Orders? orders;
@@ -9,22 +8,20 @@ class StartOrderModel {
 
   StartOrderModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
-    orders =
-    json['orders'] != null ? new Orders.fromJson(json['orders']) : null;
+    orders = json['orders'] != null ? Orders.fromJson(json['orders']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    if (this.orders != null) {
-      data['orders'] = this.orders!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
+    if (orders != null) {
+      data['orders'] = orders!.toJson();
     }
     return data;
   }
-  StartOrderEntity toStartOrderEntity(){
-    return StartOrderEntity(
-        message: message
-    );
+
+  StartOrderEntity toStartOrderEntity() {
+    return StartOrderEntity(message: message);
   }
 }
 
@@ -44,17 +41,17 @@ class Orders {
 
   Orders(
       {this.sId,
-        this.user,
-        this.orderItems,
-        this.totalPrice,
-        this.paymentType,
-        this.isPaid,
-        this.isDelivered,
-        this.state,
-        this.createdAt,
-        this.updatedAt,
-        this.orderNumber,
-        this.iV});
+      this.user,
+      this.orderItems,
+      this.totalPrice,
+      this.paymentType,
+      this.isPaid,
+      this.isDelivered,
+      this.state,
+      this.createdAt,
+      this.updatedAt,
+      this.orderNumber,
+      this.iV});
 
   Orders.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -62,7 +59,7 @@ class Orders {
     if (json['orderItems'] != null) {
       orderItems = <OrderItems>[];
       json['orderItems'].forEach((v) {
-        orderItems!.add(new OrderItems.fromJson(v));
+        orderItems!.add(OrderItems.fromJson(v));
       });
     }
     totalPrice = json['totalPrice'];
@@ -77,21 +74,21 @@ class Orders {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['user'] = this.user;
-    if (this.orderItems != null) {
-      data['orderItems'] = this.orderItems!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['user'] = user;
+    if (orderItems != null) {
+      data['orderItems'] = orderItems!.map((v) => v.toJson()).toList();
     }
-    data['totalPrice'] = this.totalPrice;
-    data['paymentType'] = this.paymentType;
-    data['isPaid'] = this.isPaid;
-    data['isDelivered'] = this.isDelivered;
-    data['state'] = this.state;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['orderNumber'] = this.orderNumber;
-    data['__v'] = this.iV;
+    data['totalPrice'] = totalPrice;
+    data['paymentType'] = paymentType;
+    data['isPaid'] = isPaid;
+    data['isDelivered'] = isDelivered;
+    data['state'] = state;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['orderNumber'] = orderNumber;
+    data['__v'] = iV;
     return data;
   }
 }
@@ -112,14 +109,11 @@ class OrderItems {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['product'] = this.product;
-    data['price'] = this.price;
-    data['quantity'] = this.quantity;
-    data['_id'] = this.sId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['product'] = product;
+    data['price'] = price;
+    data['quantity'] = quantity;
+    data['_id'] = sId;
     return data;
   }
 }
-
-
-

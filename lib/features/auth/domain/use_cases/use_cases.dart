@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/common/api_result.dart';
-import '../entities/register_entity.dart';
 import '../repositories/auth_repo.dart';
 
 @injectable
@@ -10,7 +9,7 @@ class RegisterUseCase {
 
   RegisterUseCase(this.authRepo);
 
-  Future<Result<RegisterEntity>> register(
+  Future<Result> register(
     String country,
     String firstName,
     String lastName,

@@ -1,5 +1,4 @@
-
-import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
+import '../../../../../core/utils/cashed_data_shared_preferences.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -7,9 +6,6 @@ import '../../../../../../core/common/api_result.dart';
 import '../../../domain/entities/register_entities/register_entity.dart';
 import '../../../domain/use_cases/register_use_case.dart';
 import 'register_state.dart';
-
-
-
 
 @injectable
 class RegisterViewModel extends Cubit<RegisterState> {
@@ -33,27 +29,26 @@ class RegisterViewModel extends Cubit<RegisterState> {
     String gender =
         CacheService.getData(key: CacheConstants.selectGender) ?? '';
     var result = await _registerUseCase.register(
-
-        registerAction.country,
-        registerAction.firstName,
-        registerAction.lastName,
-        registerAction.vehicleType,
-        registerAction.vehicleNumber,
-        registerAction.vehicleLicense,
-        registerAction.nid,
-        registerAction.nidImg,
-        registerAction.email,
-        registerAction.password,
-        registerAction.rePassword,
-        gender,
-        registerAction.phone,
-     );
+      registerAction.country,
+      registerAction.firstName,
+      registerAction.lastName,
+      registerAction.vehicleType,
+      registerAction.vehicleNumber,
+      registerAction.vehicleLicense,
+      registerAction.nid,
+      registerAction.nidImg,
+      registerAction.email,
+      registerAction.password,
+      registerAction.rePassword,
+      gender,
+      registerAction.phone,
+    );
 
     switch (result) {
       case Success<RegisterEntity?>():
         emit(SuccessRegisterState(result.data));
       case Fail<RegisterEntity?>():
-      // print(result.exception);
+        // print(result.exception);
         emit(ErrorRegisterState(result.exception));
     }
   }

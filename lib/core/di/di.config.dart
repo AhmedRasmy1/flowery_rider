@@ -1,4 +1,3 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -33,10 +32,10 @@ import '../../features/auth/presentation/view_model/login_view_model_cubit.dart'
     as _i629;
 import '../../features/auth/presentation/view_model/logout_view_model_cubit.dart'
     as _i48;
-import '../../features/auth/presentation/view_model/register_view_model/register_cubit.dart'
-    as _i863;
 import '../../features/auth/presentation/view_model/register/register_cubit.dart'
     as _i70;
+import '../../features/auth/presentation/view_model/register_view_model/register_cubit.dart'
+    as _i863;
 import '../../features/change_password/data/data_source/change_password_online_data_source.dart'
     as _i804;
 import '../../features/change_password/data/data_source/change_password_online_data_source_impl.dart'
@@ -81,18 +80,6 @@ import '../../features/forget_password/presentation/view_models/reset_password_v
     as _i353;
 import '../../features/forget_password/presentation/view_models/verify_password_view_model/verify_password_cubit.dart'
     as _i986;
-import '../../features/get_all_vehicles/data/data_sources/vehicles_online_data_source.dart'
-    as _i710;
-import '../../features/get_all_vehicles/data/data_sources/vehicles_online_data_source_impl.dart'
-    as _i347;
-import '../../features/get_all_vehicles/data/repositories/vehicles_repo_impl.dart'
-    as _i307;
-import '../../features/get_all_vehicles/domain/repositories/vehicles_repo.dart'
-    as _i566;
-import '../../features/get_all_vehicles/domain/use_cases/vehicles_use_case.dart'
-    as _i103;
-import '../../features/get_all_vehicles/presentation/manager/vehicles_cubit.dart'
-    as _i953;
 import '../../features/get_all_vehicles/data/data_sources/vehicles_online_data_source.dart'
     as _i710;
 import '../../features/get_all_vehicles/data/data_sources/vehicles_online_data_source_impl.dart'
@@ -158,8 +145,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i680.ApiService>(() => _i680.ApiService(gh<_i361.Dio>()));
     gh.factory<_i710.VehiclesOnlineDataSource>(
         () => _i347.VehiclesOnlineDataSourceImpl(gh<_i680.ApiService>()));
-    gh.factory<_i710.VehiclesOnlineDataSource>(
-        () => _i347.VehiclesOnlineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i426.HomeDataSource>(
         () => _i375.HomeDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i649.GetProfileDataSource>(
@@ -168,22 +153,20 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i140.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i665.RegisterOnlineDataSource>(() =>
         _i211.RegisterOnlineDataSourceImpl(gh<_i777.RegisterApiManager>()));
-    gh.factory<_i629.RegisterRepo>(
-        () => _i633.RegisterRepoImpl(gh<_i665.RegisterOnlineDataSource>()));
     gh.factory<_i1021.HomeRepo>(
         () => _i1013.HomeRepoImpl(gh<_i426.HomeDataSource>()));
+    gh.factory<_i629.RegisterRepo>(
+        () => _i633.RegisterRepoImpl(gh<_i665.RegisterOnlineDataSource>()));
     gh.factory<_i910.StartOrderDataSourcesRepo>(
         () => _i296.StartOrderDataSourcesRepoImpl(gh<_i680.ApiService>()));
     gh.factory<_i70.EditProfileDataSource>(
         () => _i197.EditProfileDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i740.ForgetPasswordOnlineDatasource>(
         () => _i470.ForgetPasswordOnlineDatasourceImpl(gh<_i680.ApiService>()));
-    gh.factory<_i1010.RegisterUseCase>(
-        () => _i1010.RegisterUseCase(gh<_i629.RegisterRepo>()));
-    gh.factory<_i566.VehiclesRepo>(
-        () => _i307.VehiclesRepoImpl(gh<_i710.VehiclesOnlineDataSource>()));
     gh.factory<_i750.StartOrderRepo>(
         () => _i1032.StarOrderRepoImpl(gh<_i910.StartOrderDataSourcesRepo>()));
+    gh.factory<_i1010.RegisterUseCase>(
+        () => _i1010.RegisterUseCase(gh<_i629.RegisterRepo>()));
     gh.factory<_i743.HomeUseCase>(
         () => _i743.HomeUseCase(gh<_i1021.HomeRepo>()));
     gh.factory<_i566.VehiclesRepo>(
@@ -228,8 +211,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i790.EditProfileUseCase(gh<_i164.EditProfileRepo>()));
     gh.factory<_i353.ResetPasswordViewModel>(
         () => _i353.ResetPasswordViewModel(gh<_i174.ResetPasswordUseCase>()));
-    gh.factory<_i103.VehiclesUseCase>(
-        () => _i103.VehiclesUseCase(gh<_i566.VehiclesRepo>()));
     gh.factory<_i936.EditProfileCubit>(
         () => _i936.EditProfileCubit(gh<_i790.EditProfileUseCase>()));
     gh.factory<_i103.VehiclesUseCase>(
@@ -244,8 +225,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1057.RegisterUseCase(gh<_i723.AuthRepo>()));
     gh.factory<_i48.LogoutViewModel>(
         () => _i48.LogoutViewModel(gh<_i844.LogoutUseCases>()));
-    gh.factory<_i953.VehiclesViewModel>(
-        () => _i953.VehiclesViewModel(gh<_i103.VehiclesUseCase>()));
     gh.factory<_i953.VehiclesViewModel>(
         () => _i953.VehiclesViewModel(gh<_i103.VehiclesUseCase>()));
     gh.factory<_i70.RegisterViewModel>(
