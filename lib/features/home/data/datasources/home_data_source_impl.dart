@@ -8,7 +8,7 @@ import 'home_data_source.dart';
 
 @Injectable(as: HomeDataSource)
 class HomeDataSourceImpl implements HomeDataSource {
-  ApiService apiService;
+ final ApiService apiService;
   HomeDataSourceImpl(this.apiService);
   @override
   Future<Result<PendingDriverOrdersEntity>> getHomeData(String token) {

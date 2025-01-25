@@ -5,13 +5,13 @@ sealed class RegisterState {}
 class InitialState extends RegisterState {}
 
 class SuccessRegisterState extends RegisterState {
-  RegisterEntity registerEntity;
+  RegisterEntity? registerEntity;
 
   SuccessRegisterState(this.registerEntity);
 }
 
 class LoadingRegisterState extends RegisterState {
-  LoadingRegisterState();
+
 }
 
 class ErrorRegisterState extends RegisterState {

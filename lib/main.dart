@@ -1,18 +1,21 @@
-import 'features/order_details/presentation/pages/order_details_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'core/di/di.dart';
 import 'core/resources/routes_manager.dart';
 import 'core/utils/cashed_data_shared_preferences.dart';
 import 'core/utils/my_bloc_observer.dart';
+import 'firebase_options.dart';
 import 'localization/locale_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await CacheService.cacheInitialization();
   configureDependencies();
   EasyLoading.init();
@@ -47,8 +50,8 @@ class FlowerRider extends StatelessWidget {
             initialRoute: RoutesManager.onBoarding,
             //home: HomeView(),
             // initialRoute: RoutesManager.onBoarding,
-            // initialRoute: RoutesManager.onBoarding,
-            home: OrderDetailsView(),
+
+
           );
         },
       ),

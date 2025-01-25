@@ -2,6 +2,7 @@ import '../../features/auth/presentation/pages/apply_view.dart';
 import '../../features/auth/presentation/pages/login_view.dart';
 import '../../features/home/presentation/pages/home_view.dart';
 import '../../features/layout/presentation/pages/layout_view.dart';
+import '../../features/order_details/presentation/pages/order_details_view.dart';
 import '../../on_boarding.dart';
 import '../../features/forget_password/presentation/view/email_verification_view.dart';
 import '../../features/forget_password/presentation/view/forget_password_screen.dart';
@@ -25,6 +26,7 @@ class RoutesManager {
   static const String changePasswordViewRoute = '/chanePasswordViewRoute';
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
   static const String homeViewScreen = '/homeViewScreen';
+  // static const String orderDetailsView = '/orderDetailsView';
 }
 
 class RouteGenerator {
@@ -54,6 +56,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case RoutesManager.homeViewScreen:
         return MaterialPageRoute(builder: (_) => const HomeView());
+      // case RoutesManager.orderDetailsView:
+      //   return MaterialPageRoute(builder: (_) => const OrderDetailsView());
       default:
         return unDefinedRoute();
     }

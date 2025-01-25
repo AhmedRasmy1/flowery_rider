@@ -21,6 +21,7 @@ import '../../../features/forget_password/data/model/forget_password_response/re
 import '../../../features/forget_password/data/model/forget_password_response/verify_response.dart';
 import '../../../features/get_all_vehicles/data/models/vehicles_response_dto.dart';
 import '../../../features/my_profile/data/models/response/profile_data_model.dart';
+import '../../../features/order_details/data/models/response/start_order_model.dart';
 import '../api_constants.dart';
 
 part 'api_manager.g.dart';
@@ -49,6 +50,7 @@ abstract class ApiService {
   Future<ProfileDataModel> getProfile(
     @Header("Authorization") String token,
   );
+
   @PUT(ApiConstants.editProfile)
   Future<EditProfileResponse> editProfile(@Header("Authorization") String token,
       @Body() EditProfileRequest editProfileRequest);
@@ -72,4 +74,8 @@ abstract class ApiService {
   @GET(ApiConstants.getPendingDriverOrdersRoute)
   Future<PendingOrdersResponse> getHomeData(
       @Header("Authorization") String token);
+
+  @PUT('${ApiConstants.startOrder}/{orderId}')
+  Future<StartOrderModel?> startOrder(
+      @Path() String orderId, @Header("Authorization") String token);
 }

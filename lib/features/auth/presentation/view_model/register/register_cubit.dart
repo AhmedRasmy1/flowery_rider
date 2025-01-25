@@ -53,13 +53,11 @@ class RegisterViewModel extends Cubit<RegisterState> {
 
     switch (result) {
       case Success<RegisterEntity>():
-        print("=======================================");
-        print(RegisterEntity);
+
         emit(SuccessRegisterState(result.data));
       case Fail<RegisterEntity>():
         emit(ErrorRegisterState(result.exception));
-        print("=======================================");
-        print("Error Occurred: ${result.exception}");
+
     }
   }
 }
