@@ -28,23 +28,13 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeAuthRepo_0 extends _i1.SmartFake implements _i2.AuthRepo {
-  _FakeAuthRepo_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeAuthRepo_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeResult_1<T> extends _i1.SmartFake implements _i3.Result<T> {
-  _FakeResult_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeResult_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [LoginUseCases].
@@ -56,22 +46,18 @@ class MockLoginUseCases extends _i1.Mock implements _i4.LoginUseCases {
   }
 
   @override
-  _i2.AuthRepo get authRepo => (super.noSuchMethod(
-        Invocation.getter(#authRepo),
-        returnValue: _FakeAuthRepo_0(
-          this,
-          Invocation.getter(#authRepo),
-        ),
-      ) as _i2.AuthRepo);
+  _i2.AuthRepo get authRepo =>
+      (super.noSuchMethod(
+            Invocation.getter(#authRepo),
+            returnValue: _FakeAuthRepo_0(this, Invocation.getter(#authRepo)),
+          )
+          as _i2.AuthRepo);
 
   @override
   set authRepo(_i2.AuthRepo? _authRepo) => super.noSuchMethod(
-        Invocation.setter(
-          #authRepo,
-          _authRepo,
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.setter(#authRepo, _authRepo),
+    returnValueForMissingStub: null,
+  );
 
   @override
   _i5.Future<_i3.Result<_i6.LoginEntitie>> login(
@@ -79,23 +65,13 @@ class MockLoginUseCases extends _i1.Mock implements _i4.LoginUseCases {
     String? password,
   ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #login,
-          [
-            email,
-            password,
-          ],
-        ),
-        returnValue: _i5.Future<_i3.Result<_i6.LoginEntitie>>.value(
-            _FakeResult_1<_i6.LoginEntitie>(
-          this,
-          Invocation.method(
-            #login,
-            [
-              email,
-              password,
-            ],
-          ),
-        )),
-      ) as _i5.Future<_i3.Result<_i6.LoginEntitie>>);
+            Invocation.method(#login, [email, password]),
+            returnValue: _i5.Future<_i3.Result<_i6.LoginEntitie>>.value(
+              _FakeResult_1<_i6.LoginEntitie>(
+                this,
+                Invocation.method(#login, [email, password]),
+              ),
+            ),
+          )
+          as _i5.Future<_i3.Result<_i6.LoginEntitie>>);
 }

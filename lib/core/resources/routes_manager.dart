@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 import '../../features/auth/presentation/pages/apply_view.dart';
 import '../../features/auth/presentation/pages/login_view.dart';
 import '../../features/home/presentation/pages/home_view.dart';
 import '../../features/layout/presentation/pages/layout_view.dart';
 import '../../features/order_details/presentation/pages/order_details_view.dart';
 import '../../on_boarding.dart';
+=======
+import 'package:flowery_rider/features/auth/presentation/pages/apply_view.dart';
+import 'package:flowery_rider/features/auth/presentation/pages/login_view.dart';
+import 'package:flowery_rider/features/auth/presentation/pages/success_apply_view.dart';
+import 'package:flowery_rider/features/layout/presentation/pages/layout_view.dart';
+import 'package:flowery_rider/on_boarding.dart';
+>>>>>>> origin/feat/register
 import '../../features/forget_password/presentation/view/email_verification_view.dart';
 import '../../features/forget_password/presentation/view/forget_password_screen.dart';
 import '../../features/forget_password/presentation/view/reset_password_view.dart';
@@ -25,8 +33,12 @@ class RoutesManager {
   static const String resetPasswordRoute = '/resetPassword';
   static const String changePasswordViewRoute = '/chanePasswordViewRoute';
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
+<<<<<<< HEAD
   static const String homeViewScreen = '/homeViewScreen';
   // static const String orderDetailsView = '/orderDetailsView';
+=======
+  static const String successApply= '/successApplyView';
+>>>>>>> origin/feat/register
 }
 
 class RouteGenerator {
@@ -38,6 +50,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LayoutView());
       case RoutesManager.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterView());
+      case RoutesManager.successApply:
+        return MaterialPageRoute(builder: (_) => const SuccessApplyView());
       case RoutesManager.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case RoutesManager.editProfileView:

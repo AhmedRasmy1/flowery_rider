@@ -34,13 +34,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeResult_0<T> extends _i1.SmartFake implements _i2.Result<T> {
-  _FakeResult_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeResult_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [AuthOnLineDataSource].
@@ -54,25 +49,31 @@ class MockAuthOnLineDataSource extends _i1.Mock
 
   @override
   _i4.Future<_i2.Result<_i5.LoginEntitie>> login(
-          _i6.LoginModelDto? loginModelDto) =>
+    _i6.LoginModelDto? loginModelDto,
+  ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #login,
-          [loginModelDto],
-        ),
-        returnValue: _i4.Future<_i2.Result<_i5.LoginEntitie>>.value(
-            _FakeResult_0<_i5.LoginEntitie>(
-          this,
-          Invocation.method(
-            #login,
-            [loginModelDto],
-          ),
-        )),
-      ) as _i4.Future<_i2.Result<_i5.LoginEntitie>>);
+            Invocation.method(#login, [loginModelDto]),
+            returnValue: _i4.Future<_i2.Result<_i5.LoginEntitie>>.value(
+              _FakeResult_0<_i5.LoginEntitie>(
+                this,
+                Invocation.method(#login, [loginModelDto]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.Result<_i5.LoginEntitie>>);
 
   @override
   _i4.Future<_i2.Result<_i7.LogoutEntity>> logout(String? token) =>
       (super.noSuchMethod(
+            Invocation.method(#logout, [token]),
+            returnValue: _i4.Future<_i2.Result<_i7.LogoutEntity>>.value(
+              _FakeResult_0<_i7.LogoutEntity>(
+                this,
+                Invocation.method(#logout, [token]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.Result<_i7.LogoutEntity>>);
         Invocation.method(
           #logout,
           [token],

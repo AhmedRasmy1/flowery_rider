@@ -1,14 +1,16 @@
-
+import 'package:dio/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/common/api_result.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/entities/logout_entity.dart';
+import '../../domain/entities/register_entities/register_entity.dart';
 import '../../domain/entities/register_entity.dart';
 import '../../domain/repositories/auth_repo.dart';
 import '../data_sources/auth_online_data_source.dart';
 import '../models/request/login_model_dto.dart';
+import '../models/request/register_request_dto.dart';
 import '../models/request/register_request_dto.dart';
 
 @Injectable(as: AuthRepo)
@@ -16,10 +18,8 @@ class AuthRepoImpl implements AuthRepo {
   AuthOnLineDataSource onLineDataSource;
 
   AuthRepoImpl(
-      this.onLineDataSource,
-      );
-
-
+    this.onLineDataSource,
+  );
 
   @override
   Future<Result<LoginEntitie>> login(String email, String password) {
@@ -29,28 +29,27 @@ class AuthRepoImpl implements AuthRepo {
     ));
   }
 
-
-
   @override
   Future<Result<LogoutEntity>> logout(String token) {
     return onLineDataSource.logout(token);
   }
+
   @override
   Future<Result<RegisterEntity>> signUp(
-      String country,
-      String firstName,
-      String lastName,
-      String vehicleType,
-      String vehicleNumber,
-      MultipartFile vehicleLicense,
-      String NID,
-      MultipartFile NIDImg,
-      String email,
-      String password,
-      String rePassword,
-      String gender,
-      String phone,
-      ) {
+    String country,
+    String firstName,
+    String lastName,
+    String vehicleType,
+    String vehicleNumber,
+    MultipartFile vehicleLicense,
+    String NID,
+    MultipartFile NIDImg,
+    String email,
+    String password,
+    String rePassword,
+    String gender,
+    String phone,
+  ) {
     return onLineDataSource.signUp(RegisterRequestDto(
         country: country,
         firstName: firstName,

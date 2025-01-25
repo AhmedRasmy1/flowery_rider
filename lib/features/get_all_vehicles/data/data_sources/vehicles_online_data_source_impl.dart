@@ -1,15 +1,15 @@
-import '../../../../core/api/api_extentions.dart';
-import '../../../../core/api/api_manager/api_manager.dart';
-import '../../../../core/common/api_result.dart';
+import 'package:flowery_rider/core/api/api_extentions.dart';
+import 'package:flowery_rider/core/api/api_manager/api_manager.dart';
+import 'package:flowery_rider/core/common/api_result.dart';
 
-import '../../domain/entities/vehicles_response_entity.dart';
+import 'package:flowery_rider/features/get_all_vehicles/domain/entities/vehicles_response_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import 'vehicles_online_data_source.dart';
 
 @Injectable(as: VehiclesOnlineDataSource)
 class VehiclesOnlineDataSourceImpl extends VehiclesOnlineDataSource {
-  final ApiService _vehicleRetrofit;
+  ApiService _vehicleRetrofit;
 
   VehiclesOnlineDataSourceImpl(this._vehicleRetrofit);
 

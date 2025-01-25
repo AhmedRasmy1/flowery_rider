@@ -20,6 +20,7 @@ import '../../../features/forget_password/data/model/forget_password_response/fo
 import '../../../features/forget_password/data/model/forget_password_response/reset_password_response.dart';
 import '../../../features/forget_password/data/model/forget_password_response/verify_response.dart';
 import '../../../features/get_all_vehicles/data/models/vehicles_response_dto.dart';
+import '../../../features/get_all_vehicles/data/models/vehicles_response_dto.dart';
 import '../../../features/my_profile/data/models/response/profile_data_model.dart';
 import '../../../features/order_details/data/models/response/start_order_model.dart';
 import '../api_constants.dart';
@@ -70,6 +71,9 @@ abstract class ApiService {
   Future<ChangePasswordResponse> changePassword(
       @Body() ChangePasswordRequest changePasswordRequest,
       @Header("Authorization") String token);
+
+  @GET(ApiConstants.getAllVehiclesRoute)
+  Future<VehiclesResponseDto> getAllVehicles();
 
   @GET(ApiConstants.getPendingDriverOrdersRoute)
   Future<PendingOrdersResponse> getHomeData(

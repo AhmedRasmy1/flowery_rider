@@ -31,13 +31,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeResult_0<T> extends _i1.SmartFake implements _i2.Result<T> {
-  _FakeResult_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeResult_0(Object parent, Invocation parentInvocation)
+      : super(parent, parentInvocation);
 }
 
 /// A class which mocks [AuthRepo].
@@ -54,99 +49,24 @@ class MockAuthRepo extends _i1.Mock implements _i3.AuthRepo {
     String? password,
   ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #login,
-          [
-            name,
-            password,
-          ],
-        ),
+        Invocation.method(#login, [name, password]),
         returnValue: _i4.Future<_i2.Result<_i5.LoginEntitie>>.value(
-            _FakeResult_0<_i5.LoginEntitie>(
-          this,
-          Invocation.method(
-            #login,
-            [
-              name,
-              password,
-            ],
+          _FakeResult_0<_i5.LoginEntitie>(
+            this,
+            Invocation.method(#login, [name, password]),
           ),
-        )),
+        ),
       ) as _i4.Future<_i2.Result<_i5.LoginEntitie>>);
 
   @override
   _i4.Future<_i2.Result<_i6.LogoutEntity>> logout(String? token) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #logout,
-          [token],
-        ),
+        Invocation.method(#logout, [token]),
         returnValue: _i4.Future<_i2.Result<_i6.LogoutEntity>>.value(
-            _FakeResult_0<_i6.LogoutEntity>(
-          this,
-          Invocation.method(
-            #logout,
-            [token],
+          _FakeResult_0<_i6.LogoutEntity>(
+            this,
+            Invocation.method(#logout, [token]),
           ),
-        )),
-      ) as _i4.Future<_i2.Result<_i6.LogoutEntity>>);
-
-  @override
-  _i4.Future<_i2.Result<_i7.RegisterEntity>> signUp(
-    String? country,
-    String? firstName,
-    String? lastName,
-    String? vehicleType,
-    String? vehicleNumber,
-    _i8.MultipartFile? vehicleLicense,
-    String? NID,
-    _i8.MultipartFile? NIDImg,
-    String? email,
-    String? password,
-    String? rePassword,
-    String? gender,
-    String? phone,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #signUp,
-          [
-            country,
-            firstName,
-            lastName,
-            vehicleType,
-            vehicleNumber,
-            vehicleLicense,
-            NID,
-            NIDImg,
-            email,
-            password,
-            rePassword,
-            gender,
-            phone,
-          ],
         ),
-        returnValue: _i4.Future<_i2.Result<_i7.RegisterEntity>>.value(
-            _FakeResult_0<_i7.RegisterEntity>(
-          this,
-          Invocation.method(
-            #signUp,
-            [
-              country,
-              firstName,
-              lastName,
-              vehicleType,
-              vehicleNumber,
-              vehicleLicense,
-              NID,
-              NIDImg,
-              email,
-              password,
-              rePassword,
-              gender,
-              phone,
-            ],
-          ),
-        )),
-      ) as _i4.Future<_i2.Result<_i7.RegisterEntity>>);
+      ) as _i4.Future<_i2.Result<_i6.LogoutEntity>>);
 }
