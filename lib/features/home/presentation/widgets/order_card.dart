@@ -1,3 +1,5 @@
+import 'package:flowery_rider/core/resources/routes_manager.dart';
+
 import '../../data/response/pending__orders__response.dart';
 import 'storeInfo.dart';
 import 'userinfo.dart';
@@ -37,7 +39,7 @@ class OrderCard extends StatelessWidget {
                     style: TextStyle(color: Color(0xffC8D444), fontSize: 16)),
                 Spacer(),
                 Text(
-                  orderPending.orderNumber,
+                  orderPending.orderNumber ?? "",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
@@ -45,16 +47,16 @@ class OrderCard extends StatelessWidget {
             SizedBox(height: 16),
             StoreInfo(
               title: 'store address',
-              name: orderPending.store.name.toString(),
-              address: orderPending.store.address.toString(),
-              img: orderPending.store.image,
+              name: orderPending.store?.name.toString()??"",
+              address: orderPending.store?.address.toString() ??"",
+              img: orderPending.store?.image ??" ",
             ),
             SizedBox(height: 16),
-            PickupAndUserInfo(
+         StoreInfo(
               title: 'user address',
-              name: orderPending.user.firstName?.name ?? "",
-              address: orderPending.user.phone ?? "",
-              iconImg: Icons.account_circle_rounded,
+              name: orderPending.user?.firstName?.name ?? "",
+              address: orderPending.user?.phone ?? "",
+              img: "https://flower.elevateegy.com/uploads/${orderPending.user?.photo }"?? "",
             ),
             SizedBox(height: 16),
             Row(
@@ -77,7 +79,7 @@ class OrderCard extends StatelessWidget {
                   child: Text('Reject'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.pushNamed(context, RoutesManager.orderDetailsView);},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.pink,
                   ),

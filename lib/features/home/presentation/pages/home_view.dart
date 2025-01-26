@@ -74,9 +74,9 @@ class _HomeViewState extends State<HomeView> {
 
                   return ListView.builder(
                     padding: EdgeInsets.all(16.0),
-                    itemCount: orders.length,
+                    itemCount: orders?.length,
                     itemBuilder: (context, index) {
-                      return OrderCard(orders[index]);
+                      return OrderCard(orders![index]);
                     },
                   );
                 } else {

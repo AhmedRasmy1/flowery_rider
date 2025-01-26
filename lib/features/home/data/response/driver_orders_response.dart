@@ -13,14 +13,14 @@ String driverOrdersResponseToJson(DriverOrdersResponse data) =>
 
 class DriverOrdersResponse {
   DriverOrdersResponse({
-    required this.metadata,
-    required this.orders,
-    required this.message,
+    this.metadata,
+     this.orders,
+   this.message,
   });
 
-  Metadata metadata;
-  List<OrderElement> orders;
-  String message;
+  Metadata? metadata;
+  List<OrderElement>? orders;
+  String? message;
 
   factory DriverOrdersResponse.fromJson(Map<dynamic, dynamic> json) =>
       DriverOrdersResponse(
@@ -31,8 +31,8 @@ class DriverOrdersResponse {
       );
 
   Map<dynamic, dynamic> toJson() => {
-        "metadata": metadata.toJson(),
-        "orders": List<dynamic>.from(orders.map((x) => x.toJson())),
+        "metadata": metadata?.toJson(),
+        "orders": List<dynamic>.from(orders!.map((x) => x.toJson())),
         "message": message,
       };
 
@@ -47,16 +47,16 @@ class DriverOrdersResponse {
 
 class Metadata {
   Metadata({
-    required this.totalItems,
-    required this.totalPages,
-    required this.limit,
-    required this.currentPage,
+   this.totalItems,
+  this.totalPages,
+    this.limit,
+    this.currentPage,
   });
 
-  int totalItems;
-  int totalPages;
-  int limit;
-  int currentPage;
+  int? totalItems;
+  int? totalPages;
+  int? limit;
+  int? currentPage;
 
   factory Metadata.fromJson(Map<dynamic, dynamic> json) => Metadata(
         totalItems: json["totalItems"],
@@ -75,22 +75,22 @@ class Metadata {
 
 class OrderElement {
   OrderElement({
-    required this.createdAt,
-    required this.driver,
-    required this.v,
-    required this.id,
-    required this.store,
-    required this.order,
-    required this.updatedAt,
+  this.createdAt,
+this.driver,
+   this.v,
+this.id,
+this.store,
+   this.order,
+this.updatedAt,
   });
 
-  DateTime createdAt;
-  String driver;
-  int v;
-  String id;
-  Store store;
-  OrderOrder order;
-  DateTime updatedAt;
+  DateTime? createdAt;
+  String? driver;
+  int? v;
+  String? id;
+  Store? store;
+  OrderOrder? order;
+  DateTime? updatedAt;
 
   factory OrderElement.fromJson(Map<dynamic, dynamic> json) => OrderElement(
         createdAt: DateTime.parse(json["createdAt"]),
@@ -103,44 +103,43 @@ class OrderElement {
       );
 
   Map<dynamic, dynamic> toJson() => {
-        "createdAt": createdAt.toIso8601String(),
+        "createdAt": createdAt?.toIso8601String(),
         "driver": driver,
         "__v": v,
         "_id": id,
-        "store": store.toJson(),
-        "order": order.toJson(),
-        "updatedAt": updatedAt.toIso8601String(),
+        "store": store?.toJson(),
+        "order": order?.toJson(),
+        "updatedAt": updatedAt?.toIso8601String(),
       };
 }
 
 class OrderOrder {
   OrderOrder({
-    required this.isPaid,
-    required this.isDelivered,
-    required this.createdAt,
-    required this.orderNumber,
-    required this.totalPrice,
-    required this.v,
-    required this.id,
-    required this.state,
-    required this.user,
-    required this.orderItems,
-    required this.paymentType,
-    required this.updatedAt,
+  this.isPaid,
+   this.isDelivered,
+    this.createdAt,
+     this.orderNumber,
+ this.totalPrice,
+  this.v,
+   this.id,
+ this.state,
+    this.user,
+  this.orderItems,
+  this.updatedAt, required paymentType,
   });
 
-  bool isPaid;
-  bool isDelivered;
-  DateTime createdAt;
-  String orderNumber;
-  int totalPrice;
-  int v;
-  String id;
-  String state;
-  User user;
-  List<OrderItem> orderItems;
-  String paymentType;
-  DateTime updatedAt;
+  bool? isPaid;
+  bool? isDelivered;
+  DateTime? createdAt;
+  String? orderNumber;
+  int? totalPrice;
+  int? v;
+  String? id;
+  String? state;
+  User? user;
+  List<OrderItem>? orderItems;
+  String? paymentType;
+  DateTime? updatedAt;
 
   factory OrderOrder.fromJson(Map<dynamic, dynamic> json) => OrderOrder(
         isPaid: json["isPaid"],
@@ -161,31 +160,31 @@ class OrderOrder {
   Map<dynamic, dynamic> toJson() => {
         "isPaid": isPaid,
         "isDelivered": isDelivered,
-        "createdAt": createdAt.toIso8601String(),
+        "createdAt": createdAt?.toIso8601String(),
         "orderNumber": orderNumber,
         "totalPrice": totalPrice,
         "__v": v,
         "_id": id,
         "state": state,
-        "user": user.toJson(),
-        "orderItems": List<dynamic>.from(orderItems.map((x) => x.toJson())),
+        "user": user?.toJson(),
+        "orderItems": List<dynamic>.from(orderItems!.map((x) => x.toJson())) ??[],
         "paymentType": paymentType,
-        "updatedAt": updatedAt.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
       };
 }
 
 class OrderItem {
   OrderItem({
-    required this.product,
-    required this.quantity,
-    required this.price,
-    required this.id,
+    this.product,
+this.quantity,
+  this.price,
+   this.id,
   });
 
-  Product product;
-  int quantity;
-  int price;
-  String id;
+  Product? product;
+  int? quantity;
+  int? price;
+  String? id;
 
   factory OrderItem.fromJson(Map<dynamic, dynamic> json) => OrderItem(
         product: Product.fromJson(json["product"]),
@@ -195,7 +194,7 @@ class OrderItem {
       );
 
   Map<dynamic, dynamic> toJson() => {
-        "product": product.toJson(),
+        "product": product?.toJson(),
         "quantity": quantity,
         "price": price,
         "_id": id,
@@ -204,12 +203,12 @@ class OrderItem {
 
 class Product {
   Product({
-    required this.price,
-    required this.id,
+   this.price,
+   this.id,
   });
 
-  int price;
-  String id;
+  int? price;
+  String? id;
 
   factory Product.fromJson(Map<dynamic, dynamic> json) => Product(
         price: json["price"],
@@ -224,22 +223,22 @@ class Product {
 
 class User {
   User({
-    required this.firstName,
-    required this.lastName,
-    required this.gender,
-    required this.phone,
-    required this.photo,
-    required this.id,
-    required this.email,
+   this.firstName,
+    this.lastName,
+  this.gender,
+    this.phone,
+   this.photo,
+     this.id,
+     this.email,
   });
 
-  String firstName;
-  String lastName;
-  String gender;
-  String phone;
-  String photo;
-  String id;
-  String email;
+  String? firstName;
+  String? lastName;
+  String? gender;
+  String? phone;
+  String? photo;
+  String? id;
+  String? email;
 
   factory User.fromJson(Map<dynamic, dynamic> json) => User(
         firstName: json["firstName"],
@@ -264,18 +263,18 @@ class User {
 
 class Store {
   Store({
-    required this.image,
-    required this.address,
-    required this.phoneNumber,
-    required this.latLong,
-    required this.name,
+   this.image,
+ this.address,
+ this.phoneNumber,
+ this.latLong,
+    this.name,
   });
 
-  String image;
-  String address;
-  String phoneNumber;
-  String latLong;
-  String name;
+  String? image;
+  String? address;
+  String? phoneNumber;
+  String? latLong;
+  String? name;
 
   factory Store.fromJson(Map<dynamic, dynamic> json) => Store(
         image: json["image"],

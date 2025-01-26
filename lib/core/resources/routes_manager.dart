@@ -1,3 +1,5 @@
+import 'package:flowery_rider/features/order_details/presentation/pages/order_details_view.dart';
+
 import '../../features/auth/presentation/pages/apply_view.dart';
 import '../../features/auth/presentation/pages/login_view.dart';
 import '../../features/home/presentation/pages/home_view.dart';
@@ -25,6 +27,7 @@ class RoutesManager {
   static const String changePasswordViewRoute = '/chanePasswordViewRoute';
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
   static const String homeViewScreen = '/homeViewScreen';
+  static const String orderDetailsView = '/orderDetailsView()';
 }
 
 class RouteGenerator {
@@ -42,6 +45,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const EditProfileView());
       case RoutesManager.editVehicle:
         return MaterialPageRoute(builder: (_) => const EditVehicleView());
+      case RoutesManager.orderDetailsView:
+        return MaterialPageRoute(builder: (_) => const OrderDetailsView());
       case RoutesManager.loginView:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case RoutesManager.resetPasswordRoute:

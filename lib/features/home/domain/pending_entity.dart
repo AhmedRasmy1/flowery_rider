@@ -5,14 +5,14 @@ class PendingDriverOrdersEntity
 {
 
   PendingDriverOrdersEntity({
-    required this.metadata,
-    required this.orders,
-    required this.message,
+ this.metadata,
+this.orders,
+ this.message,
   });
 
-  Metadata metadata;
-  List<Order> orders;
-  String message;
+  Metadata? metadata;
+  List<Order>? orders;
+  String? message;
 
 
 }

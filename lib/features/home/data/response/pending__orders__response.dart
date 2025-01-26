@@ -14,14 +14,14 @@ String pendingOrdersResponseToJson(PendingOrdersResponse data) =>
 
 class PendingOrdersResponse {
   PendingOrdersResponse({
-    required this.metadata,
-    required this.orders,
-    required this.message,
+    this.metadata,
+   this.orders,
+   this.message,
   });
 
-  Metadata metadata;
-  List<Order> orders;
-  String message;
+  Metadata? metadata;
+  List<Order>? orders;
+  String? message;
 
   factory PendingOrdersResponse.fromJson(Map<dynamic, dynamic> json) =>
       PendingOrdersResponse(
@@ -31,8 +31,8 @@ class PendingOrdersResponse {
       );
 
   Map<dynamic, dynamic> toJson() => {
-        "metadata": metadata.toJson(),
-        "orders": List<dynamic>.from(orders.map((x) => x.toJson())),
+        "metadata": metadata?.toJson(),
+        "orders": List<dynamic>.from(orders!.map((x) => x.toJson()))??[],
         "message": message,
       };
 
@@ -47,34 +47,34 @@ class PendingOrdersResponse {
 
 class Order {
   Order({
-    required this.orderNumber,
-    required this.totalPrice,
-    required this.store,
-    required this.orderItems,
-    required this.paymentType,
-    required this.isPaid,
-    required this.isDelivered,
-    required this.createdAt,
-    required this.v,
-    required this.id,
-    required this.state,
-    required this.user,
-    required this.updatedAt,
+     this.orderNumber,
+  this.totalPrice,
+  this.store,
+  this.orderItems,
+   this.paymentType,
+   this.isPaid,
+   this.isDelivered,
+    this.createdAt,
+     this.v,
+    this.id,
+    this.state,
+  this.user,
+   this.updatedAt,
   });
 
-  String orderNumber;
-  double totalPrice;
-  Store store;
-  List<OrderItem> orderItems;
-  PaymentType paymentType;
-  bool isPaid;
-  bool isDelivered;
-  DateTime createdAt;
-  int v;
-  String id;
-  State state;
-  User user;
-  DateTime updatedAt;
+  String? orderNumber;
+  double? totalPrice;
+  Store? store;
+  List<OrderItem>? orderItems;
+  PaymentType? paymentType;
+  bool? isPaid;
+  bool? isDelivered;
+  DateTime? createdAt;
+  int? v;
+  String? id;
+  State? state;
+  User? user;
+  DateTime? updatedAt;
 
   factory Order.fromJson(Map<dynamic, dynamic> json) => Order(
         orderNumber: json["orderNumber"],
@@ -96,32 +96,32 @@ class Order {
   Map<dynamic, dynamic> toJson() => {
         "orderNumber": orderNumber,
         "totalPrice": totalPrice,
-        "store": store.toJson(),
-        "orderItems": List<dynamic>.from(orderItems.map((x) => x.toJson())),
+        "store": store?.toJson(),
+        "orderItems": List<dynamic>.from(orderItems?.map((x) => x.toJson())??[]),
         "paymentType": paymentTypeValues.reverse[paymentType],
         "isPaid": isPaid,
         "isDelivered": isDelivered,
-        "createdAt": createdAt.toIso8601String(),
+        "createdAt": createdAt?.toIso8601String(),
         "__v": v,
         "_id": id,
         "state": stateValues.reverse[state],
-        "user": user.toJson(),
-        "updatedAt": updatedAt.toIso8601String(),
+        "user": user?.toJson(),
+        "updatedAt": updatedAt?.toIso8601String(),
       };
 }
 
 class OrderItem {
   OrderItem({
-    required this.product,
-    required this.quantity,
-    required this.price,
-    required this.id,
+    this.product,
+  this.quantity,
+    this.price,
+     this.id,
   });
 
-  Product product;
-  int quantity;
-  int price;
-  String id;
+  Product? product;
+  int? quantity;
+  int? price;
+  String? id;
 
   factory OrderItem.fromJson(Map<dynamic, dynamic> json) => OrderItem(
         product: Product.fromJson(json["product"]),
@@ -131,7 +131,7 @@ class OrderItem {
       );
 
   Map<dynamic, dynamic> toJson() => {
-        "product": product.toJson(),
+        "product": product?.toJson(),
         "quantity": quantity,
         "price": price,
         "_id": id,
@@ -140,69 +140,69 @@ class OrderItem {
 
 class Product {
   Product({
-    required this.occasion,
-    required this.sold,
-    required this.images,
-    required this.quantity,
-    required this.description,
-    required this.discount,
-    required this.title,
-    required this.createdAt,
-    required this.price,
-    required this.v,
-    required this.id,
-    required this.category,
-    required this.priceAfterDiscount,
-    required this.slug,
-    required this.imgCover,
-    required this.updatedAt,
+     this.occasion,
+    this.sold,
+  this.images,
+    this.quantity,
+    this.description,
+  this.discount,
+    this.title,
+   this.createdAt,
+  this.price,
+  this.v,
+  this.id,
+this.category,
+    this.priceAfterDiscount,
+    this.slug,
+ this.imgCover,
+    this.updatedAt,
   });
 
-  Occasion occasion;
-  int sold;
-  List<String> images;
-  int quantity;
-  String description;
-  int discount;
-  Title title;
-  DateTime createdAt;
-  int price;
-  int v;
-  ProductId id;
-  Category category;
-  int priceAfterDiscount;
-  Slug slug;
-  ImgCover imgCover;
-  DateTime updatedAt;
+  Occasion? occasion;
+  int? sold;
+  List<String>? images;
+  int? quantity;
+  String? description;
+  int? discount;
+  Title? title;
+  DateTime? createdAt;
+  int? price;
+  int? v;
+  ProductId? id;
+  Category? category;
+  int? priceAfterDiscount;
+  Slug? slug;
+  ImgCover? imgCover;
+  DateTime? updatedAt;
 
   factory Product.fromJson(Map<dynamic, dynamic> json) => Product(
-        occasion: occasionValues.map[json["occasion"]]!,
+        occasion: occasionValues.map[json["occasion"]],
         sold: json["sold"],
         images: List<String>.from(json["images"].map((x) => x)),
         quantity: json["quantity"],
         description: json["description"],
         discount: json["discount"],
-        title: titleValues.map[json["title"]]!,
+        title: titleValues.map[json["title"]],
         createdAt: DateTime.parse(json["createdAt"]),
         price: json["price"],
         v: json["__v"],
-        id: productIdValues.map[json["_id"]]!,
-        category: categoryValues.map[json["category"]]!,
+        id: productIdValues.map[json["_id"]],
+        category: categoryValues.map[json["category"]],
         priceAfterDiscount: json["priceAfterDiscount"],
-        slug: slugValues.map[json["slug"]]!,
-        imgCover: imgCoverValues.map[json["imgCover"]]!,
+        slug: slugValues.map[json["slug"]],
+        imgCover: imgCoverValues.map[json["imgCover"]],
         updatedAt: DateTime.parse(json["updatedAt"]),
       );
 
   Map<dynamic, dynamic> toJson() => {
         "occasion": occasionValues.reverse[occasion],
         "sold": sold,
-        "images": List<dynamic>.from(images.map((x) => x)),
+        "images": List<dynamic>.from(images!.map((x) => x)) ??[],
         "quantity": quantity,
         "description": description,
         "discount": discount,
         "title": titleValues.reverse[title],
-        "createdAt": createdAt.toIso8601String(),
+        "createdAt": createdAt?.toIso8601String(),
         "price": price,
         "__v": v,
         "_id": productIdValues.reverse[id],
@@ -210,7 +210,7 @@ class Product {
         "priceAfterDiscount": priceAfterDiscount,
         "slug": slugValues.reverse[slug],
         "imgCover": imgCoverValues.reverse[imgCover],
-        "updatedAt": updatedAt.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
       };
 }
 
@@ -292,18 +292,18 @@ final stateValues = EnumValues({"pending": State.PENDING});
 
 class Store {
   Store({
-    required this.image,
-    required this.address,
-    required this.phoneNumber,
-    required this.latLong,
-    required this.name,
+    this.image,
+ this.address,
+ this.phoneNumber,
+  this.latLong,
+    this.name,
   });
 
-  String image;
-  Address address;
-  String phoneNumber;
-  LatLong latLong;
-  Name name;
+  String? image;
+  Address? address;
+  String? phoneNumber;
+  LatLong? latLong;
+  Name? name;
 
   factory Store.fromJson(Map<dynamic, dynamic> json) => Store(
         image: json["image"],
@@ -340,13 +340,13 @@ final nameValues =
 
 class User {
   User({
-    required this.firstName,
-    required this.lastName,
-    required this.gender,
-    required this.phone,
-    required this.photo,
-    required this.id,
-    required this.email,
+    this.firstName,
+     this.lastName,
+  this.gender,
+   this.phone,
+  this.photo,
+   this.id,
+     this.email,
     this.passwordChangedAt,
   });
 
