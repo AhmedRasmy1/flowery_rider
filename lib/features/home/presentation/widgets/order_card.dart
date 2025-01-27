@@ -2,7 +2,7 @@ import '../../../order_details/presentation/pages/order_details_view.dart';
 
 import '../../data/response/pending__orders__response.dart';
 import 'storeInfo.dart';
-import 'userinfo.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/color_manager.dart';
@@ -41,6 +41,7 @@ class OrderCard extends StatelessWidget {
                 Spacer(),
                 Text(
                   orderPending.orderNumber ?? "",
+                  orderPending.orderNumber ?? "",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
@@ -53,7 +54,7 @@ class OrderCard extends StatelessWidget {
               img: orderPending.store?.image ?? " ",
             ),
             SizedBox(height: 16),
-            PickupAndUserInfo(
+            StoreInfo(
               title: 'user address',
               name: orderPending.user?.firstName?.name ?? "",
               address: orderPending.user?.phone ?? "",
