@@ -327,3 +327,29 @@ class OrderDetails {
   OrderDetails(
       {this.orderInfo, this.productInfo, this.userInfo, this.driverInfo});
 }
+
+class OrderStateModel {
+  String status;
+  String updatedAt;
+
+  OrderStateModel({
+    required this.status,
+    required this.updatedAt,
+  });
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'status': status,
+      'updatedAt': updatedAt,
+    };
+  }
+
+
+  factory OrderStateModel.fromJson(Map<String, dynamic> json) {
+    return OrderStateModel(
+      status: json['status'] as String,
+      updatedAt: json['updatedAt'] as String,
+    );
+  }
+}

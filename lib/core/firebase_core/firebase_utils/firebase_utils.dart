@@ -133,11 +133,11 @@ class FirebaseUtils {
   }
 /// updateOrderState
   static Future<void> updateOrderState(
-      String orderId, Map<String, dynamic> updatedData) async {
+      String orderId, OrderStateModel updatedData ) async {
     try {
       var document =
           FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId);
-      await document.update(updatedData);
+      await document.update(updatedData.toJson());
 
       log('Order state updated successfully.');
     } catch (e) {
