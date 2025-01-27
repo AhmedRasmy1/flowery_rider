@@ -1,4 +1,3 @@
-import 'dart:io';
 import '../entities/vehicles_response_entity.dart';
 import '../repositories/vehicles_repo.dart';
 import 'package:injectable/injectable.dart';

@@ -5,12 +5,12 @@ import '../../../../core/resources/font_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/theme_manager.dart';
 import '../../../../core/resources/values_manager.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CountrySelection extends StatefulWidget {
-  const CountrySelection({
-    super.key,required this.onCountryChanged,required this.initialCountry
-  });
+  const CountrySelection(
+      {super.key,
+      required this.onCountryChanged,
+      required this.initialCountry});
 
   final String? initialCountry;
   final Function(String) onCountryChanged;

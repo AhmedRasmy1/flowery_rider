@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
 import '../repositories/register_repo.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/common/api_result.dart';

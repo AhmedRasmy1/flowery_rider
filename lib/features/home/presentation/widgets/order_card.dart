@@ -1,4 +1,4 @@
-import '../../../order_details/presentation/pages/order_details_view.dart';
+import 'package:flowery_rider/core/resources/routes_manager.dart';
 
 import '../../data/response/pending__orders__response.dart';
 import 'storeInfo.dart';
@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/resources/color_manager.dart';
 
 class OrderCard extends StatelessWidget {
-  final OrderPending orderPending;
-
+  final Orders orderPending;
   const OrderCard(this.orderPending, {super.key});
 
   @override
@@ -41,7 +40,6 @@ class OrderCard extends StatelessWidget {
                 Spacer(),
                 Text(
                   orderPending.orderNumber ?? "",
-                  orderPending.orderNumber ?? "",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
@@ -56,9 +54,10 @@ class OrderCard extends StatelessWidget {
             SizedBox(height: 16),
             StoreInfo(
               title: 'user address',
-              name: orderPending.user?.firstName?.name ?? "",
+              name: orderPending.user?.firstName ?? "",
               address: orderPending.user?.phone ?? "",
-              iconImg: Icons.account_circle_rounded,
+              img:
+                  "https://flower.elevateegy.com/uploads/${orderPending.user?.photo}",
             ),
             SizedBox(height: 16),
             Row(
@@ -82,13 +81,8 @@ class OrderCard extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            OrderDetailsView(orderId: orderPending.id ?? ''),
-                      ),
-                    );
+                    // Navigator.pushNamed(
+                    //     context, RoutesManager.orderDetailsView);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.pink,

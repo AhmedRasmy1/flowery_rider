@@ -214,12 +214,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i103.VehiclesUseCase(gh<_i566.VehiclesRepo>()));
     gh.factory<_i986.VerifyPasswordViewModel>(
         () => _i986.VerifyPasswordViewModel(gh<_i135.VerifyUseCase>()));
-    gh.factory<_i844.LogoutUseCases>(
-        () => _i844.LogoutUseCases(gh<_i723.AuthRepo>()));
     gh.factory<_i1038.LoginUseCases>(
         () => _i1038.LoginUseCases(gh<_i723.AuthRepo>()));
-    gh.factory<_i1057.RegisterUseCase>(
-        () => _i1057.RegisterUseCase(gh<_i723.AuthRepo>()));
+    gh.factory<_i844.LogoutUseCases>(
+        () => _i844.LogoutUseCases(gh<_i723.AuthRepo>()));
     gh.factory<_i48.LogoutViewModel>(
         () => _i48.LogoutViewModel(gh<_i844.LogoutUseCases>()));
     gh.factory<_i953.VehiclesViewModel>(

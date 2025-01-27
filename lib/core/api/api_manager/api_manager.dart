@@ -6,10 +6,8 @@ import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
 import '../../../features/auth/data/models/request/login_model_dto.dart';
-import '../../../features/auth/data/models/request/register_request_dto.dart';
 import '../../../features/auth/data/models/response/login_response_dto.dart';
 import '../../../features/auth/data/models/response/logout_response.dart';
-import '../../../features/auth/data/models/response/register_response_dto.dart';
 import '../../../features/change_password/data/model/change_password_request.dart';
 import '../../../features/change_password/data/model/change_password_response.dart';
 import '../../../features/edit_profile/data/models/request/edit_profile_request.dart';
@@ -19,7 +17,6 @@ import '../../../features/forget_password/data/model/forget_password_request/ver
 import '../../../features/forget_password/data/model/forget_password_response/forget_password_response.dart';
 import '../../../features/forget_password/data/model/forget_password_response/reset_password_response.dart';
 import '../../../features/forget_password/data/model/forget_password_response/verify_response.dart';
-import '../../../features/get_all_vehicles/data/models/vehicles_response_dto.dart';
 import '../../../features/get_all_vehicles/data/models/vehicles_response_dto.dart';
 import '../../../features/my_profile/data/models/response/profile_data_model.dart';
 import '../../../features/order_details/data/models/response/start_order_model.dart';
@@ -39,7 +36,6 @@ abstract class ApiService {
 
   @GET(ApiConstants.logoutRoute)
   Future<LogoutResponseDto> logout(@Header("Authorization") String token);
-
 
   @GET(ApiConstants.getAllVehiclesRoute)
   Future<VehiclesResponseDto> getAllVehicles();

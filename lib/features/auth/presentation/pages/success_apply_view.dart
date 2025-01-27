@@ -11,12 +11,16 @@ class SuccessApplyView extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset("assets/images/SuccessApplyBg.png", fit: BoxFit.cover, width: double.infinity,height: double.infinity,),
+          Image.asset(
+            "assets/images/SuccessApplyBg.png",
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 Image.asset("assets/images/check-circle.png"),
                 SizedBox(height: 20),
                 Text(
@@ -52,7 +56,7 @@ class SuccessApplyView extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-
+                      "login",
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
