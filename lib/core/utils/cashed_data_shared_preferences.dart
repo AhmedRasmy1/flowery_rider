@@ -61,4 +61,5 @@ class CacheConstants {
   static const String vehicleNumber = 'vehicleNumber';
   static const String vehicleLicense = 'vehicleLicense';
   static const String vehicleType = 'vehicleType';
+  static const String orderPendingId = 'orderPendingId';
 }
