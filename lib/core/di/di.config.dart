@@ -27,13 +27,10 @@ import '../../features/auth/domain/repositories/register_repo.dart' as _i629;
 import '../../features/auth/domain/use_cases/login_use_case.dart' as _i1038;
 import '../../features/auth/domain/use_cases/logout_usecase.dart' as _i844;
 import '../../features/auth/domain/use_cases/register_use_case.dart' as _i1010;
-import '../../features/auth/domain/use_cases/use_cases.dart' as _i1057;
 import '../../features/auth/presentation/view_model/login_view_model_cubit.dart'
     as _i629;
 import '../../features/auth/presentation/view_model/logout_view_model_cubit.dart'
     as _i48;
-import '../../features/auth/presentation/view_model/register/register_cubit.dart'
-    as _i70;
 import '../../features/auth/presentation/view_model/register_view_model/register_cubit.dart'
     as _i863;
 import '../../features/change_password/data/data_source/change_password_online_data_source.dart'
@@ -221,14 +218,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1038.LoginUseCases(gh<_i723.AuthRepo>()));
     gh.factory<_i844.LogoutUseCases>(
         () => _i844.LogoutUseCases(gh<_i723.AuthRepo>()));
-    gh.factory<_i1057.RegisterUseCase>(
-        () => _i1057.RegisterUseCase(gh<_i723.AuthRepo>()));
     gh.factory<_i48.LogoutViewModel>(
         () => _i48.LogoutViewModel(gh<_i844.LogoutUseCases>()));
     gh.factory<_i953.VehiclesViewModel>(
         () => _i953.VehiclesViewModel(gh<_i103.VehiclesUseCase>()));
-    gh.factory<_i70.RegisterViewModel>(
-        () => _i70.RegisterViewModel(gh<_i1057.RegisterUseCase>()));
     gh.factory<_i629.LoginViewModel>(
         () => _i629.LoginViewModel(gh<_i1038.LoginUseCases>()));
     return this;

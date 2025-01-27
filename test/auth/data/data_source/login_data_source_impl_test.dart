@@ -8,6 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../features/change_password/data/data_source/change_password_online_data_source_impl_test.mocks.dart';
+
 @GenerateMocks([ApiService])
 void main() {
   late MockApiService mockApiService;

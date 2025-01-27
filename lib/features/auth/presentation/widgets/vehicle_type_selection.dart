@@ -1,6 +1,5 @@
-import '../../../../core/di/di.dart';
-import '../../../../core/resources/font_manager.dart';
-import '../../../get_all_vehicles/presentation/manager/vehicles_state.dart';
+import 'package:flowery_rider/core/di/di.dart';
+import 'package:flowery_rider/core/resources/font_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,13 +8,15 @@ import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/theme_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../get_all_vehicles/presentation/manager/vehicles_cubit.dart';
+import '../../../get_all_vehicles/presentation/manager/vehicles_state.dart';
+
 
 class VehicleTypeSelection extends StatefulWidget {
-  final Function(String vehicleId)? onVehicleSelected;
+  final Function(String vehicleId) onVehicleSelected;
 
   const VehicleTypeSelection({
     super.key,
-    this.onVehicleSelected,
+    required this.onVehicleSelected,
   });
 
   @override
@@ -45,7 +46,7 @@ class _VehicleTypeSelectionState extends State<VehicleTypeSelection> {
               onChanged: (newVehicleId) {
                 setState(() {
                   selectedVehicleId = newVehicleId;
-                  widget.onVehicleSelected!(newVehicleId!);
+                  widget.onVehicleSelected(newVehicleId!);
                 });
               },
               validator: (value) {

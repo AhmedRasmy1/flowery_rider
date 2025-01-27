@@ -40,9 +40,6 @@ abstract class ApiService {
   @GET(ApiConstants.logoutRoute)
   Future<LogoutResponseDto> logout(@Header("Authorization") String token);
 
-  @POST(ApiConstants.signupRoute)
-  Future<RegisterResponseDto> signUp(
-      @Body() RegisterRequestDto registerRequestDto);
 
   @GET(ApiConstants.getAllVehiclesRoute)
   Future<VehiclesResponseDto> getAllVehicles();

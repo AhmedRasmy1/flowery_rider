@@ -1,5 +1,4 @@
 import '../../../../../core/utils/cashed_data_shared_preferences.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../../core/common/api_result.dart';
@@ -48,7 +47,7 @@ class RegisterViewModel extends Cubit<RegisterState> {
       case Success<RegisterEntity?>():
         emit(SuccessRegisterState(result.data));
       case Fail<RegisterEntity?>():
-        // print(result.exception);
+         print(result.exception);
         emit(ErrorRegisterState(result.exception));
     }
   }

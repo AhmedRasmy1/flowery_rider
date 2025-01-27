@@ -12,6 +12,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../../auth/data/data_source/login_data_source_impl_test.mocks.dart';
+
 @GenerateMocks([ApiService])
 void main() {
   late MockApiService mockApiService;

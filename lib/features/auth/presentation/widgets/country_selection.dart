@@ -9,8 +9,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CountrySelection extends StatefulWidget {
   const CountrySelection({
-    super.key,
+    super.key,required this.onCountryChanged,required this.initialCountry
   });
+
+  final String? initialCountry;
+  final Function(String) onCountryChanged;
 
   @override
   State<CountrySelection> createState() => _CountrySelectionState();
@@ -26,7 +29,7 @@ class _CountrySelectionState extends State<CountrySelection> {
     super.initState();
 
     // Initialize with the first country's name in the list
-    selectedCountry = countries.first['name'];
+    selectedCountry = widget.initialCountry;
   }
 
   @override
@@ -42,6 +45,7 @@ class _CountrySelectionState extends State<CountrySelection> {
                 setState(() {
                   selectedCountry = newCountry;
                 });
+                widget.onCountryChanged(newCountry!);
               },
               validator: (value) {
                 if (value == null || value.isEmpty) {

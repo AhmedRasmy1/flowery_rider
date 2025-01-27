@@ -5,9 +5,7 @@ import '../../../../core/api/api_manager/api_manager.dart';
 import '../../../../core/common/api_result.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/entities/logout_entity.dart';
-import '../../domain/entities/register_entities/register_entity.dart';
 import '../models/request/login_model_dto.dart';
-import '../models/request/register_request_dto.dart';
 import 'auth_online_data_source.dart';
 
 @Injectable(as: AuthOnLineDataSource)
@@ -33,13 +31,4 @@ class AuthOnLineDataSourceImpl implements AuthOnLineDataSource {
     });
   }
 
-  @override
-  Future<Result<RegisterEntity>> signUp(RegisterRequestDto registerRequestDto) {
-    {
-      return executeApi(() async {
-        var response = await _authRetrofit.signUp(registerRequestDto);
-        return response.toRegisterEntity();
-      });
-    }
-  }
 }
