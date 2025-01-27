@@ -1,4 +1,4 @@
-import '../data/response/driver_orders_response.dart';
+
 import '../data/response/pending__orders__response.dart';
 
 class PendingDriverOrdersEntity
@@ -11,7 +11,7 @@ this.orders,
   });
 
   Metadata? metadata;
-  List<Order>? orders;
+  List<Orders>? orders;
   String? message;
 
 

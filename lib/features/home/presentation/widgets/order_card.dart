@@ -2,13 +2,13 @@ import 'package:flowery_rider/core/resources/routes_manager.dart';
 
 import '../../data/response/pending__orders__response.dart';
 import 'storeInfo.dart';
-import 'userinfo.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/color_manager.dart';
 
 class OrderCard extends StatelessWidget {
-  final Order orderPending;
+  final Orders orderPending;
   const OrderCard(this.orderPending, {super.key});
 
   @override
@@ -54,9 +54,9 @@ class OrderCard extends StatelessWidget {
             SizedBox(height: 16),
          StoreInfo(
               title: 'user address',
-              name: orderPending.user?.firstName?.name ?? "",
+              name: orderPending.user?.firstName ??"",
               address: orderPending.user?.phone ?? "",
-              img: "https://flower.elevateegy.com/uploads/${orderPending.user?.photo }"?? "",
+              img: "https://flower.elevateegy.com/uploads/${orderPending.user?.photo}"?? "",
             ),
             SizedBox(height: 16),
             Row(
