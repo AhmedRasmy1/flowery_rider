@@ -84,7 +84,7 @@ class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
             phone: 'orderDetails.store?',
             name: 'orderDetails..name ?? ''',
             location: 'orderDetails.store?.address ?? ''',
-            urlImage:"https://flower.elevateegy.com/uploads/5ed2d072-485b-4a53-a0fa-a41412791397-image_three.png" ,
+            urlImage:"https://flower.elevateegy.com/uploads/default-profile.png" ,
           ),
           SizedBox(
             height: 16,
@@ -96,7 +96,7 @@ class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
             phone: 'orderDetails.store?',
             name: 'orderDetails..name ?? ''',
             location: 'orderDetails.store?.address ?? ''',
-            urlImage:"https://flower.elevateegy.com/uploads/5ed2d072-485b-4a53-a0fa-a41412791397-image_three.png" ,
+            urlImage:"https://flower.elevateegy.com/uploads/default-profile.png" ,
           ),
           SizedBox(
             height: 16,
@@ -135,7 +135,7 @@ class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
                 decoration:
                 BoxDecoration(borderRadius: BorderRadius.circular(50)),
                 child: Image.network(
-                 " https://flower.elevateegy.com/uploads/5ed2d072-485b-4a53-a0fa-a41412791397-image_three.png",
+                 "https://flower.elevateegy.com/uploads/default-profile.png",
                   fit: BoxFit.fill,
                 ),
               ),

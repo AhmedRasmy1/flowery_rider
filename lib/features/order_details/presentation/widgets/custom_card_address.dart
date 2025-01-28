@@ -14,7 +14,9 @@ class CustomCardAddress extends StatelessWidget {
       required this.phone,
       this.name,
       required this.location,
-      required this.title2, required this.urlImage, required this.noIcon});
+      required this.title2,
+      required this.urlImage,
+      required this.noIcon});
 
   final String title;
   final String title2;
@@ -81,21 +83,24 @@ class CustomCardAddress extends StatelessWidget {
             ),
             leading: Container(
               width: 50,
+              height: 50,
               clipBehavior: Clip.antiAlias,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(50)),
               child: Image.network(
-                "https://flower.elevateegy.com/uploads/$urlImage",
+                urlImage,
                 fit: BoxFit.fill,
               ),
             ),
             subtitle: Row(
               children: [
-                noIcon? SvgPicture.asset(
-                  AssetsManager.location,
-                  width: 20,
-                  height: 20,
-                ):SizedBox(),
+                noIcon
+                    ? SvgPicture.asset(
+                        AssetsManager.location,
+                        width: 20,
+                        height: 20,
+                      )
+                    : SizedBox(),
                 SizedBox(
                   width: 4,
                 ),
