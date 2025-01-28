@@ -4,6 +4,7 @@ import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
 import 'package:flowery_rider/features/order_details/presentation/widgets/skeleton_order_details.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,6 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
   final PageController _pageController = PageController();
   int currentStep = CacheService.getData(key: CacheConstants.currentStep) ?? 0;
   late StartOrderCubit viewModel;
-
-  void nextStep() async {}
 
   @override
   void initState() {
@@ -71,7 +70,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
               ),
               FutureBuilder(
                   future:
-                      FirebaseUtils.fetchOrderFromFirebase(orderId:  orderId),
+                      FirebaseUtils.fetchOrderFromFirebase(orderId: orderId),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Expanded(child: OrderDetailsSkeleton());
@@ -138,9 +137,12 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                             StartOrderCubit.get(context).updateOrder(state);
                           }
                           if (currentStep == 4) {
+                            currentStep++;
                             UpdateOrderRequest state = UpdateOrderRequest();
                             state.state = 'completed';
                             StartOrderCubit.get(context).updateOrder(state);
+                            CacheService.deleteItem(
+                                key: CacheConstants.currentStep);
                           }
                           _pageController.animateToPage(
                             currentStep,
@@ -150,9 +152,10 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                         }
                       }
                     : () async {
-                        /// finish  add firebase
-
-                        /// //// /// // ////
+                  Navigator.pushReplacementNamed(context, RoutesManager.layoutRoute);
+                        CacheService.deleteItem(
+                            key: CacheConstants.currentStep);
+                        currentStep=0;
                       },
               ),
             ],

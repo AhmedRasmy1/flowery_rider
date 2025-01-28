@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/common/api_result.dart';
@@ -35,6 +37,7 @@ class StartOrderCubit extends Cubit<StartOrderState> {
   }
 
   void updateOrder(UpdateOrderRequest updateOrderRequest) async {
+    log(updateOrderRequest.state.toString());
     await _startOrderUseCase.updateOrder(updateOrderRequest);
   }
 }
