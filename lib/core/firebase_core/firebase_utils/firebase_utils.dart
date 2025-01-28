@@ -61,7 +61,7 @@ class FirebaseUtils {
 
   /// update Order State
   static Future<void> updateOrderState(String orderId,
-      Orders updatedData) async {
+      OrderStateModel updatedData) async {
     try {
       var document =
       FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId);
@@ -74,3 +74,28 @@ class FirebaseUtils {
   }
 
 }
+
+class OrderStateModel {
+  String status;
+  String updatedAt;
+
+  OrderStateModel({
+    required this.status,
+    required this.updatedAt,
+  });
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'status': status,
+      'updatedAt': updatedAt,
+    };
+  }
+
+
+  factory OrderStateModel.fromJson(Map<String, dynamic> json) {
+    return OrderStateModel(
+      status: json['status'] as String,
+      updatedAt: json['updatedAt'] as String,
+    );
+  }}

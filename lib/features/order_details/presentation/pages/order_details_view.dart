@@ -1,6 +1,7 @@
 import 'package:flowery_rider/core/di/di.dart';
 import 'package:flowery_rider/core/firebase_core/firebase_utils/firebase_utils.dart';
 import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
+import 'package:flowery_rider/features/home/data/response/pending__orders__response.dart';
 import 'package:flowery_rider/features/order_details/presentation/widgets/skeleton_order_details.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/resources/color_manager.dart';
@@ -131,9 +132,18 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                 value: currentStep);
                           });
 
-                          if (currentStep == 0) {
+                          if (currentStep == 1) {
                             UpdateOrderRequest state = UpdateOrderRequest();
                             state.state = 'inProgress';
+                            FirebaseUtils.updateOrderState(
+                                orderId,
+                                OrderStateModel(
+                                  status: 'inProgress',
+                                  updatedAt: DateTime.now()
+                                      .microsecondsSinceEpoch
+                                      .toString(),
+                                ),);
+
                             StartOrderCubit.get(context).updateOrder(state);
                           }
                           if (currentStep == 4) {
@@ -141,6 +151,14 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                             UpdateOrderRequest state = UpdateOrderRequest();
                             state.state = 'completed';
                             StartOrderCubit.get(context).updateOrder(state);
+                            FirebaseUtils.updateOrderState(
+                              orderId,
+                              OrderStateModel(
+                                status: 'completed',
+                                updatedAt: DateTime.now()
+                                    .microsecondsSinceEpoch
+                                    .toString(),
+                              ),);
                             CacheService.deleteItem(
                                 key: CacheConstants.currentStep);
                           }
@@ -152,10 +170,11 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                         }
                       }
                     : () async {
-                  Navigator.pushReplacementNamed(context, RoutesManager.layoutRoute);
+                        Navigator.pushReplacementNamed(
+                            context, RoutesManager.layoutRoute);
                         CacheService.deleteItem(
                             key: CacheConstants.currentStep);
-                        currentStep=0;
+                        currentStep = 0;
                       },
               ),
             ],
