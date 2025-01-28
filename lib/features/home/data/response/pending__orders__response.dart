@@ -1,16 +1,16 @@
+
 import '../../domain/pending_entity.dart';
 
 class PendingOrdersResponse {
   PendingOrdersResponse({
+
     this.message,
     this.metadata,
-    this.orders,
-  });
+    this.orders,});
 
   PendingOrdersResponse.fromJson(dynamic json) {
     message = json['message'];
-    metadata =
-        json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
+    metadata = json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
     if (json['orders'] != null) {
       orders = [];
       json['orders'].forEach((v) {
@@ -41,6 +41,8 @@ class PendingOrdersResponse {
       message: message,
     );
   }
+
+
 }
 
 class Orders {
@@ -57,8 +59,7 @@ class Orders {
     this.updatedAt,
     this.orderNumber,
     this.v,
-    this.store,
-  });
+    this.store,});
 
   Orders.fromJson(dynamic json) {
     id = json['_id'];
@@ -117,6 +118,7 @@ class Orders {
     }
     return map;
   }
+
 }
 
 class Store {
@@ -125,8 +127,7 @@ class Store {
     this.image,
     this.address,
     this.phoneNumber,
-    this.latLong,
-  });
+    this.latLong,});
 
   Store.fromJson(dynamic json) {
     name = json['name'];
@@ -150,6 +151,7 @@ class Store {
     map['latLong'] = latLong;
     return map;
   }
+
 }
 
 class OrderItems {
@@ -157,12 +159,10 @@ class OrderItems {
     this.product,
     this.price,
     this.quantity,
-    this.id,
-  });
+    this.id,});
 
   OrderItems.fromJson(dynamic json) {
-    product =
-        json['product'] != null ? Product.fromJson(json['product']) : null;
+    product = json['product'] != null ? Product.fromJson(json['product']) : null;
     price = json['price'];
     quantity = json['quantity'];
     id = json['_id'];
@@ -182,6 +182,7 @@ class OrderItems {
     map['_id'] = id;
     return map;
   }
+
 }
 
 class Product {
@@ -201,8 +202,7 @@ class Product {
     this.updatedAt,
     this.v,
     this.discount,
-    this.sold,
-  });
+    this.sold,});
 
   Product.fromJson(dynamic json) {
     id = json['_id'];
@@ -259,6 +259,7 @@ class Product {
     map['sold'] = sold;
     return map;
   }
+
 }
 
 class User {
@@ -270,8 +271,7 @@ class User {
     this.gender,
     this.phone,
     this.photo,
-    this.passwordChangedAt,
-  });
+    this.passwordChangedAt,});
 
   User.fromJson(dynamic json) {
     id = json['_id'];
@@ -304,6 +304,7 @@ class User {
     map['passwordChangedAt'] = passwordChangedAt;
     return map;
   }
+
 }
 
 class Metadata {
@@ -311,8 +312,7 @@ class Metadata {
     this.currentPage,
     this.totalPages,
     this.totalItems,
-    this.limit,
-  });
+    this.limit,});
 
   Metadata.fromJson(dynamic json) {
     currentPage = json['currentPage'];
@@ -333,4 +333,5 @@ class Metadata {
     map['limit'] = limit;
     return map;
   }
+
 }

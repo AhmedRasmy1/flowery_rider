@@ -16,12 +16,47 @@ String? validateNotEmpty(String? value, String messageEmpty,
   return null;
 }
 
-String? validatePhone(String? value, String message, String messageLength,
-    String messageStartWithZero) {
-  if (value?.trim() == null || value!.trim().isEmpty) {
+String? validateVehicleNumber({
+  required String value,
+  required String message,
+  required String messageLength,
+  required String messageInvalid,
+}) {
+  final RegExp valueRegExp = RegExp(r'^\d{5}$');
+  if (value.trim().isEmpty) {
     return message;
-  } else if (!RegExp(r'^01[0125][0-9]{8}$').hasMatch(value)) {
+  } else if (value.length < 5) {
     return messageLength;
+  } else if (!valueRegExp.hasMatch(value)) {
+    return messageInvalid;
+  }
+  return null;
+}
+
+String? validateIdNumber({
+  required String value,
+  required String message,
+  required String messageLength,
+  required String messageInvalid,
+}) {
+  final RegExp valueRegExp = RegExp(r'^\d{14}$');
+  if (value.trim().isEmpty) {
+    return message;
+  } else if (value.length < 14) {
+    return messageLength;
+  } else if (!valueRegExp.hasMatch(value)) {
+    return messageInvalid;
+  }
+  return null;
+}
+
+String? validatePhoneNumber(String? value, String messageEmpty) {
+  final RegExp phoneRegex = RegExp(r'^(?:\+20|0020)[0-9]{10}$');
+  if (value?.trim() == null || value!.trim().isEmpty) {
+    return messageEmpty;
+  }
+  else if (!phoneRegex.hasMatch(value)) {
+    return messageEmpty;
   }
   return null;
 }
@@ -78,6 +113,40 @@ Widget buildIcon(String assetPath, int index, int currentIndex) {
       BlendMode.srcIn,
     ),
   );
+}
+
+
+String? validateEmail({
+  required String value,
+  required String message,
+  required String messageInvalid,
+}) {
+  final RegExp emailRegExp = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
+  if (value.trim().isEmpty) {
+    return message;
+  } else if (!emailRegExp.hasMatch(value)) {
+    return messageInvalid;
+  }
+  return null;
+}
+
+String? validateString({
+  required String value,
+  required String message,
+  required String messageLength,
+  required String messageInvalid,
+}) {
+  final RegExp valueRegExp = RegExp(r'^[A-Za-z]+$');
+  if (value.trim().isEmpty) {
+    return message;
+  } else if (value.length < 3) {
+    return messageLength;
+  } else if (!valueRegExp.hasMatch(value)) {
+    return messageInvalid;
+  }
+  return null;
 }
 
 String? validatePassword({
