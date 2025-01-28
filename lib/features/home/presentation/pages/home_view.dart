@@ -1,9 +1,8 @@
-import '../../../../core/widgets/custom_app_bar.dart';
-import '../widgets/skeleton_home.dart';
-
 import '../../../../core/resources/color_manager.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/di/di.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
@@ -34,7 +33,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   void dispose() {
     viewModel.close();
-
     super.dispose();
   }
 

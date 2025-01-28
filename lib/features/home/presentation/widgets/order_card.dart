@@ -47,17 +47,16 @@ class OrderCard extends StatelessWidget {
             SizedBox(height: 16),
             StoreInfo(
               title: 'store address',
-              name: orderPending.store?.name.toString() ?? "",
-              address: orderPending.store?.address.toString() ?? "",
-              img: orderPending.store?.image ?? " ",
+              name: orderPending.store?.name.toString()??"",
+              address: orderPending.store?.address.toString() ??"",
+              img: orderPending.store?.image ??" ",
             ),
             SizedBox(height: 16),
-            StoreInfo(
+         StoreInfo(
               title: 'user address',
-              name: orderPending.user?.firstName ?? "",
+              name: orderPending.user?.firstName ??"",
               address: orderPending.user?.phone ?? "",
-              img:
-                  "https://flower.elevateegy.com/uploads/${orderPending.user?.photo}",
+              img: "https://flower.elevateegy.com/uploads/${orderPending.user?.photo}"?? "",
             ),
             SizedBox(height: 16),
             Row(
@@ -80,10 +79,7 @@ class OrderCard extends StatelessWidget {
                   child: Text('Reject'),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    // Navigator.pushNamed(
-                    //     context, RoutesManager.orderDetailsView);
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.pink,
                   ),

@@ -128,7 +128,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                                           controller: _firstNameController,
                                           labelText:
                                               AppLocalizations.of(context)!
-                                                  .firstName,
+                                          .firstName,
                                           hintText:
                                               AppLocalizations.of(context)!
                                                   .enterYourFirstName,

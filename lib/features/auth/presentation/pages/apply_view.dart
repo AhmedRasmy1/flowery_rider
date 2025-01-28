@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flowery_rider/core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flowery_rider/core/di/di.dart';
 import 'package:flowery_rider/core/functions/extenstions.dart';
@@ -19,7 +20,9 @@ import '../view_model/register_view_model/register_cubit.dart';
 import '../view_model/register_view_model/register_state.dart';
 import '../widgets/choose_gender.dart';
 import '../widgets/country_selection.dart';
+import '../widgets/show_validation_dialog.dart';
 import '../widgets/vehicle_type_selection.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -69,6 +72,13 @@ class _RegisterViewState extends State<RegisterView> {
 
   File? _vehicleLicenseImage;
   File? _idImage;
+  bool isButtonEnabled=false;
+
+  void validateInputs(){
+
+    isButtonEnabled=_formKey.currentState?.validate()??false;
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,34 +111,34 @@ class _RegisterViewState extends State<RegisterView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 10,
+                  height: AppSize.s10,
                 ),
                 CustomAppBar(
-                  title: 'Apply',
+                  title: AppLocalizations.of(context)!.applyAppBar,
                   color: ColorManager.black,
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 SizedBox(
-                  height: 24,
+                  height: AppSize.s24,
                 ),
                 Text(
-                  'Welcome!!',
+                  AppLocalizations.of(context)!.welcome,
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                 ),
                 SizedBox(
-                  height: 8,
+                  height: AppSize.s8,
                 ),
                 Text(
-                  'You want to be a delivery man?',
+                  AppLocalizations.of(context)!.youWantBeDelivery,
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       color: ColorManager.grey,
                       fontSize: 16),
                 ),
                 Text(
-                  'Join our team',
+                  AppLocalizations.of(context)!.joinOurTeam,
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 16,
@@ -136,11 +146,12 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
                 Form(
                   key: _formKey,
+                  onChanged: validateInputs,
                   child: Flexible(
                     child: ListView(
                       children: [
                         SizedBox(
-                          height: 32,
+                          height: AppSize.s32,
                         ),
                         CountrySelection(
                           onCountryChanged: (countryName) {
@@ -151,29 +162,45 @@ class _RegisterViewState extends State<RegisterView> {
                           initialCountry: selectedCountry,
                         ),
                         SizedBox(
-                          height: 29,
+                          height: AppSize.s29,
                         ),
                         CustomTextFormField(
-                          keyboardType: TextInputType.text,
-                          controller: _firstNameController,
-                          labelText: 'First legal name',
-                          hintText: 'Enter first legal name',
-                          validator: (value) =>
-                              validateNotEmpty(value, "enter first name"),
+                            keyboardType: TextInputType.text,
+                            controller: _firstNameController,
+                            labelText:
+                                AppLocalizations.of(context)!.firstLegalName,
+                            hintText: AppLocalizations.of(context)!
+                                .enterFirstLegalName,
+                            validator: (value) => validateString(
+                                  value: value!,
+                                  messageLength: AppLocalizations.of(context)!
+                                      .messageLength3,
+                                  messageInvalid: AppLocalizations.of(context)!
+                                      .invalidInput,
+                                  message: AppLocalizations.of(context)!
+                                      .enterFirstLegalName,
+                                ),
                         ),
                         SizedBox(
-                          height: 29,
+                          height: AppSize.s29,
                         ),
                         CustomTextFormField(
-                          keyboardType: TextInputType.text,
                           controller: _secondNameController,
-                          labelText: 'Second legal name',
-                          hintText: 'Enter second legal name',
-                          validator: (value) =>
-                              validateNotEmpty(value, "enter second name"),
+                          labelText: AppLocalizations.of(context)!.secondName,
+                          hintText: AppLocalizations.of(context)!
+                              .enterSecondLegalName,
+                          validator: (value) => validateString(
+                            value: value!,
+                            messageLength:
+                                AppLocalizations.of(context)!.messageLength3,
+                            messageInvalid:
+                                AppLocalizations.of(context)!.invalidInput,
+                            message: AppLocalizations.of(context)!
+                                .enterSecondLegalName,
+                          ),
                         ),
                         SizedBox(
-                          height: 29,
+                          height: AppSize.s29,
                         ),
                         VehicleTypeSelection(
                           onVehicleSelected: (vehicleId) {
@@ -183,24 +210,28 @@ class _RegisterViewState extends State<RegisterView> {
                           },
                         ),
                         SizedBox(
-                          height: 29,
+                          height: AppSize.s29,
                         ),
                         CustomTextFormField(
                           keyboardType: TextInputType.number,
                           controller: _vehicleNumberController,
-                          labelText: 'Vehicle number',
-                          hintText: 'Enter vehicle number',
-                          validator: (value) =>
-                              validateNotEmpty(value, "enter valid number"),
+                          labelText: AppLocalizations.of(context)!.vehicleNumber,
+                          hintText:  AppLocalizations.of(context)!.enterTheVehicleNumber,
+                          validator: (value) =>  validateVehicleNumber(
+                            value: value!,
+                            messageInvalid: AppLocalizations.of(context)!.invalidInput,
+                            message: AppLocalizations.of(context)!.enterTheVehicleNumber,
+                            messageLength:AppLocalizations.of(context)!.enterValidateVehicleNumber ,
+                          ),
                         ),
                         SizedBox(
-                          height: 29,
+                          height: AppSize.s29,
                         ),
                         CustomTextFormField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.name,
                           controller: _vehicleLiceController,
-                          labelText: 'Vehicle license',
-                          hintText: 'Upload license photo',
+                          labelText: AppLocalizations.of(context)!.vehicleLicense,
+                          hintText: AppLocalizations.of(context)!.uploadLicensePhoto,
                           suffix: InkWell(
                               onTap: () async {
                                 await AddImage.showCupertinoModalPopupAddImage(
@@ -234,46 +265,61 @@ class _RegisterViewState extends State<RegisterView> {
                               )),
                         ),
                         SizedBox(
-                          height: 29,
+                          height:AppSize.s29,
                         ),
                         CustomTextFormField(
                           keyboardType: TextInputType.emailAddress,
                           controller: _emailController,
-                          labelText: 'Email',
-                          hintText: 'Enter you email',
-                          validator: (value) =>
-                              validateNotEmpty(value, "enter valid email"),
+                          labelText: AppLocalizations.of(context)!.email,
+                          hintText:
+                              AppLocalizations.of(context)!.enterYourEmail,
+                          validator: (value) => validateEmail(
+                            value: value!,
+                            message: AppLocalizations.of(context)!.emailIsEmpty,
+                            messageInvalid:
+                                AppLocalizations.of(context)!.enterValidEmail,
+                          ),
                         ),
                         SizedBox(
-                          height: 29,
+                          height: AppSize.s29,
                         ),
                         CustomTextFormField(
-                          keyboardType: TextInputType.phone,
                           controller: _phoneController,
-                          labelText: 'Phone number',
-                          hintText: 'Enter phone number',
-                          validator: (value) => validateNotEmpty(
-                              value, "enter correct phone number"),
+                          keyboardType: TextInputType.phone,
+                          labelText: AppLocalizations.of(context)!.phoneNumber,
+                          hintText:
+                              AppLocalizations.of(context)!.enterPhoneNumber,
+                         // onChanged: _onTextChanged,
+                          obscureText: false,
+                          validator:  (value) => validatePhoneNumber(
+                            value,
+                            AppLocalizations.of(context)!.enterValidPhoneNumber,
+                          ),
                         ),
                         SizedBox(
-                          height: 29,
+                            height: AppSize.s29
                         ),
                         CustomTextFormField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.number,
                           controller: _idNumberController,
-                          labelText: 'ID number',
-                          hintText: 'Enter national ID number',
+                          labelText: AppLocalizations.of(context)!.idNumber,
+                          hintText: AppLocalizations.of(context)!.enterNationalIdNumber,
                           validator: (value) =>
-                              validateNotEmpty(value, "enter valid Id"),
+                              validateIdNumber(
+                                  value:value!,
+                                  message: AppLocalizations.of(context)!.enterValidId,
+                                messageLength: AppLocalizations.of(context)!.enterValidId,
+                                messageInvalid: AppLocalizations.of(context)!.enterValidId,
+                                  ),
                         ),
                         SizedBox(
-                          height: 29,
+                            height: AppSize.s29
                         ),
                         CustomTextFormField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.name,
                           controller: _idImageController,
-                          labelText: 'ID image',
-                          hintText: 'Upload ID image',
+                          labelText: AppLocalizations.of(context)!.iDImage,
+                          hintText: AppLocalizations.of(context)!.uploadIdImage,
                           suffix: InkWell(
                               onTap: () async {
                                 await AddImage.showCupertinoModalPopupAddImage(
@@ -304,7 +350,7 @@ class _RegisterViewState extends State<RegisterView> {
                               child: Icon(Icons.file_upload_outlined)),
                         ),
                         SizedBox(
-                          height: 29,
+                            height: AppSize.s29
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -313,41 +359,52 @@ class _RegisterViewState extends State<RegisterView> {
                               width: context.screenWidth /
                                   AppConstants.screenWidthRatio,
                               child: CustomTextFormField(
-                                keyboardType: TextInputType.text,
                                 controller: _passwordController,
-                                labelText: 'Password',
-                                hintText: 'Enter password',
+                                labelText:
+                                    AppLocalizations.of(context)!.password,
+                                hintText: AppLocalizations.of(context)!
+                                    .enterYourPassword,
+                                obscureText: true,
                                 validator: (value) => validatePassword(
                                     password: _passwordController.text,
-                                    messageInvalid: "passwordInvalid",
-                                    messageLength: "passwordCharactersLong",
-                                    message: "passwordNotMatch"),
+                                    messageInvalid:
+                                        AppLocalizations.of(context)!
+                                            .passwordInvalidFormat,
+                                    messageLength: AppLocalizations.of(context)!
+                                        .passwordCharactersLong,
+                                    message: AppLocalizations.of(context)!
+                                        .passwordNotMatch),
                               ),
                             ),
                             SizedBox(
                               width: context.screenWidth /
                                   AppConstants.screenWidthRatio,
                               child: CustomTextFormField(
-                                keyboardType: TextInputType.emailAddress,
                                 controller: _confirmPasswordController,
-                                labelText: 'Confirm password',
-                                hintText: 'Confirm password',
+                                labelText: AppLocalizations.of(context)!
+                                    .confirmPassword,
+                                hintText: AppLocalizations.of(context)!
+                                    .enterYourConfirmPassword,
+                                obscureText: true,
                                 validator: (value) => validatePasswordMatch(
-                                    messageIsEmpty: "passwordIsEmpty",
-                                    password: _confirmPasswordController.text,
+                                    messageIsEmpty:
+                                        AppLocalizations.of(context)!
+                                            .passwordIsEmpty,
+                                    password: _passwordController.text,
                                     confirmPassword:
                                         _confirmPasswordController.text,
-                                    message: "passwordNotMatch"),
+                                    message: AppLocalizations.of(context)!
+                                        .passwordNotMatch),
                               ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: 41,
+                            height: AppSize.s41
                         ),
                         ChooseGender(viewModel: viewModel),
                         SizedBox(
-                          height: 41,
+                            height: AppSize.s41
                         ),
                       ],
                     ),
@@ -362,7 +419,12 @@ class _RegisterViewState extends State<RegisterView> {
                       height: context.screenHeight * 0.063,
                       child: ElevatedButton(
                         onPressed: () {
-                          _registerWithFiles();
+                          if (isButtonEnabled==true){
+                            _registerWithFiles();
+                          }
+                          else {
+                            showValidationDialog(context);
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: ColorManager.pink,
@@ -371,7 +433,7 @@ class _RegisterViewState extends State<RegisterView> {
                           ),
                         ),
                         child: Text(
-                          'Continue',
+                          AppLocalizations.of(context)!.continueApply,
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
@@ -387,27 +449,6 @@ class _RegisterViewState extends State<RegisterView> {
           ),
         ),
       )),
-    );
-  }
-
-  Widget _buildImagePicker({
-    required File? file,
-    required VoidCallback onPickImage,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        GestureDetector(
-          onTap: onPickImage,
-          child: file == null
-              ? const Icon(Icons.file_upload_outlined,
-                  size: 24, color: ColorManager.grey)
-              : SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: Image.file(file, fit: BoxFit.fill)),
-        ),
-      ],
     );
   }
 
@@ -429,7 +470,7 @@ class _RegisterViewState extends State<RegisterView> {
             email: _emailController.text,
             password: _passwordController.text,
             rePassword: _confirmPasswordController.text,
-            gender: 'female',
+            gender: AppStrings.gender,
             phone: _phoneController.text));
       } else {
         print("Please provide all required files.");
