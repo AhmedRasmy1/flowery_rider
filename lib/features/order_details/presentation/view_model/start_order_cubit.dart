@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/common/api_result.dart';
+import '../../data/models/request/update_order_request.dart';
 import '../../domain/use_cases/start_order_usecase.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
@@ -14,6 +16,9 @@ class StartOrderCubit extends Cubit<StartOrderState> {
 
   final StartOrderUseCase _startOrderUseCase;
 
+  static StartOrderCubit get(context)=>BlocProvider.of(context);
+
+
   void startOrder(String orderId) async {
     emit(LoadingStartOrderState());
     var result = await _startOrderUseCase.startOrder(orderId);
@@ -27,5 +32,9 @@ class StartOrderCubit extends Cubit<StartOrderState> {
           emit(ErrorStartOrderState(result.exception));
         }
     }
+  }
+
+  void updateOrder(UpdateOrderRequest updateOrderRequest) async {
+    await _startOrderUseCase.updateOrder(updateOrderRequest);
   }
 }

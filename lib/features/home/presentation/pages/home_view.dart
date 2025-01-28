@@ -42,8 +42,10 @@ class _HomeViewState extends State<HomeView> {
       create: (context) => viewModel,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Scaffold(backgroundColor: Colors.white,
-          appBar: AppBar(backgroundColor: Colors.white,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Colors.white,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -75,10 +77,12 @@ class _HomeViewState extends State<HomeView> {
                     padding: EdgeInsets.all(16.0),
                     itemCount: orders?.length,
                     itemBuilder: (context, index) {
-                      return OrderCard(orderPending: orders![index],   onReject: () {
-    viewModel.rejectOrderFromScreen(orders[index]);
-    },
-    );
+                      return OrderCard(
+                        orderPending: orders![index],
+                        onReject: () {
+                          viewModel.rejectOrderFromScreen(orders[index]);
+                        },
+                      );
                     },
                   );
                 } else {
@@ -89,9 +93,4 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
-
-
-
-
-
 }

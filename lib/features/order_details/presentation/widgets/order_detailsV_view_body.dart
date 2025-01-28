@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../home/data/response/pending__orders__response.dart';
 import 'custom_card_address.dart';
 import 'custom_card_order_details.dart';
 
 class OrderDetailsViewBody extends StatelessWidget {
-  const OrderDetailsViewBody({super.key, required this.status});
+  const OrderDetailsViewBody(
+      {super.key, required this.status, required this.orderDetails});
 
   final String status;
+  final Orders orderDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class OrderDetailsViewBody extends StatelessWidget {
                     Text('Order ID : ',
                         style: getBoldStyle(
                             fontSize: AppSize.s16, color: ColorManager.black)),
-                    Text('# 123456',
+                    Text(orderDetails.orderNumber ?? '',
                         style: getBoldStyle(
                             fontSize: AppSize.s16, color: ColorManager.black)),
                   ],
@@ -75,11 +77,13 @@ class OrderDetailsViewBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: CustomCardAddress(
+            noIcon: true,
             title: 'Pickup address',
-            title2: 'Flowery store',
-            phone: '0201200361136',
-            name: 'mohammed zewin',
-            location: '20th st, Sheikh Zayed, Giza ',
+            title2: orderDetails.store?.name ?? '',
+            phone: orderDetails.store?.phoneNumber ?? '',
+            name: orderDetails.store?.name ?? '',
+            location: orderDetails.store?.address ?? '',
+            urlImage:orderDetails.store?.image??'' ,
           ),
         ),
         SliverToBoxAdapter(
@@ -89,11 +93,15 @@ class OrderDetailsViewBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: CustomCardAddress(
+            noIcon: false,
             title: 'User address',
-            title2: 'Nour mohamed',
-            phone: '0201200361136',
-            name: 'mohammed zewin',
-            location: '20th st, Sheikh Zayed, Giza ',
+            title2:
+                '${orderDetails.user?.firstName} ${orderDetails.user?.lastName}',
+            phone: orderDetails.user?.phone ?? '',
+            name:
+                '${orderDetails.user?.firstName} ${orderDetails.user?.lastName}',
+            location: orderDetails.user?.phone ?? '',
+            urlImage:orderDetails.user?.photo??'' ,
           ),
         ),
         SliverToBoxAdapter(
@@ -112,8 +120,11 @@ class OrderDetailsViewBody extends StatelessWidget {
           ),
         ),
         SliverList.separated(
-          itemCount: 3,
-          itemBuilder: (context, index) => CustomCardOrderDetails(),
+          itemCount: orderDetails.orderItems?.length,
+          itemBuilder: (context, index) => CustomCardOrderDetails(
+            productInfo:orderDetails.orderItems?[index] ,
+
+          ),
           separatorBuilder: (context, index) => SizedBox(
             height: 8,
           ),
@@ -143,7 +154,7 @@ class OrderDetailsViewBody extends StatelessWidget {
                         color: ColorManager.blackPrice, fontSize: 14),
                   ),
                   Text(
-                    '3000',
+                    orderDetails.totalPrice.toString(),
                     style: getSemiBoldStyle(
                         color: ColorManager.blackPrice, fontSize: 14),
                   ),
@@ -172,7 +183,7 @@ class OrderDetailsViewBody extends StatelessWidget {
                   ),
                   Spacer(),
                   Text(
-                    'Cash on delivery ',
+                    orderDetails.paymentType ?? '',
                     style: getSemiBoldStyle(
                         color: ColorManager.blackPrice, fontSize: 14),
                   ),

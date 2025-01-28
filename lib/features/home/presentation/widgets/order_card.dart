@@ -1,3 +1,6 @@
+import '../../../../core/firebase_core/firebase_utils/firebase_utils.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+import '../../../order_details/presentation/pages/order_details_view.dart';
 import '../../data/response/pending__orders__response.dart';
 import 'storeInfo.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +8,10 @@ import '../../../../core/resources/color_manager.dart';
 
 class OrderCard extends StatefulWidget {
   final Orders orderPending;
-  final VoidCallback onReject ;
-  const OrderCard({required this.orderPending,required this.onReject,super.key });
+  final VoidCallback onReject;
+
+  const OrderCard(
+      {required this.orderPending, required this.onReject, super.key });
 
   @override
   State<OrderCard> createState() => _OrderCardState();
@@ -49,16 +54,17 @@ class _OrderCardState extends State<OrderCard> {
             SizedBox(height: 16),
             StoreInfo(
               title: 'store address',
-              name: widget.orderPending.store?.name.toString()??"",
-              address: widget.orderPending.store?.address.toString() ??"",
-              img: widget.orderPending.store?.image ??" ",
+              name: widget.orderPending.store?.name.toString() ?? "",
+              address: widget.orderPending.store?.address.toString() ?? "",
+              img: widget.orderPending.store?.image ?? " ",
             ),
             SizedBox(height: 16),
-         StoreInfo(
+            StoreInfo(
               title: 'user address',
-              name: widget.orderPending.user?.firstName ??"",
+              name: widget.orderPending.user?.firstName ?? "",
               address: widget.orderPending.user?.phone ?? "",
-              img: "https://flower.elevateegy.com/uploads/${widget.orderPending.user?.photo}",
+              img: "https://flower.elevateegy.com/uploads/${widget.orderPending
+                  .user?.photo}",
             ),
             SizedBox(height: 16),
             Row(
@@ -84,8 +90,18 @@ class _OrderCardState extends State<OrderCard> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    //Navigator.pushNamed(context, RoutesManager.orderDetailsView);
-                    },
+                    CacheService.setData(
+                        key: CacheConstants.orderPendingId,
+                        value: widget.orderPending.id);
+                    FirebaseUtils.addOrderToFirebase(
+                        orders: widget.orderPending);
+                    Navigator
+                        .pushReplacement(context, MaterialPageRoute(builder: (context)
+                    =>
+                        OrderDetailsView()
+                    ))
+                    ;
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.pink,
                   ),

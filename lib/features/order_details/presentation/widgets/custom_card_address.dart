@@ -10,17 +10,19 @@ import '../../../../core/resources/values_manager.dart';
 class CustomCardAddress extends StatelessWidget {
   const CustomCardAddress(
       {super.key,
-        required this.title,
-        required this.phone,
-        this.name,
-        required this.location,
-        required this.title2});
+      required this.title,
+      required this.phone,
+      this.name,
+      required this.location,
+      required this.title2, required this.urlImage, required this.noIcon});
 
   final String title;
   final String title2;
   final String phone;
   final String? name;
   final String location;
+  final String urlImage;
+  final bool noIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class CustomCardAddress extends StatelessWidget {
       children: [
         Text(title,
             style:
-            getBoldStyle(fontSize: AppSize.s18, color: ColorManager.black)),
+                getBoldStyle(fontSize: AppSize.s18, color: ColorManager.black)),
         SizedBox(
           height: 16,
         ),
@@ -77,18 +79,32 @@ class CustomCardAddress extends StatelessWidget {
                 ),
               ],
             ),
-            leading: SvgPicture.asset(AssetsManager.floweryLogo),
+            leading: Container(
+              width: 50,
+              clipBehavior: Clip.antiAlias,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(50)),
+              child: Image.network(
+                "https://flower.elevateegy.com/uploads/$urlImage",
+                fit: BoxFit.fill,
+              ),
+            ),
             subtitle: Row(
               children: [
-                SvgPicture.asset(
+                noIcon? SvgPicture.asset(
                   AssetsManager.location,
                   width: 20,
                   height: 20,
-                ),
+                ):SizedBox(),
                 SizedBox(
                   width: 4,
                 ),
-                Text(location),
+                Expanded(
+                    child: Text(
+                  location,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                )),
               ],
             ),
           ),
