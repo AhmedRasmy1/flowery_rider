@@ -66,8 +66,10 @@ class _HomeViewState extends State<HomeView> {
           body: BlocConsumer<HomeCubit, HomeState>(
               listener: (context, state) {},
               builder: (context, state) {
+
+
                 if (state is HomeLoading) {
-                  return CircularProgressIndicator();
+                  return Center(child: CircularProgressIndicator());
                 } else if (state is HomeSuccess) {
                   PendingDriverOrdersEntity pendingDriverOrdersEntity =
                       state.pendingDriverOrdersEntity;

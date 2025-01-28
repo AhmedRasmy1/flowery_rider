@@ -76,18 +76,18 @@ class FirebaseUtils {
 }
 
 class OrderStateModel {
-  String status;
+  String state;
   String updatedAt;
 
   OrderStateModel({
-    required this.status,
+    required this.state,
     required this.updatedAt,
   });
 
 
   Map<String, dynamic> toJson() {
     return {
-      'status': status,
+      'status': state,
       'updatedAt': updatedAt,
     };
   }
@@ -95,7 +95,7 @@ class OrderStateModel {
 
   factory OrderStateModel.fromJson(Map<String, dynamic> json) {
     return OrderStateModel(
-      status: json['status'] as String,
+      state: json['status'] as String,
       updatedAt: json['updatedAt'] as String,
     );
   }}

@@ -60,7 +60,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                 CustomAppBar(
                   title: 'Order Details',
                   onTap: () {
-                    Navigator.pop(context);
+
                   },
                 ),
                 const SizedBox(height: 16.0),
@@ -125,7 +125,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                             FirebaseUtils.updateOrderState(
                                 orderId,
                                 OrderStateModel(
-                                    status: stateOrder2[currentStep],
+                                    state: stateOrder2[currentStep],
                                     updatedAt: DateTime.now()
                                         .microsecondsSinceEpoch
                                         .toString()));
@@ -142,7 +142,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                               FirebaseUtils.updateOrderState(
                                 orderId,
                                 OrderStateModel(
-                                  status: 'inProgress',
+                                  state: 'inProgress',
                                   updatedAt: DateTime.now()
                                       .microsecondsSinceEpoch
                                       .toString(),
@@ -157,7 +157,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                               FirebaseUtils.updateOrderState(
                                 orderId,
                                 OrderStateModel(
-                                  status: stateOrder[currentStep],
+                                  state: stateOrder[currentStep],
                                   updatedAt: DateTime.now()
                                       .microsecondsSinceEpoch
                                       .toString(),
@@ -173,13 +173,14 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                             setState(() {});
                             isActive = false;
                           } else {
+                            CacheService.setData(
+                                key: CacheConstants.currentStep,value: null);
                             viewModel.updateOrder(orderId,
                                 UpdateOrderRequest(state: 'completed'));
 
                             Navigator.pushReplacementNamed(
                                 context, RoutesManager.layoutRoute);
-                            CacheService.deleteItem(
-                                key: CacheConstants.currentStep);
+
                             currentStep = 0;
                           }
                         },
