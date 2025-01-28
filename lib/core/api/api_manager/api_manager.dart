@@ -65,7 +65,7 @@ abstract class ApiService {
       @Body() ChangePasswordRequest changePasswordRequest,
       @Header("Authorization") String token);
 
-  @GET(ApiConstants.getAllVehiclesRoute)
+
   @GET(ApiConstants.getPendingDriverOrdersRoute)
   Future<PendingOrdersResponse> getHomeData(
       @Header("Authorization") String token);

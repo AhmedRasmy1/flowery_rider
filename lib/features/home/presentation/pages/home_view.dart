@@ -1,9 +1,7 @@
+import 'package:flowery_rider/features/home/data/response/pending__orders__response.dart';
 import '../../../../core/resources/color_manager.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
-
 import '../../../../core/di/di.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../domain/pending_entity.dart';
@@ -21,12 +19,14 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   late HomeCubit viewModel;
   late String savedToken;
+  late List<Orders> ordersViewed;
 
   @override
   void initState() {
     savedToken = CacheService.getData(key: CacheConstants.userToken) ?? '';
     viewModel = getIt<HomeCubit>();
     viewModel.getHomeData("Bearer $savedToken");
+
     super.initState();
   }
 
@@ -42,8 +42,8 @@ class _HomeViewState extends State<HomeView> {
       create: (context) => viewModel,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Scaffold(
-          appBar: AppBar(
+        child: Scaffold(backgroundColor: Colors.white,
+          appBar: AppBar(backgroundColor: Colors.white,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -75,7 +75,10 @@ class _HomeViewState extends State<HomeView> {
                     padding: EdgeInsets.all(16.0),
                     itemCount: orders?.length,
                     itemBuilder: (context, index) {
-                      return OrderCard(orders![index]);
+                      return OrderCard(orderPending: orders![index],   onReject: () {
+    viewModel.rejectOrderFromScreen(orders[index]);
+    },
+    );
                     },
                   );
                 } else {
@@ -86,4 +89,9 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+
+
+
+
+
 }

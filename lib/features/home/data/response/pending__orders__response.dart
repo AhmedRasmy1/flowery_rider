@@ -3,6 +3,7 @@ import '../../domain/pending_entity.dart';
 
 class PendingOrdersResponse {
   PendingOrdersResponse({
+
     this.message,
     this.metadata,
     this.orders,});
