@@ -289,7 +289,7 @@ class _RegisterViewState extends State<RegisterView> {
                           labelText: AppLocalizations.of(context)!.phoneNumber,
                           hintText:
                               AppLocalizations.of(context)!.enterPhoneNumber,
-                         // onChanged: _onTextChanged,
+                          onChanged: _onTextChanged,
                           obscureText: false,
                           validator:  (value) => validatePhoneNumber(
                             value,
