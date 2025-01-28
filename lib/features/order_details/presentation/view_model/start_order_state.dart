@@ -18,3 +18,18 @@ class ErrorStartOrderState extends StartOrderState {
 
   ErrorStartOrderState(this.exception);
 }
+
+
+class SuccessUpdateOrderState extends StartOrderState {
+  final UpdateOrderStateEntity? updateOrderStateEntity;
+
+  SuccessUpdateOrderState(this.updateOrderStateEntity);
+}
+
+class LoadingUpdateOrderState extends StartOrderState {}
+
+class ErrorUpdateOrderState extends StartOrderState {
+  final Exception? exception;
+
+  ErrorUpdateOrderState(this.exception);
+}

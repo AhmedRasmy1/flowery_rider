@@ -412,6 +412,7 @@ class _ApiService implements ApiService {
 
   @override
   Future<UpdateOrderStateResponse?> updateOrder(
+    String orderId,
     UpdateOrderRequest updateOrderRequest,
     String token,
   ) async {
@@ -428,7 +429,7 @@ class _ApiService implements ApiService {
     )
         .compose(
           _dio.options,
-          'orders/state/{orderId}',
+          'orders/state/${orderId}',
           queryParameters: queryParameters,
           data: _data,
         )

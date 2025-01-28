@@ -5,5 +5,5 @@ import '../entities/update_order_state_entity.dart';
 
 abstract class OrderDetailsRepo {
   Future<Result<StartOrderEntity?>> startOrder(String orderId);
-  Future<Result<UpdateOrderStateEntity?>> updateOrder(UpdateOrderRequest updateOrderRequest);
+  Future<Result<UpdateOrderStateEntity?>> updateOrder(String orderId,UpdateOrderRequest updateOrderRequest);
 }

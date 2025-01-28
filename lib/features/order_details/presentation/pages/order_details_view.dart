@@ -27,7 +27,8 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
   final PageController _pageController = PageController();
   int currentStep = CacheService.getData(key: CacheConstants.currentStep) ?? 0;
   late StartOrderCubit viewModel;
-  bool isActive=true;
+  bool isActive = true;
+
   @override
   void initState() {
     viewModel = getIt.get<StartOrderCubit>();
@@ -38,8 +39,17 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
   Widget build(BuildContext context) {
     String orderId = CacheService.getData(key: CacheConstants.orderPendingId);
     return BlocProvider(
-      create: (context) => viewModel,
-      child: SafeArea(
+      create: (context) => viewModel..updateOrder(orderId,UpdateOrderRequest(state:'inProgress', )),
+      child: BlocListener<StartOrderCubit, StartOrderState>(
+  listener: (context, state) {
+  if(state is SuccessUpdateOrderState){
+
+  }
+  if(state is SuccessStartOrderState){
+
+  }
+  },
+  child: SafeArea(
           child: Scaffold(
         backgroundColor: ColorManager.greyTooLight,
         body: Padding(
@@ -90,22 +100,6 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                               orderDetails: orderDetails,
                               status: stateOrder2[currentStep],
                             ),
-                            // OrderDetailsViewBody(
-                            //   orderDetails: orderDetails,
-                            //   status: 'Picked',
-                            // ),
-                            // OrderDetailsViewBody(
-                            //   orderDetails: orderDetails,
-                            //   status: ' Out for delivery',
-                            // ),
-                            // OrderDetailsViewBody(
-                            //   orderDetails: orderDetails,
-                            //   status: 'Arrived',
-                            // ),
-                            // OrderDetailsViewBody(
-                            //   orderDetails: orderDetails,
-                            //   status: 'Delivered ',
-                            // ),
                           ],
                         ),
                       );
@@ -131,27 +125,25 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                 key: CacheConstants.currentStep,
                                 value: currentStep);
                           });
-
                           if (currentStep == 1) {
                             UpdateOrderRequest state = UpdateOrderRequest();
                             state.state = 'inProgress';
+                            viewModel.startOrder(orderId);
                             FirebaseUtils.updateOrderState(
-                                orderId,
-                                OrderStateModel(
-                                  status: 'inProgress',
-                                  updatedAt: DateTime.now()
-                                      .microsecondsSinceEpoch
-                                      .toString(),
-                                ),);
-
-                            StartOrderCubit.get(context).updateOrder(state);
+                              orderId,
+                              OrderStateModel(
+                                status: 'inProgress',
+                                updatedAt: DateTime.now()
+                                    .microsecondsSinceEpoch
+                                    .toString(),
+                              ),
+                            );
+                            // viewModel.updateOrder(orderId,state);
                           }
                           if (currentStep == 4) {
-
                             // currentStep++;
                             UpdateOrderRequest state = UpdateOrderRequest();
                             state.state = 'completed';
-                            StartOrderCubit.get(context).updateOrder(state);
                             FirebaseUtils.updateOrderState(
                               orderId,
                               OrderStateModel(
@@ -159,37 +151,36 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                 updatedAt: DateTime.now()
                                     .microsecondsSinceEpoch
                                     .toString(),
-                              ),);
+                              ),
+                            );
                             CacheService.deleteItem(
                                 key: CacheConstants.currentStep);
                           }
-                          // _pageController.animateToPage(
-                          //   currentStep,
-                          //   duration: const Duration(milliseconds: 1),
-                          //   curve: Curves.easeInOut,
-                          // );
                         }
                       }
                     : () async {
+                        if (isActive) {
+                          setState(() {
 
-                  if(isActive){
-                    isActive =false;
-                  }else{
-                    Navigator.pushReplacementNamed(
-                        context, RoutesManager.layoutRoute);
-                    CacheService.deleteItem(
-                        key: CacheConstants.currentStep);
-                    currentStep = 0;
-                  }
+                          });
+                          isActive = false;
+                        } else {
+                          viewModel.updateOrder(orderId,UpdateOrderRequest(state:'completed' ));
 
 
-
+                          Navigator.pushReplacementNamed(
+                              context, RoutesManager.layoutRoute);
+                          CacheService.deleteItem(
+                              key: CacheConstants.currentStep);
+                          currentStep = 0;
+                        }
                       },
               ),
             ],
           ),
         ),
       )),
+),
     );
   }
 }
@@ -202,5 +193,11 @@ List<String> buttonTitle = [
   'Delivered to the user',
   'Delivered to the user',
 ];
-List<String> stateOrder =['pending', 'inProgress', 'canceled', 'completed'];
-List<String> stateOrder2 =['Accepted','Picked','Out for delivery','Delivered','Arrived'];
+List<String> stateOrder = ['pending', 'inProgress', 'canceled', 'completed'];
+List<String> stateOrder2 = [
+  'Accepted',
+  'Picked',
+  'Out for delivery',
+  'Delivered',
+  'Arrived'
+];

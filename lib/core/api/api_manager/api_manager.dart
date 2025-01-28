@@ -78,5 +78,6 @@ abstract class ApiService {
 
   @PUT('${ApiConstants.updateOrder}/{orderId}')
   Future<UpdateOrderStateResponse?> updateOrder(
+      @Path()String orderId,
       @Body() UpdateOrderRequest updateOrderRequest, @Header("Authorization") String token);
 }

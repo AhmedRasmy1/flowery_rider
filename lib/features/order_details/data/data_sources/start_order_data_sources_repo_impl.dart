@@ -28,9 +28,9 @@ class StartOrderDataSourcesRepoImpl implements OrderDetailsDataSourcesRepo {
   }
 
   @override
-  Future<Result<UpdateOrderStateEntity?>> updateOrder(UpdateOrderRequest updateOrderRequest) {
+  Future<Result<UpdateOrderStateEntity?>> updateOrder( String orderId,UpdateOrderRequest updateOrderRequest) {
     return executeApi(() async {
-      var response = await apiService.updateOrder(updateOrderRequest, token);
+      var response = await apiService.updateOrder(orderId,updateOrderRequest,'Bearer $token');
       return response?.toUpdateOrderStateEntity();
     });
   }

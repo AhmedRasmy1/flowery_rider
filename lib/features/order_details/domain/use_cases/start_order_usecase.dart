@@ -15,7 +15,7 @@ class StartOrderUseCase {
     return await _startOrderRepo.startOrder(orderId);
   }
 
-  Future<Result<UpdateOrderStateEntity?>> updateOrder(UpdateOrderRequest updateOrderRequest) async {
-    return await _startOrderRepo.updateOrder(updateOrderRequest);
+  Future<Result<UpdateOrderStateEntity?>> updateOrder(String orderId,UpdateOrderRequest updateOrderRequest) async {
+    return await _startOrderRepo.updateOrder(orderId,updateOrderRequest);
   }
 }

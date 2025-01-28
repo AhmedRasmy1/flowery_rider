@@ -385,6 +385,7 @@ class MockApiService extends _i1.Mock implements _i12.ApiService {
 
   @override
   _i13.Future<_i21.UpdateOrderStateResponse?> updateOrder(
+    String? orderId,
     _i22.UpdateOrderRequest? updateOrderRequest,
     String? token,
   ) =>
@@ -392,6 +393,7 @@ class MockApiService extends _i1.Mock implements _i12.ApiService {
         Invocation.method(
           #updateOrder,
           [
+            orderId,
             updateOrderRequest,
             token,
           ],

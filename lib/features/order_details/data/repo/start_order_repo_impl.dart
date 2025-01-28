@@ -20,7 +20,7 @@ class StarOrderRepoImpl implements OrderDetailsRepo {
   }
 
   @override
-  Future<Result<UpdateOrderStateEntity?>> updateOrder(UpdateOrderRequest updateOrderRequest) async{
-  return await startOrderDataSourcesRepo.updateOrder(updateOrderRequest);
+  Future<Result<UpdateOrderStateEntity?>> updateOrder( String orderId,UpdateOrderRequest updateOrderRequest) async{
+  return await startOrderDataSourcesRepo.updateOrder(orderId,updateOrderRequest);
   }
 }
