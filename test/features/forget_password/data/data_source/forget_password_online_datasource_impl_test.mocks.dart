@@ -38,8 +38,12 @@ import 'package:flowery_rider/features/home/data/response/pending__orders__respo
     as _i11;
 import 'package:flowery_rider/features/my_profile/data/models/response/profile_data_model.dart'
     as _i5;
+import 'package:flowery_rider/features/order_details/data/models/request/update_order_request.dart'
+    as _i22;
 import 'package:flowery_rider/features/order_details/data/models/response/start_order_model.dart'
     as _i20;
+import 'package:flowery_rider/features/order_details/data/models/response/update_order_state_response.dart'
+    as _i21;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -378,4 +382,20 @@ class MockApiService extends _i1.Mock implements _i12.ApiService {
         ),
         returnValue: _i13.Future<_i20.StartOrderModel?>.value(),
       ) as _i13.Future<_i20.StartOrderModel?>);
+
+  @override
+  _i13.Future<_i21.UpdateOrderStateResponse?> updateOrder(
+    _i22.UpdateOrderRequest? updateOrderRequest,
+    String? token,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateOrder,
+          [
+            updateOrderRequest,
+            token,
+          ],
+        ),
+        returnValue: _i13.Future<_i21.UpdateOrderStateResponse?>.value(),
+      ) as _i13.Future<_i21.UpdateOrderStateResponse?>);
 }

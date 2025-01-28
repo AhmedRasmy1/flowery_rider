@@ -146,6 +146,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i375.HomeDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i649.GetProfileDataSource>(
         () => _i592.GetProfileDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i910.OrderDetailsDataSourcesRepo>(
+        () => _i296.StartOrderDataSourcesRepoImpl(gh<_i680.ApiService>()));
     gh.factory<_i994.AuthOnLineDataSource>(
         () => _i140.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i665.RegisterOnlineDataSource>(() =>
@@ -154,20 +156,20 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1013.HomeRepoImpl(gh<_i426.HomeDataSource>()));
     gh.factory<_i629.RegisterRepo>(
         () => _i633.RegisterRepoImpl(gh<_i665.RegisterOnlineDataSource>()));
-    gh.factory<_i910.StartOrderDataSourcesRepo>(
-        () => _i296.StartOrderDataSourcesRepoImpl(gh<_i680.ApiService>()));
     gh.factory<_i70.EditProfileDataSource>(
         () => _i197.EditProfileDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i750.OrderDetailsRepo>(() =>
+        _i1032.StarOrderRepoImpl(gh<_i910.OrderDetailsDataSourcesRepo>()));
     gh.factory<_i740.ForgetPasswordOnlineDatasource>(
         () => _i470.ForgetPasswordOnlineDatasourceImpl(gh<_i680.ApiService>()));
-    gh.factory<_i750.StartOrderRepo>(
-        () => _i1032.StarOrderRepoImpl(gh<_i910.StartOrderDataSourcesRepo>()));
     gh.factory<_i1010.RegisterUseCase>(
         () => _i1010.RegisterUseCase(gh<_i629.RegisterRepo>()));
     gh.factory<_i743.HomeUseCase>(
         () => _i743.HomeUseCase(gh<_i1021.HomeRepo>()));
     gh.factory<_i566.VehiclesRepo>(
         () => _i307.VehiclesRepoImpl(gh<_i710.VehiclesOnlineDataSource>()));
+    gh.factory<_i1044.StartOrderUseCase>(
+        () => _i1044.StartOrderUseCase(gh<_i750.OrderDetailsRepo>()));
     gh.factory<_i804.ChangePasswordOnlineDataSource>(
         () => _i427.ChangePasswordOnlineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i184.ForgetPasswordRepo>(() => _i732.ForgetPasswordRepoImpl(
@@ -179,8 +181,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i863.RegisterViewModel>(
         () => _i863.RegisterViewModel(gh<_i1010.RegisterUseCase>()));
     gh.factory<_i77.HomeCubit>(() => _i77.HomeCubit(gh<_i743.HomeUseCase>()));
-    gh.factory<_i1044.StartOrderUseCase>(
-        () => _i1044.StartOrderUseCase(gh<_i750.StartOrderRepo>()));
     gh.factory<_i802.ChangePasswordRepository>(() =>
         _i489.ChangePasswordRepositoryImpl(
             gh<_i804.ChangePasswordOnlineDataSource>()));

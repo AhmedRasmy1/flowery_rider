@@ -40,6 +40,9 @@ class GetProfileDataCubit extends Cubit<GetProfileDataState> {
               key: CacheConstants.vehicleNumber,
               value: result.data?.driver?.vehicleNumber);
           CacheService.setData(
+              key: CacheConstants.driverId,
+              value: result.data?.driver?.id);
+          CacheService.setData(
               key: CacheConstants.vehicleLicense,
               value: result.data?.driver?.vehicleLicense);
           CacheService.setData(

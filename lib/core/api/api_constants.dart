@@ -13,4 +13,5 @@ class ApiConstants {
   static const String uploadImageProfile = "drivers/upload-photo";
   static const String editProfile = "drivers/editProfile";
   static const String startOrder = "orders/start";
+  static const String updateOrder = "orders/state";
 }

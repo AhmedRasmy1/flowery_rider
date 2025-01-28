@@ -1,18 +1,21 @@
-import '../../../../core/di/di.dart';
-import '../widgets/skeleton_order_details.dart';
+import 'package:flowery_rider/core/di/di.dart';
+import 'package:flowery_rider/core/firebase_core/firebase_utils/firebase_utils.dart';
+import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
+import 'package:flowery_rider/features/order_details/presentation/widgets/skeleton_order_details.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
+import '../../data/models/request/update_order_request.dart';
 import '../view_model/start_order_cubit.dart';
 import '../widgets/firebase_functions.dart';
 import '../widgets/order_detailsV_view_body.dart';
 
 class OrderDetailsView extends StatefulWidget {
-  const OrderDetailsView({super.key, required this.orderId});
-
-  final String orderId;
+  const OrderDetailsView({
+    super.key,
+  });
 
   @override
   State<OrderDetailsView> createState() => _OrderDetailsViewState();
@@ -20,23 +23,12 @@ class OrderDetailsView extends StatefulWidget {
 
 class _OrderDetailsViewState extends State<OrderDetailsView> {
   final PageController _pageController = PageController();
-  int currentStep = 0;
+  int currentStep = CacheService.getData(key: CacheConstants.currentStep) ?? 0;
   late StartOrderCubit viewModel;
 
   void nextStep() async {
-    if (currentStep < 4) {
-      setState(() {
-        currentStep++;
-      });
 
-      /// add firebase
-      await startOrder();
-      _pageController.animateToPage(
-        currentStep,
-        duration: const Duration(milliseconds: 1),
-        curve: Curves.easeInOut,
-      );
-    }
+
   }
 
   @override
@@ -47,94 +39,130 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+    String orderId = CacheService.getData(key: CacheConstants.orderPendingId);
     return BlocProvider(
-      create: (context) => viewModel..startOrder(widget.orderId),
+      create: (context) => viewModel,
       child: SafeArea(
-        child: BlocBuilder<StartOrderCubit, StartOrderState>(
-          builder: (context, state) {
-            if (state is SuccessStartOrderState) {
-              return Scaffold(
-                backgroundColor: ColorManager.greyTooLight,
-                body: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      CustomAppBar(
-                        title: 'Order Details',
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      const SizedBox(height: 16.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: List.generate(4, (index) {
+          child: Scaffold(
+            backgroundColor: ColorManager.greyTooLight,
+            body: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  CustomAppBar(
+                    title: 'Order Details',
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  const SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(5, (index) {
+                      return Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                          height: 5.0,
+                          decoration: BoxDecoration(
+                              color: index <= currentStep
+                                  ? ColorManager.percentageColor
+                                  : ColorManager.lightGrey3,
+                              borderRadius: BorderRadius.circular(8)),
+                        ),
+                      );
+                    }),
+                  ),
+                  FutureBuilder(
+                      future:
+                      FirebaseUtils.fetchOrderFromFirebase(orderId: orderId),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Expanded(child: OrderDetailsSkeleton());
+                        } else if (snapshot.hasError) {
+                          return Center(
+                            child: Center(child: Text(
+                                'Error: ${snapshot.error}')),
+                          );
+                        } else if (snapshot.hasData) {
+                          final orderDetails = snapshot.data!;
                           return Expanded(
-                            child: Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
-                              height: 5.0,
-                              decoration: BoxDecoration(
-                                  color: index <= currentStep
-                                      ? ColorManager.percentageColor
-                                      : ColorManager.lightGrey3,
-                                  borderRadius: BorderRadius.circular(8)),
+                            child: PageView(
+                              controller: _pageController,
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: [
+                                OrderDetailsViewBody(
+                                  orderDetails: orderDetails,
+                                  status: 'Accepted',
+                                ),
+                                OrderDetailsViewBody(
+                                  orderDetails: orderDetails,
+                                  status: 'Picked',
+                                ),
+                                OrderDetailsViewBody(
+                                  orderDetails: orderDetails,
+                                  status: ' Out for delivery',
+                                ),
+                                OrderDetailsViewBody(
+                                  orderDetails: orderDetails,
+                                  status: 'Arrived',
+                                ),
+                                OrderDetailsViewBody(
+                                  orderDetails: orderDetails,
+                                  status: 'Delivered ',
+                                ),
+                              ],
                             ),
                           );
-                        }),
-                      ),
-                      Expanded(
-                        child: PageView(
-                          controller: _pageController,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: [
-                            OrderDetailsViewBody(
-                              status: 'Accepted',
-                            ),
-                            OrderDetailsViewBody(
-                              status: 'Picked',
-                            ),
-                            OrderDetailsViewBody(
-                              status: ' Out for delivery',
-                            ),
-                            OrderDetailsViewBody(
-                              status: 'Arrived',
-                            ),
-                            OrderDetailsViewBody(
-                              status: 'Delivered ',
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 24),
-                      CustomElevatedButton(
-                        buttonColor: currentStep < 4
-                            ? ColorManager.pink
-                            : ColorManager.placeHolderColor,
-                        title: currentStep < 4
-                            ? buttonTitle[currentStep]
-                            : buttonTitle[4],
-                        onPressed: currentStep < 4
-                            ? nextStep
-                            : () async {
-                                /// finish  add firebase
+                        } else {
+                          return Center(
+                            child: Text('No data found'),
+                          );
+                        }
+                      }),
+                  const SizedBox(height: 24),
+                  CustomElevatedButton(
+                    buttonColor: currentStep < 4
+                        ? ColorManager.pink
+                        : ColorManager.placeHolderColor,
+                    title:
+                    currentStep < 4 ? buttonTitle[currentStep] : buttonTitle[4],
+                    onPressed: currentStep < 4
+                        ? () {
+                      if (currentStep < 4) {
+                        setState(() {
+                          currentStep++;
+                          CacheService.setData(key: CacheConstants.currentStep,
+                              value: currentStep);
+                        });
 
-                                /// //// /// // ////
-                              },
-                      ),
-                    ],
+                        if (currentStep == 0) {
+                          UpdateOrderRequest state = UpdateOrderRequest();
+                          state.state = 'inProgress';
+                          StartOrderCubit.get(context).updateOrder(state);
+                        }
+                        if (currentStep == 4) {
+                          UpdateOrderRequest state = UpdateOrderRequest();
+                          state.state = 'completed';
+                          StartOrderCubit.get(context).updateOrder(state);
+                        }
+                        _pageController.animateToPage(
+                          currentStep,
+                          duration: const Duration(milliseconds: 1),
+                          curve: Curves.easeInOut,
+                        );
+                      }
+                    }
+                        : () async {
+                      /// finish  add firebase
+
+                      /// //// /// // ////
+                    },
                   ),
-                ),
-              );
-            } else if (state is LoadingStartOrderState) {
-              return OrderDetailsSkeleton();
-            } else if (state is ErrorStartOrderState) {
-              return Center(child: Text('error'));
-            }
-            return Center(child: Text('error'));
-          },
-        ),
-      ),
+                ],
+              ),
+            ),
+          )),
     );
   }
 }
@@ -143,5 +171,6 @@ List<String> buttonTitle = [
   'Arrived at Pickup point',
   'Start deliver',
   'Arrived to the user',
-  'Delivered to the user'
+  'Delivered to the user',
+  'Delivered to the user',
 ];

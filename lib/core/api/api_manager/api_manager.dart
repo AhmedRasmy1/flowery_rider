@@ -19,7 +19,9 @@ import '../../../features/forget_password/data/model/forget_password_response/re
 import '../../../features/forget_password/data/model/forget_password_response/verify_response.dart';
 import '../../../features/get_all_vehicles/data/models/vehicles_response_dto.dart';
 import '../../../features/my_profile/data/models/response/profile_data_model.dart';
+import '../../../features/order_details/data/models/request/update_order_request.dart';
 import '../../../features/order_details/data/models/response/start_order_model.dart';
+import '../../../features/order_details/data/models/response/update_order_state_response.dart';
 import '../api_constants.dart';
 
 part 'api_manager.g.dart';
@@ -73,4 +75,8 @@ abstract class ApiService {
   @PUT('${ApiConstants.startOrder}/{orderId}')
   Future<StartOrderModel?> startOrder(
       @Path() String orderId, @Header("Authorization") String token);
+
+  @PUT('${ApiConstants.updateOrder}/{orderId}')
+  Future<UpdateOrderStateResponse?> updateOrder(
+      @Body() UpdateOrderRequest updateOrderRequest, @Header("Authorization") String token);
 }

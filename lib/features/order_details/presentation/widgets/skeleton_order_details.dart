@@ -1,10 +1,16 @@
+import 'package:flowery_rider/features/home/data/response/pending__orders__response.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../core/firebase_core/firebase_utils/firebase_utils.dart';
 import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/style_manager.dart';
+import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import '../widgets/order_detailsV_view_body.dart';
+import 'custom_card_address.dart';
 
 class OrderDetailsSkeleton extends StatefulWidget {
   const OrderDetailsSkeleton({super.key});
@@ -14,84 +20,144 @@ class OrderDetailsSkeleton extends StatefulWidget {
 }
 
 class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
-  final PageController _pageController = PageController();
-  int currentStep = 0;
 
-  void nextStep() {
-    if (currentStep < 5) {
-      setState(() {
-        currentStep++;
-      });
-      _pageController.animateToPage(
-        currentStep,
-        duration: const Duration(milliseconds: 1),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return Skeletonizer(
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: ColorManager.greyTooLight,
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
+      child:  ListView(
+        children: [
+          Container(
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+                color: ColorManager.lightPink,
+                borderRadius: BorderRadius.circular(12)),
             child: Column(
               children: [
-                CustomAppBar(
-                  title: 'Order Details',
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                const SizedBox(height: 16.0),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(4, (index) {
-                    return Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                        height: 5.0,
-                        decoration: BoxDecoration(
-                            color: index <= currentStep
-                                ? ColorManager.percentageColor
-                                : ColorManager.lightGrey3,
-                            borderRadius: BorderRadius.circular(8)),
-                      ),
-                    );
-                  }),
+                  children: [
+                    Text('Status : ',
+                        style: getBoldStyle(
+                            fontSize: AppSize.s16,
+                            color: ColorManager.discountRate)),
+                    Text('status',
+                        style: getBoldStyle(
+                            fontSize: AppSize.s16,
+                            color: ColorManager.discountRate)),
+                  ],
                 ),
-                Expanded(
-                  child: PageView(
-                    controller: _pageController,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      OrderDetailsViewBody(
-                        status: 'Accepted',
-                      ),
-                    ],
-                  ),
+                SizedBox(
+                  height: 8,
                 ),
-                const SizedBox(height: 24),
-                CustomElevatedButton(
-                  buttonColor: currentStep < 4
-                      ? ColorManager.pink
-                      : ColorManager.placeHolderColor,
-                  title: currentStep < 5
-                      ? buttonTitle[currentStep]
-                      : buttonTitle[4],
-                  onPressed: currentStep < 5
-                      ? nextStep
-                      : () {
-                          /// //// /// // ////
-                        },
+                Row(
+                  children: [
+                    Text('Order ID : ',
+                        style: getBoldStyle(
+                            fontSize: AppSize.s16, color: ColorManager.black)),
+                    Text('orderDetails.orderNumber ?? ''',
+                        style: getBoldStyle(
+                            fontSize: AppSize.s16, color: ColorManager.black)),
+                  ],
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  children: [
+                    Text('Wed, 03 Sep 2024, 11:00 AM  ',
+                        style: getBoldStyle(
+                            fontSize: AppSize.s14,
+                            color: ColorManager.blackPrice)),
+                  ],
                 ),
               ],
             ),
           ),
-        ),
+          SizedBox(
+            height: 16,
+          ),
+          CustomCardAddress(
+            noIcon: true,
+            title: 'Pickup address',
+            title2: 'orderDetails.store?.name ?? ''',
+            phone: 'orderDetails.store?',
+            name: 'orderDetails..name ?? ''',
+            location: 'orderDetails.store?.address ?? ''',
+            urlImage:"https://flower.elevateegy.com/uploads/5ed2d072-485b-4a53-a0fa-a41412791397-image_three.png" ,
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          CustomCardAddress(
+            noIcon: true,
+            title: 'Pickup address',
+            title2: 'orderDetails.store?.name ?? ''',
+            phone: 'orderDetails.store?',
+            name: 'orderDetails..name ?? ''',
+            location: 'orderDetails.store?.address ?? ''',
+            urlImage:"https://flower.elevateegy.com/uploads/5ed2d072-485b-4a53-a0fa-a41412791397-image_three.png" ,
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Text('title',
+              style:
+              getBoldStyle(fontSize: AppSize.s18, color: ColorManager.black)),
+          SizedBox(
+            height: 16,
+          ),
+          Card(
+            color: Colors.white,
+            margin: EdgeInsets.all(0),
+            child: ListTile(
+              contentPadding: EdgeInsets.all(10),
+              minTileHeight: 8,
+              minVerticalPadding: 10,
+              // horizontalTitleGap: 8,
+              title: Text(
+                'title2',
+                style: getRegularStyle(
+                    color: ColorManager.blackPrice, fontSize: AppSize.s14),
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    width: 8,
+                  ),
+
+                ],
+              ),
+              leading: Container(
+                width: 50,
+                clipBehavior: Clip.antiAlias,
+                decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                child: Image.network(
+                 " https://flower.elevateegy.com/uploads/5ed2d072-485b-4a53-a0fa-a41412791397-image_three.png",
+                  fit: BoxFit.fill,
+                ),
+              ),
+              subtitle: Row(
+                children: [
+
+                  SizedBox(
+                    width: 4,
+                  ),
+                  Expanded(
+                      child: Text(
+                        'location',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      )),
+                ],
+              ),
+            ),
+          ),
+
+
+        ],
       ),
     );
   }
