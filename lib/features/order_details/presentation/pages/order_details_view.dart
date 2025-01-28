@@ -27,7 +27,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
   final PageController _pageController = PageController();
   int currentStep = CacheService.getData(key: CacheConstants.currentStep) ?? 0;
   late StartOrderCubit viewModel;
-
+  bool isActive=true;
   @override
   void initState() {
     viewModel = getIt.get<StartOrderCubit>();
@@ -88,24 +88,24 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                           children: [
                             OrderDetailsViewBody(
                               orderDetails: orderDetails,
-                              status: 'Accepted',
+                              status: stateOrder2[currentStep],
                             ),
-                            OrderDetailsViewBody(
-                              orderDetails: orderDetails,
-                              status: 'Picked',
-                            ),
-                            OrderDetailsViewBody(
-                              orderDetails: orderDetails,
-                              status: ' Out for delivery',
-                            ),
-                            OrderDetailsViewBody(
-                              orderDetails: orderDetails,
-                              status: 'Arrived',
-                            ),
-                            OrderDetailsViewBody(
-                              orderDetails: orderDetails,
-                              status: 'Delivered ',
-                            ),
+                            // OrderDetailsViewBody(
+                            //   orderDetails: orderDetails,
+                            //   status: 'Picked',
+                            // ),
+                            // OrderDetailsViewBody(
+                            //   orderDetails: orderDetails,
+                            //   status: ' Out for delivery',
+                            // ),
+                            // OrderDetailsViewBody(
+                            //   orderDetails: orderDetails,
+                            //   status: 'Arrived',
+                            // ),
+                            // OrderDetailsViewBody(
+                            //   orderDetails: orderDetails,
+                            //   status: 'Delivered ',
+                            // ),
                           ],
                         ),
                       );
@@ -117,7 +117,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                   }),
               const SizedBox(height: 24),
               CustomElevatedButton(
-                buttonColor: currentStep < 4
+                buttonColor: isActive
                     ? ColorManager.pink
                     : ColorManager.placeHolderColor,
                 title:
@@ -147,14 +147,15 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                             StartOrderCubit.get(context).updateOrder(state);
                           }
                           if (currentStep == 4) {
-                            currentStep++;
+
+                            // currentStep++;
                             UpdateOrderRequest state = UpdateOrderRequest();
                             state.state = 'completed';
                             StartOrderCubit.get(context).updateOrder(state);
                             FirebaseUtils.updateOrderState(
                               orderId,
                               OrderStateModel(
-                                status: 'completed',
+                                status: stateOrder[currentStep],
                                 updatedAt: DateTime.now()
                                     .microsecondsSinceEpoch
                                     .toString(),
@@ -162,19 +163,27 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                             CacheService.deleteItem(
                                 key: CacheConstants.currentStep);
                           }
-                          _pageController.animateToPage(
-                            currentStep,
-                            duration: const Duration(milliseconds: 1),
-                            curve: Curves.easeInOut,
-                          );
+                          // _pageController.animateToPage(
+                          //   currentStep,
+                          //   duration: const Duration(milliseconds: 1),
+                          //   curve: Curves.easeInOut,
+                          // );
                         }
                       }
                     : () async {
-                        Navigator.pushReplacementNamed(
-                            context, RoutesManager.layoutRoute);
-                        CacheService.deleteItem(
-                            key: CacheConstants.currentStep);
-                        currentStep = 0;
+
+                  if(isActive){
+                    isActive =false;
+                  }else{
+                    Navigator.pushReplacementNamed(
+                        context, RoutesManager.layoutRoute);
+                    CacheService.deleteItem(
+                        key: CacheConstants.currentStep);
+                    currentStep = 0;
+                  }
+
+
+
                       },
               ),
             ],
@@ -187,8 +196,11 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
 
 List<String> buttonTitle = [
   'Arrived at Pickup point',
+  'Arrived at Pickup point',
   'Start deliver',
   'Arrived to the user',
   'Delivered to the user',
   'Delivered to the user',
 ];
+List<String> stateOrder =['pending', 'inProgress', 'canceled', 'completed'];
+List<String> stateOrder2 =['Accepted','Picked','Out for delivery','Delivered','Arrived'];
