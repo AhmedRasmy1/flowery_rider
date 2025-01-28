@@ -9,7 +9,9 @@ import '../../../../core/functions/helper.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
+import '../../../order_details/presentation/pages/order_details_view.dart';
 import '../view_model/login_state.dart';
 import '../view_model/login_view_model_cubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -62,8 +64,17 @@ class _LoginScreenState extends State<LoginView> {
                 ),
               );
             } else if (state is SuccessLoginState) {
-              Navigator.pushReplacementNamed(
-                  context, RoutesManager.layoutRoute);
+              String ? orderStart = CacheService.getData(
+                  key: CacheConstants.orderPendingId);
+              orderStart == null
+                  ?      Navigator.pushReplacementNamed(
+                  context, RoutesManager.layoutRoute)
+                  : Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OrderDetailsView(),
+                  ));
+
             } else if (state is ErrorLoginState) {
               Navigator.pop(context);
               MotionToast.error(
