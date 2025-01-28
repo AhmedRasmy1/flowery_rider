@@ -7,10 +7,16 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/resources/color_manager.dart';
 
-class OrderCard extends StatelessWidget {
+class OrderCard extends StatefulWidget {
   final Orders orderPending;
-  const OrderCard(this.orderPending, {super.key});
+  final VoidCallback onReject ;
+  const OrderCard({required this.orderPending,required this.onReject,super.key });
 
+  @override
+  State<OrderCard> createState() => _OrderCardState();
+}
+
+class _OrderCardState extends State<OrderCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -39,7 +45,7 @@ class OrderCard extends StatelessWidget {
                     style: TextStyle(color: Color(0xffC8D444), fontSize: 16)),
                 Spacer(),
                 Text(
-                  orderPending.orderNumber ?? "",
+                  widget.orderPending.orderNumber ?? "",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
@@ -47,36 +53,38 @@ class OrderCard extends StatelessWidget {
             SizedBox(height: 16),
             StoreInfo(
               title: 'store address',
-              name: orderPending.store?.name.toString()??"",
-              address: orderPending.store?.address.toString() ??"",
-              img: orderPending.store?.image ??" ",
+              name: widget.orderPending.store?.name.toString()??"",
+              address: widget.orderPending.store?.address.toString() ??"",
+              img: widget.orderPending.store?.image ??" ",
             ),
             SizedBox(height: 16),
          StoreInfo(
               title: 'user address',
-              name: orderPending.user?.firstName ??"",
-              address: orderPending.user?.phone ?? "",
-              img: "https://flower.elevateegy.com/uploads/${orderPending.user?.photo}"?? "",
+              name: widget.orderPending.user?.firstName ??"",
+              address: widget.orderPending.user?.phone ?? "",
+              img: "https://flower.elevateegy.com/uploads/${widget.orderPending.user?.photo}"?? "",
             ),
             SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  orderPending.totalPrice.toString(),
+                  widget.orderPending.totalPrice.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    side: BorderSide(color: ColorManager.pink),
-                    foregroundColor: ColorManager.pink,
+                Container(
+                  child: ElevatedButton(
+                    onPressed: widget.onReject,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      side: BorderSide(color: ColorManager.pink),
+                      foregroundColor: ColorManager.pink,
+                    ),
+                    child: Text('Reject'),
                   ),
-                  child: Text('Reject'),
                 ),
                 ElevatedButton(
                   onPressed: () {Navigator.pushNamed(context, RoutesManager.orderDetailsView);},
