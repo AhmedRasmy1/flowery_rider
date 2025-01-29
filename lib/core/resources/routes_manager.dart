@@ -28,7 +28,7 @@ class RoutesManager {
   static const String changePasswordViewRoute = '/chanePasswordViewRoute';
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
   static const String homeViewScreen = '/homeViewScreen';
-  // static const String orderDetailsView = '/orderDetailsView';
+  static const String orderDetailsView = '/orderDetailsView';
   static const String successApply = '/successApplyView';
 }
 
@@ -61,8 +61,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case RoutesManager.homeViewScreen:
         return MaterialPageRoute(builder: (_) => const HomeView());
-      // case RoutesManager.orderDetailsView:
-      //   return MaterialPageRoute(builder: (_) => const OrderDetailsView());
+      case RoutesManager.orderDetailsView:
+        return MaterialPageRoute(builder: (_) => const OrderDetailsView());
       default:
         return unDefinedRoute();
     }

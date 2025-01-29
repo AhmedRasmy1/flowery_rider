@@ -64,9 +64,7 @@ class _LoginScreenState extends State<LoginView> {
                 ),
               );
             } else if (state is SuccessLoginState) {
-              String ? orderStart = CacheService.getData(
-                  key: CacheConstants.orderPendingId);
-              orderStart == null
+              orderPendingId.isNotEmpty
                   ?      Navigator.pushReplacementNamed(
                   context, RoutesManager.layoutRoute)
                   : Navigator.pushReplacement(

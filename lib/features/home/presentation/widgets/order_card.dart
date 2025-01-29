@@ -1,3 +1,5 @@
+import 'package:flowery_rider/core/resources/routes_manager.dart';
+
 import '../../../../core/firebase_core/firebase_utils/firebase_utils.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../../order_details/presentation/pages/order_details_view.dart';
@@ -11,7 +13,7 @@ class OrderCard extends StatefulWidget {
   final VoidCallback onReject;
 
   const OrderCard(
-      {required this.orderPending, required this.onReject, super.key });
+      {required this.orderPending, required this.onReject, super.key});
 
   @override
   State<OrderCard> createState() => _OrderCardState();
@@ -63,8 +65,8 @@ class _OrderCardState extends State<OrderCard> {
               title: 'user address',
               name: widget.orderPending.user?.firstName ?? "",
               address: widget.orderPending.user?.phone ?? "",
-              img: "https://flower.elevateegy.com/uploads/${widget.orderPending
-                  .user?.photo}",
+              img:
+                  "https://flower.elevateegy.com/uploads/${widget.orderPending.user?.photo}",
             ),
             SizedBox(height: 16),
             Row(
@@ -77,16 +79,14 @@ class _OrderCardState extends State<OrderCard> {
                     fontSize: 18,
                   ),
                 ),
-                Container(
-                  child: ElevatedButton(
-                    onPressed: widget.onReject,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      side: BorderSide(color: ColorManager.pink),
-                      foregroundColor: ColorManager.pink,
-                    ),
-                    child: Text('Reject'),
+                ElevatedButton(
+                  onPressed: widget.onReject,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    side: BorderSide(color: ColorManager.pink),
+                    foregroundColor: ColorManager.pink,
                   ),
+                  child: Text('Reject'),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -95,12 +95,8 @@ class _OrderCardState extends State<OrderCard> {
                         value: widget.orderPending.id);
                     FirebaseUtils.addOrderToFirebase(
                         orders: widget.orderPending);
-                    Navigator
-                        .pushReplacement(context, MaterialPageRoute(builder: (context)
-                    =>
-                        OrderDetailsView()
-                    ))
-                    ;
+                    Navigator.pushReplacementNamed(
+                        context, RoutesManager.orderDetailsView);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.pink,

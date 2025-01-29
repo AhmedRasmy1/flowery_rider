@@ -20,6 +20,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: ColorManager.white,
       items: [
         BottomNavigationBarItem(
           icon: buildIcon(AssetsManager.home, 0, currentIndex),

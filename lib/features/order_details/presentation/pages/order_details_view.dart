@@ -173,8 +173,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                             setState(() {});
                             isActive = false;
                           } else {
-                            CacheService.setData(
-                                key: CacheConstants.currentStep,value: null);
+                            orderPendingId='';
                             viewModel.updateOrder(orderId,
                                 UpdateOrderRequest(state: 'completed'));
 
