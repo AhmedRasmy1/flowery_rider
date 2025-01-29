@@ -2,7 +2,6 @@ import 'package:flowery_rider/core/resources/routes_manager.dart';
 
 import '../../../../core/firebase_core/firebase_utils/firebase_utils.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
-import '../../../order_details/presentation/pages/order_details_view.dart';
 import '../../data/response/pending__orders__response.dart';
 import 'storeInfo.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +62,8 @@ class _OrderCardState extends State<OrderCard> {
             SizedBox(height: 16),
             StoreInfo(
               title: 'user address',
-              name: widget.orderPending.user?.firstName ?? "",
+              name:
+                  "${widget.orderPending.user?.firstName} ${widget.orderPending.user?.lastName}",
               address: widget.orderPending.user?.phone ?? "",
               img:
                   "https://flower.elevateegy.com/uploads/${widget.orderPending.user?.photo}",

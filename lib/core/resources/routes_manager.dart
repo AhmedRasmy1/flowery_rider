@@ -1,5 +1,4 @@
 import 'package:flowery_rider/features/auth/presentation/pages/success_apply_view.dart';
-import 'package:flowery_rider/features/pickup_location/presentation/pages/pickup_location_view.dart';
 
 import '../../features/auth/presentation/pages/apply_view.dart';
 import '../../features/auth/presentation/pages/login_view.dart';

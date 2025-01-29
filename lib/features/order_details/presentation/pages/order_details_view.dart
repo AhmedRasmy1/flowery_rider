@@ -1,18 +1,16 @@
 import 'package:flowery_rider/core/di/di.dart';
 import 'package:flowery_rider/core/firebase_core/firebase_utils/firebase_utils.dart';
 import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
-import 'package:flowery_rider/features/home/data/response/pending__orders__response.dart';
 import 'package:flowery_rider/features/order_details/presentation/widgets/order_delivered_successfully.dart';
 import 'package:flowery_rider/features/order_details/presentation/widgets/skeleton_order_details.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/resources/color_manager.dart';
-import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import '../../data/models/request/update_order_request.dart';
 import '../view_model/start_order_cubit.dart';
-import '../widgets/firebase_functions.dart';
+
 import '../widgets/order_detailsV_view_body.dart';
 
 class OrderDetailsView extends StatefulWidget {
@@ -25,7 +23,7 @@ class OrderDetailsView extends StatefulWidget {
 }
 
 class _OrderDetailsViewState extends State<OrderDetailsView> {
-  final PageController _pageController = PageController();
+
 
   late StartOrderCubit viewModel;
   bool isActive = true;

@@ -3,7 +3,6 @@ import 'package:flowery_rider/core/resources/color_manager.dart';
 import 'package:flowery_rider/features/pickup_location/presentation/widgets/custom_card_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../home/data/response/pending__orders__response.dart';
 
 class PickupLocationView extends StatelessWidget {

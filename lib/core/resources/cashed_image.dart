@@ -54,10 +54,11 @@ class CashedImage extends StatelessWidget {
                   width: sizeIndicator ?? 20,
                   child: CircularProgressIndicator(
                     color: ColorManager.pink,
+                    value: 10,
                   )),
             ),
-            errorWidget: (context, url, error) => const Center(
-              child: Icon(Icons.error),
+            errorWidget: (context, url, error) =>  Center(
+              child: Image.network('https://flower.elevateegy.com/uploads/default-profile.png'),
             ),
           );
   }

@@ -1,15 +1,11 @@
-import 'package:flowery_rider/features/home/data/response/pending__orders__response.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../core/firebase_core/firebase_utils/firebase_utils.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
-import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
-import '../widgets/order_detailsV_view_body.dart';
+
 import 'custom_card_address.dart';
 
 class OrderDetailsSkeleton extends StatefulWidget {

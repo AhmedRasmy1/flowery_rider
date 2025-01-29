@@ -15,6 +15,7 @@ final String savedToken;
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Text(
               'No Orders ',
               style: getSemiBoldStyle(
@@ -37,7 +38,8 @@ final String savedToken;
                 ),
                 onPressed: () {
                   viewModel.getHomeData("Bearer $savedToken");
-                })
+                }),
+
           ],
         ));
   }

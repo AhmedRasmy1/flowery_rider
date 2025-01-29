@@ -36,7 +36,7 @@ class FirebaseUtils {
       var ordersCollection = _getDriverCollection();
       var orderDoc = await ordersCollection.doc(orderId).get();
       if (!orderDoc.exists) {
-        print('Order with ID $orderId does not exist.');
+
         return null;
       }
       Orders order = orderDoc.data()!;

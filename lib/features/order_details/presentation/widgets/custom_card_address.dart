@@ -1,3 +1,4 @@
+import 'package:flowery_rider/core/resources/cashed_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -16,7 +17,8 @@ class CustomCardAddress extends StatelessWidget {
       required this.location,
       required this.title2,
       required this.urlImage,
-      required this.noIcon, this.onTap});
+      required this.noIcon,
+      this.onTap});
 
   final String title;
   final String title2;
@@ -32,9 +34,10 @@ class CustomCardAddress extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title,
-            style:
-                getBoldStyle(fontSize: AppSize.s18, color: ColorManager.black)),
+        Text(
+          title,
+          style: getBoldStyle(fontSize: AppSize.s18, color: ColorManager.black),
+        ),
         SizedBox(
           height: 16,
         ),
@@ -89,10 +92,7 @@ class CustomCardAddress extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(50)),
-              child: Image.network(
-                urlImage,
-                fit: BoxFit.fill,
-              ),
+              child:CashedImage(url: urlImage)
             ),
             subtitle: Row(
               children: [

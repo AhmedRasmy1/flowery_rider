@@ -18,7 +18,7 @@ import '../../../../core/widgets/crop_Image_edite.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/image_size.dart';
-import 'package:path/path.dart' as path;
+
 
 class EditVehicleView extends StatefulWidget {
   const EditVehicleView({super.key});
@@ -28,25 +28,7 @@ class EditVehicleView extends StatefulWidget {
 }
 
 class _EditVehicleViewState extends State<EditVehicleView> {
-  final TextEditingController _firstNameController = TextEditingController(
-      // text: CacheService.getData(key: CacheConstants.userFirstName
-      // ),
-      );
-  final TextEditingController _lastNameController = TextEditingController(
-      // text: CacheService.getData(key: CacheConstants.userLastName),
-      );
-  final TextEditingController _vehicleNumberController = TextEditingController(
-      // text: CacheService.getData(key: CacheConstants.userEmail),
-      );
-  final TextEditingController _vehicleLicenseController = TextEditingController(
-      // text: CacheService.getData(key: CacheConstants.userPhone),
-      );
-  final TextEditingController _passwordController = TextEditingController();
 
-  // late TextEditingController _userGenderController;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Color buttonColor = ColorManager.pink;
-  File? logeImageFile;
   @override
   Widget build(BuildContext context) {
     return Skeletonizer(
@@ -64,7 +46,6 @@ class _EditVehicleViewState extends State<EditVehicleView> {
                           left: AppPadding.p16,
                           right: AppPadding.p16),
                       child: Form(
-                        key: _formKey,
                         child: Column(
                           children: [
                             CustomAppBar(
@@ -156,7 +137,7 @@ class _EditVehicleViewState extends State<EditVehicleView> {
                             ),
                             const SizedBox(height: AppSize.s24),
                             CustomTextFormField(
-                              controller: _vehicleNumberController,
+                              controller: TextEditingController(),
                               labelText:
                                   AppLocalizations.of(context)!.vehicleNumber,
                               hintText: AppLocalizations.of(context)!
@@ -174,7 +155,7 @@ class _EditVehicleViewState extends State<EditVehicleView> {
                                   AppLocalizations.of(context)!
                                       .enterValidEmail),
                               enabled: true,
-                              controller: _vehicleLicenseController,
+                              controller: TextEditingController(),
                               labelText:
                                   AppLocalizations.of(context)!.vehicleLicense,
                               hintText: AppLocalizations.of(context)!
@@ -205,10 +186,7 @@ class _EditVehicleViewState extends State<EditVehicleView> {
                                                   width: 800,
                                                   quality: 95);
                                           setState(() {
-                                            logeImageFile = resizedImageFile;
-                                            _vehicleLicenseController.text =
-                                                path.basename(
-                                                    logeImageFile!.path);
+
                                           });
                                         }
                                       }
@@ -228,10 +206,7 @@ class _EditVehicleViewState extends State<EditVehicleView> {
                                                   width: 800,
                                                   quality: 95);
                                           setState(() {
-                                            logeImageFile = resizedImageFile;
-                                            _vehicleLicenseController.text =
-                                                path.basename(
-                                                    logeImageFile!.path);
+
                                           });
                                         }
                                       }
@@ -256,7 +231,7 @@ class _EditVehicleViewState extends State<EditVehicleView> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: CustomElevatedButton(
-                    buttonColor: buttonColor,
+                    buttonColor: Colors.white10,
                     title: 'Update',
                     onPressed: () {}),
               ),

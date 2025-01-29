@@ -1,3 +1,4 @@
+import 'package:flowery_rider/core/resources/cashed_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/color_manager.dart';
@@ -8,14 +9,12 @@ class StoreInfo extends StatelessWidget {
   final String address;
   final String img;
 
-
   const StoreInfo({
     super.key,
     required this.title,
     required this.name,
     required this.address,
     required this.img,
-
   });
 
   @override
@@ -31,7 +30,6 @@ class StoreInfo extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
               color: ColorManager.greyTooLight,
@@ -41,18 +39,13 @@ class StoreInfo extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.pink,
-                  child:  ClipOval( // Ensures that the image is clipped to a circle
-    child: Image.network(
-    img,
-    fit: BoxFit.cover, // This will ensure the image covers the circle
-    width: 40, // Width and height can be adjusted; should be 2 * radius
-    height: 40,
-    ),
-    ),
-                //Icon(iconImg,color: Colors.white,),
+              Container(
+                  width: 45,
+                  height: 45,
+                  clipBehavior: Clip.antiAlias,
+                  decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                  child:CashedImage(url: img,height: 35,width: 35,)
               ),
               const SizedBox(width: 16),
               Expanded(
@@ -67,7 +60,8 @@ class StoreInfo extends StatelessWidget {
                     Text(
                       address,
                       style: const TextStyle(fontWeight: FontWeight.bold),
-                      overflow: TextOverflow.ellipsis, // Truncates text if too long
+                      overflow: TextOverflow.ellipsis,
+                      // Truncates text if too long
                       maxLines: 2, // Restrict to 2 lines
                     ),
                   ],
