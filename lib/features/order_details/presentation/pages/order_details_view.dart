@@ -2,6 +2,7 @@ import 'package:flowery_rider/core/di/di.dart';
 import 'package:flowery_rider/core/firebase_core/firebase_utils/firebase_utils.dart';
 import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
 import 'package:flowery_rider/features/home/data/response/pending__orders__response.dart';
+import 'package:flowery_rider/features/order_details/presentation/widgets/order_delivered_successfully.dart';
 import 'package:flowery_rider/features/order_details/presentation/widgets/skeleton_order_details.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/resources/color_manager.dart';
@@ -25,7 +26,7 @@ class OrderDetailsView extends StatefulWidget {
 
 class _OrderDetailsViewState extends State<OrderDetailsView> {
   final PageController _pageController = PageController();
-  int currentStep = CacheService.getData(key: CacheConstants.currentStep) ?? 0;
+
   late StartOrderCubit viewModel;
   bool isActive = true;
 
@@ -59,9 +60,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
               children: [
                 CustomAppBar(
                   title: 'Order Details',
-                  onTap: () {
-
-                  },
+                  onTap: () {},
                 ),
                 const SizedBox(height: 16.0),
                 Row(
@@ -94,15 +93,9 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                       } else if (snapshot.hasData) {
                         final orderDetails = snapshot.data!;
                         return Expanded(
-                          child: PageView(
-                            controller: _pageController,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              OrderDetailsViewBody(
-                                orderDetails: orderDetails,
-                                status: stateOrder2[currentStep],
-                              ),
-                            ],
+                          child: OrderDetailsViewBody(
+                            orderDetails: orderDetails,
+                            status: stateOrder2[currentStep],
                           ),
                         );
                       } else {
@@ -173,12 +166,18 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                             setState(() {});
                             isActive = false;
                           } else {
-                            orderPendingId='';
+                            orderPendingId = '';
                             viewModel.updateOrder(orderId,
                                 UpdateOrderRequest(state: 'completed'));
-
-                            Navigator.pushReplacementNamed(
-                                context, RoutesManager.layoutRoute);
+                            CacheService.setData(
+                                key: CacheConstants.currentStep, value: 0);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      OrderDeliveredSuccessfully(),
+                                ),
+                            );
 
                             currentStep = 0;
                           }

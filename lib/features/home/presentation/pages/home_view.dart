@@ -24,6 +24,7 @@ class _HomeViewState extends State<HomeView> {
   late HomeCubit viewModel;
   late String savedToken;
   late List<Orders> ordersViewed;
+  bool isRefreshIndicator=true;
 
   @override
   void initState() {
@@ -44,7 +45,9 @@ class _HomeViewState extends State<HomeView> {
     return RefreshIndicator(
       color: ColorManager.pink,
       onRefresh: () {
+        isRefreshIndicator=false;
         return viewModel.getHomeData("Bearer $savedToken");
+
       },
       child: BlocProvider(
         create: (context) => viewModel..getHomeData("Bearer $savedToken"),
@@ -77,7 +80,7 @@ class _HomeViewState extends State<HomeView> {
                   if (state is HomeLoading) {
                     return Center(
                         child: CircularProgressIndicator(
-                      color: ColorManager.pink,
+                      color:isRefreshIndicator? ColorManager.pink:Colors.transparent,
                     ));
                   } else if (state is HomeSuccess) {
                     PendingDriverOrdersEntity pendingDriverOrdersEntity =

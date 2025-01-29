@@ -14,4 +14,6 @@ class AssetsManager {
   static const String floweryLogo = 'assets/images/Flowery_logo.svg';
   static const String location = 'assets/images/location.svg';
   static const String test = 'assets/images/test.svg';
+  static const String backIcon = 'assets/images/BackIcon.svg';
+  static const String orderSuccessfullyIcon = 'assets/images/orderSuccessfullyIcon.svg';
 }

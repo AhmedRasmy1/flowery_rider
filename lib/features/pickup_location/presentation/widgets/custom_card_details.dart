@@ -7,13 +7,13 @@ import '../../../../core/resources/launch_url.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 
-class CustomCardAddress extends StatelessWidget {
-  const CustomCardAddress(
+class CustomCardDetails extends StatelessWidget {
+  const CustomCardDetails(
       {super.key,
       required this.title,
       required this.phone,
       this.name,
-      required this.location,
+      required this.subTitle,
       required this.title2,
       required this.urlImage,
       required this.noIcon, this.onTap});
@@ -22,7 +22,7 @@ class CustomCardAddress extends StatelessWidget {
   final String title2;
   final String phone;
   final String? name;
-  final String location;
+  final String subTitle;
   final String urlImage;
   final bool noIcon;
   final void Function()? onTap;
@@ -36,7 +36,7 @@ class CustomCardAddress extends StatelessWidget {
             style:
                 getBoldStyle(fontSize: AppSize.s18, color: ColorManager.black)),
         SizedBox(
-          height: 16,
+          height: 8,
         ),
         Card(
           color: Colors.white,
@@ -108,7 +108,7 @@ class CustomCardAddress extends StatelessWidget {
                 ),
                 Expanded(
                     child: Text(
-                  location,
+                      subTitle,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 )),

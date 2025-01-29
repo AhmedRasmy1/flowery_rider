@@ -2,9 +2,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/routes_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../home/data/response/pending__orders__response.dart';
+import '../../../pickup_location/presentation/pages/pickup_location_view.dart';
 
 class CustomCardOrderDetails extends StatelessWidget {
   const CustomCardOrderDetails({super.key, this.productInfo});
@@ -18,7 +20,9 @@ class CustomCardOrderDetails extends StatelessWidget {
       margin: EdgeInsets.all(0),
       child: ListTile(
         splashColor: ColorManager.pink.withOpacity(.5),
-        onTap: () {},
+        onTap: () {
+
+        },
         contentPadding: EdgeInsets.all(10),
         minTileHeight: 8,
         minVerticalPadding: 10,

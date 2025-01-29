@@ -1,8 +1,10 @@
+import 'package:flowery_rider/core/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../home/data/response/pending__orders__response.dart';
+import '../../../pickup_location/presentation/pages/pickup_location_view.dart';
 import 'custom_card_address.dart';
 import 'custom_card_order_details.dart';
 
@@ -77,13 +79,21 @@ class OrderDetailsViewBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: CustomCardAddress(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PickupLocationView(orderDetails:orderDetails ,),
+                ),
+              );
+            },
             noIcon: true,
             title: 'Pickup address',
             title2: orderDetails.store?.name ?? '',
             phone: orderDetails.store?.phoneNumber ?? '',
             name: orderDetails.store?.name ?? '',
             location: orderDetails.store?.address ?? '',
-            urlImage:orderDetails.store?.image??'' ,
+            urlImage: orderDetails.store?.image ?? '',
           ),
         ),
         SliverToBoxAdapter(
@@ -93,6 +103,13 @@ class OrderDetailsViewBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: CustomCardAddress(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PickupLocationView(orderDetails:orderDetails ,),
+                  ));
+            },
             noIcon: false,
             title: 'User address',
             title2:
@@ -101,7 +118,7 @@ class OrderDetailsViewBody extends StatelessWidget {
             name:
                 '${orderDetails.user?.firstName} ${orderDetails.user?.lastName}',
             location: orderDetails.user?.phone ?? '',
-            urlImage:orderDetails.user?.photo??'' ,
+            urlImage: orderDetails.user?.photo ?? '',
           ),
         ),
         SliverToBoxAdapter(
@@ -122,8 +139,7 @@ class OrderDetailsViewBody extends StatelessWidget {
         SliverList.separated(
           itemCount: orderDetails.orderItems?.length,
           itemBuilder: (context, index) => CustomCardOrderDetails(
-            productInfo:orderDetails.orderItems?[index] ,
-
+            productInfo: orderDetails.orderItems?[index],
           ),
           separatorBuilder: (context, index) => SizedBox(
             height: 8,
