@@ -15,7 +15,7 @@ final String savedToken;
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
+            Spacer(),
             Text(
               'No Orders ',
               style: getSemiBoldStyle(
@@ -24,21 +24,20 @@ final String savedToken;
             SizedBox(
               height: 24,
             ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
+            Spacer(),
+            GestureDetector(
+              onTap: () {
+                viewModel.getHomeData("Bearer $savedToken");
+              },
+              child: CircleAvatar(
+                radius: 20,
                   backgroundColor: ColorManager.pink,
-                ),
-                child: Text(
-                  'Refresh',
-                  style: TextStyle(
-                    color: ColorManager.white,
-                    fontSize: FontSize.s16,
-                    fontWeight: FontWeightManager.bold,
-                  ),
-                ),
-                onPressed: () {
-                  viewModel.getHomeData("Bearer $savedToken");
-                }),
+                  child: Icon(Icons.refresh,color: ColorManager.white,size: 25,)),
+            ),
+            SizedBox(
+              height: 35,
+            ),
+
 
           ],
         ));
