@@ -7,6 +7,8 @@ import 'package:flowery_rider/core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../core/utils/cashed_data_shared_preferences.dart';
+
 class OrderDeliveredSuccessfully extends StatelessWidget {
   const OrderDeliveredSuccessfully({super.key});
 
@@ -48,6 +50,15 @@ class OrderDeliveredSuccessfully extends StatelessWidget {
                   buttonColor: ColorManager.pink,
                   title: 'Done',
                   onPressed: () {
+                    CacheService.deleteItem(key: CacheConstants.orderPendingId);
+                    CacheService.deleteItem(key: CacheConstants.currentStep);
+                    print(
+                        '88888888888888888888888888888888888888888888888888888888'
+                            '///////////////////////////$orderPendingId'
+                            '///////////////////99999999999999999999999999999999999'
+
+                    );
+
                     Navigator.pushReplacementNamed(
                         context, RoutesManager.layoutRoute);
                   })

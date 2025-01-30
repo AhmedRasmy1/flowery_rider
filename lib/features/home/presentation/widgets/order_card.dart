@@ -95,6 +95,13 @@ class _OrderCardState extends State<OrderCard> {
                         value: widget.orderPending.id);
                     FirebaseUtils.addOrderToFirebase(
                         orders: widget.orderPending);
+                    FirebaseUtils.updateOrderState(
+                      CacheService.getData(key: CacheConstants.orderPendingId),
+                      OrderStateModel(
+                        state: 'Accepted',
+                        updatedAt: DateTime.now().microsecondsSinceEpoch.toString(),
+                      ),
+                    );
                     Navigator.pushReplacementNamed(
                         context, RoutesManager.orderDetailsView);
                   },

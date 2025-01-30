@@ -87,7 +87,7 @@ class OrderStateModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'status': state,
+      'state': state,
       'updatedAt': updatedAt,
     };
   }
@@ -95,7 +95,7 @@ class OrderStateModel {
 
   factory OrderStateModel.fromJson(Map<String, dynamic> json) {
     return OrderStateModel(
-      state: json['status'] as String,
+      state: json['state'] as String,
       updatedAt: json['updatedAt'] as String,
     );
   }}

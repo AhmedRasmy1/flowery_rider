@@ -6,8 +6,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../home/data/response/pending__orders__response.dart';
 
 class PickupLocationView extends StatelessWidget {
-  const PickupLocationView({super.key, required this.orderDetails});
+  const PickupLocationView(
+      {super.key, required this.orderDetails, required this.isUser});
+
   final Orders orderDetails;
+  final bool isUser;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,32 +45,59 @@ class PickupLocationView extends StatelessWidget {
             height: 5,
             width: 65,
             decoration: BoxDecoration(
-              color: ColorManager.pink,
-              borderRadius: BorderRadius.circular(12)
-            ),
+                color: ColorManager.pink,
+                borderRadius: BorderRadius.circular(12)),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  CustomCardDetails(
-                      title: 'Pickup address',
-                      phone:  orderDetails.store?.phoneNumber??'',
-                      subTitle:  orderDetails.store?.address??'',
-                      title2:  orderDetails.store?.name??'',
-                      urlImage: orderDetails.store?.image??'',
-                      noIcon: true),
-                  SizedBox(height:24 ,),
-                  CustomCardDetails(
-                      title: 'User address',
-                      phone: orderDetails.user?.phone??'',
-                      subTitle: orderDetails.user?.phone??'',
-                      title2: "${orderDetails.user?.firstName} ${orderDetails.user?.lastName}",
-                      urlImage: 'https://flower.elevateegy.com/uploads/default-profile.png',
-                      noIcon: false),
-                ],
-              ),
+              child: isUser
+                  ? Column(
+                      children: [
+                        CustomCardDetails(
+                            title: 'User address',
+                            phone: orderDetails.user?.phone ?? '',
+                            subTitle: orderDetails.user?.phone ?? '',
+                            title2:
+                                "${orderDetails.user?.firstName} ${orderDetails.user?.lastName}",
+                            urlImage:
+                                'https://flower.elevateegy.com/uploads/default-profile.png',
+                            noIcon: false),
+                        SizedBox(
+                          height: 24,
+                        ),
+                        CustomCardDetails(
+                            title: 'Pickup address',
+                            phone: orderDetails.store?.phoneNumber ?? '',
+                            subTitle: orderDetails.store?.address ?? '',
+                            title2: orderDetails.store?.name ?? '',
+                            urlImage: orderDetails.store?.image ?? '',
+                            noIcon: true),
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        CustomCardDetails(
+                            title: 'Pickup address',
+                            phone: orderDetails.store?.phoneNumber ?? '',
+                            subTitle: orderDetails.store?.address ?? '',
+                            title2: orderDetails.store?.name ?? '',
+                            urlImage: orderDetails.store?.image ?? '',
+                            noIcon: true),
+                        SizedBox(
+                          height: 24,
+                        ),
+                        CustomCardDetails(
+                            title: 'User address',
+                            phone: orderDetails.user?.phone ?? '',
+                            subTitle: orderDetails.user?.phone ?? '',
+                            title2:
+                                "${orderDetails.user?.firstName} ${orderDetails.user?.lastName}",
+                            urlImage:
+                                'https://flower.elevateegy.com/uploads/default-profile.png',
+                            noIcon: false),
+                      ],
+                    ),
             ),
           )
         ],
