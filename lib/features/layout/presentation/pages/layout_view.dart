@@ -1,3 +1,5 @@
+import 'package:flowery_rider/core/permissions/permissions.dart';
+
 import '../cubit/layout_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +26,7 @@ class LayoutBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-
+    PermissionService.checkLocationServiceAndPermission();
     /// location
     var cubit = LayoutCubit.get(context);
     return BlocBuilder<LayoutCubit, LayoutState>(
