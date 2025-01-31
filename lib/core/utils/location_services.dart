@@ -26,7 +26,7 @@ class LocationService {
     }
   }
 
-  void getRealTimeLocationData(void Function(LocationData)? onData) async {
+   getRealTimeLocationData(void Function(LocationData)? onData) async {
     await checkAndRequestLocationService();
     await checkAndRequestLocationPermission();
     location.onLocationChanged.listen(onData);
