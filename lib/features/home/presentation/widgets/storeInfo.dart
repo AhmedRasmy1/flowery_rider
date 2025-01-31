@@ -45,7 +45,7 @@ class StoreInfo extends StatelessWidget {
                   clipBehavior: Clip.antiAlias,
                   decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(50)),
-                  child:CashedImage(url: img,height: 35,width: 35,)
+                  child:CustomCashedImage(url: img,height: 35,width: 35,)
               ),
               const SizedBox(width: 16),
               Expanded(

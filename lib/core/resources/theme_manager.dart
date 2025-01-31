@@ -31,7 +31,9 @@ ThemeData getApplicationTheme() {
         const BorderRadius.all(Radius.circular(AppSize.s5)),
       ),
     ),
+    scaffoldBackgroundColor: ColorManager.white
   );
+
 }
 
 OutlineInputBorder outLintInputBorderMethod(

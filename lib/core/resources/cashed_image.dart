@@ -11,8 +11,8 @@ String getFileExtensionFromUrl(String url) {
   return extension;
 }
 
-class CashedImage extends StatelessWidget {
-  const CashedImage({
+class CustomCashedImage extends StatelessWidget {
+  const CustomCashedImage({
     super.key,
     required this.url,
     this.height,
