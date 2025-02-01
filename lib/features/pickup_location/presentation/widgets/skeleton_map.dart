@@ -1,10 +1,8 @@
-import 'package:flowery_rider/core/resources/assets_manager.dart';
-import 'package:flowery_rider/core/resources/color_manager.dart';
+
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import 'map_tracking_location.dart';
+
 
 class SkeletonMap extends StatelessWidget {
   const SkeletonMap({

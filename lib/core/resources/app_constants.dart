@@ -13,4 +13,5 @@ class AppConstants {
     MyProfile(),
   ];
   static const int listGenerate = 6;
+  static String googleAPIKey = "AIzaSyD9muKr3jbebuye6Frinp1dY-BZZ-Qq6b4";
 }

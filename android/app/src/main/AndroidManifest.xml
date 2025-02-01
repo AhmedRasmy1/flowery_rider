@@ -39,6 +39,9 @@
         android:label="flowery rider"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="com.google.firebase.analytics.APPLICATION_ID"
+            android:value="@string/google_app_id"/>
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD9muKr3jbebuye6Frinp1dY-BZZ-Qq6b4"/>
         <service android:name="com.google.firebase.messaging.FirebaseMessagingService">
