@@ -110,7 +110,7 @@ class _OrderCardState extends State<OrderCard> {
 
 
                             );
-                            await FirebaseUtils.updateOrderDataDriver(CacheService.getData(
+                            await FirebaseUtils.saveDriverInOrderData(CacheService.getData(
                                 key: CacheConstants.orderPendingId), Driver(
                               long: '37',
                               lat: '24',

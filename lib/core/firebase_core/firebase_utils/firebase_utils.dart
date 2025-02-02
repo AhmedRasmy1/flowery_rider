@@ -72,7 +72,7 @@ class FirebaseUtils {
       log('Error updating order state: $e');
     }
   }
-  static Future<void> updateOrderDataDriver(String orderId,
+  static Future<void> saveDriverInOrderData(String orderId,
       Driver driverData) async {
     try {
       var document =
@@ -85,7 +85,18 @@ class FirebaseUtils {
     }
   }
 
+  static Future<void> updateLatLongDriver(String orderId,
+      LatLongLocation latLong) async {
+    try {
+      var document =
+      FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId);
+      await document.update({"driver": latLong.toJson()});
 
+      log('Order state updated successfully.');
+    } catch (e) {
+      log('Error updating order state: $e');
+    }
+  }
 }
 
 class OrderStateModel {
@@ -110,5 +121,29 @@ class OrderStateModel {
     return OrderStateModel(
       state: json['state'] as String,
       updatedAt: json['updatedAt'] as String,
+    );
+  }}
+class LatLongLocation {
+  String lat;
+  String long;
+
+  LatLongLocation({
+    required this.lat,
+    required this.long,
+  });
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'lat': lat,
+      'long': long,
+    };
+  }
+
+
+  factory LatLongLocation.fromJson(Map<String, dynamic> json) {
+    return LatLongLocation(
+      lat: json['lat'] as String,
+      long: json['long'] as String,
     );
   }}

@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:flowery_rider/core/firebase_core/firebase_utils/firebase_utils.dart';
+import 'package:flowery_rider/core/utils/cashed_data_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -91,7 +93,10 @@ class _MapTrackingLocationState extends State<MapTrackingLocation> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * .88,
+      height: MediaQuery
+          .of(context)
+          .size
+          .height * .88,
       width: double.infinity,
       child: GoogleMap(
         markers: markers,
@@ -109,11 +114,15 @@ class _MapTrackingLocationState extends State<MapTrackingLocation> {
     try {
       _locationSubscription =
           locationService.getRealTimeLocationData((locationData) {
-        if (mounted) {
-          setMyLocationMarker(locationData);
-          setMyCameraPosition(locationData);
-        }
-      });
+            if (mounted) {
+              setMyLocationMarker(locationData);
+              setMyCameraPosition(locationData);
+            }
+            FirebaseUtils.updateLatLongDriver(
+                CacheService.getData(key: CacheConstants.orderPendingId),
+                LatLongLocation(lat: locationData.latitude.toString(),
+                    long: locationData.longitude.toString()));
+          });
     } on LocationServiceException catch (e) {
       debugPrint("خطأ في خدمة الموقع: $e");
     } on LocationPermissionException catch (e) {
