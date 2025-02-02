@@ -64,14 +64,15 @@ class _LoginScreenState extends State<LoginView> {
                 ),
               );
             } else if (state is SuccessLoginState) {
-              orderPendingId.isNotEmpty
-                  ?      Navigator.pushReplacementNamed(
-                  context, RoutesManager.layoutRoute)
-                  : Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OrderDetailsView(),
-                  ));
+              // orderPendingId.isNotEmpty
+              //     ?
+                  Navigator.pushReplacementNamed(
+                  context, RoutesManager.layoutRoute);
+                  // : Navigator.pushReplacement(
+                  // context,
+                  // MaterialPageRoute(
+                  //   builder: (context) => OrderDetailsView(),
+                  // ));
 
             } else if (state is ErrorLoginState) {
               Navigator.pop(context);

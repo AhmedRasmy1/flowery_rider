@@ -1,10 +1,14 @@
 import 'package:flowery_rider/features/auth/presentation/pages/success_apply_view.dart';
+import 'package:flowery_rider/features/orders/data/models/my_orders_response.dart';
 
 import '../../features/auth/presentation/pages/apply_view.dart';
 import '../../features/auth/presentation/pages/login_view.dart';
 import '../../features/home/presentation/pages/home_view.dart';
 import '../../features/layout/presentation/pages/layout_view.dart';
 import '../../features/order_details/presentation/pages/order_details_view.dart';
+import '../../features/orders/presentation/pages/orders_view.dart';
+import '../../features/orders/presentation/widgets/my_order_details_view.dart';
+import '../../features/orders/presentation/widgets/my_orders_details_view_body.dart';
 import '../../on_boarding.dart';
 import '../../features/forget_password/presentation/view/email_verification_view.dart';
 import '../../features/forget_password/presentation/view/forget_password_screen.dart';
@@ -30,11 +34,13 @@ class RoutesManager {
   static const String homeViewScreen = '/homeViewScreen';
   static const String orderDetailsView = '/orderDetailsView';
   static const String successApply = '/successApplyView';
-
+  static const String myOrders = '/myOrders';
+  static const String myOrderDetailsView = '/myOrderDetailsView';
 }
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
+    final args = settings.arguments;
     switch (settings.name) {
       case RoutesManager.onBoarding:
         return MaterialPageRoute(builder: (_) => const OnboardingView());
@@ -64,6 +70,18 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const HomeView());
       case RoutesManager.orderDetailsView:
         return MaterialPageRoute(builder: (_) => const OrderDetailsView());
+      case RoutesManager.myOrders:
+        return MaterialPageRoute(builder: (_) => const OrdersView());
+
+      case RoutesManager.myOrderDetailsView:
+        if (args is Orders) {
+          return MaterialPageRoute(
+            builder: (_) => MyOrderDetailsView(
+              orders: args,
+            ),
+          );
+        }
+        return unDefinedRoute();
       default:
         return unDefinedRoute();
     }
