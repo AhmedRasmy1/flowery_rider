@@ -62,8 +62,7 @@ dependencies:
   url_launcher: ^6.3.1
   firebase_core: ^3.10.1
   cloud_firestore: ^5.6.2
-  flutter_polyline_points: ^2.1.0
-  http:
+
 
 
 dev_dependencies:

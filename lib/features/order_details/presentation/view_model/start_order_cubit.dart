@@ -43,10 +43,13 @@ class StartOrderCubit extends Cubit<StartOrderState> {
 
     switch (result) {
       case Success<UpdateOrderStateEntity?>():
+        log('********************************************************UpdateOrder******************************************');
         if (!isClosed) {
           emit(SuccessUpdateOrderState(result.data));
         }
       case Fail<UpdateOrderStateEntity?>():
+        log('********************************************************Fail******************************************');
+
         if (isClosed) {
           emit(ErrorStartOrderState(result.exception));
         }

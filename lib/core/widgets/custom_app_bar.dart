@@ -70,17 +70,19 @@ class CustomAppBarHome extends StatelessWidget {
             ),
           ),
         Spacer(),
+
         Transform.scale(
           scale: 0.7,
           child: Switch(
-            activeTrackColor: Colors.green,
+            activeTrackColor: ColorManager.pink,
             value: isAvailable,
             onChanged: onChanged,
             activeColor: ColorManager.white,
-            inactiveThumbColor: Colors.green,
+            inactiveThumbColor: ColorManager.pink,
           ),
         ),
       ],
     );
   }
 }
+

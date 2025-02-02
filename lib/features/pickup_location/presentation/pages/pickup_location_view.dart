@@ -18,7 +18,7 @@ class PickupLocationView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          SectionMapLocation(orderDetails: orderDetails),
+          SectionMapLocation(orderDetails: orderDetails, isUser: isUser,),
           CustomDivider(),
           SectionCard(isUser: isUser, orderDetails: orderDetails),
         ],

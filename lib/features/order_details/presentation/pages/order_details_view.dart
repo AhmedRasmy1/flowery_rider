@@ -10,7 +10,6 @@ import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import '../../data/models/request/update_order_request.dart';
 import '../view_model/start_order_cubit.dart';
-
 import '../widgets/order_detailsV_view_body.dart';
 
 class OrderDetailsView extends StatefulWidget {
@@ -132,9 +131,6 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                     }
 
                     if (currentStep == 4) {
-
-                      UpdateOrderRequest state = UpdateOrderRequest();
-                      state.state = 'completed';
                       FirebaseUtils.updateOrderState(
                         orderId,
                         OrderStateModel(
@@ -155,6 +151,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                   }
                       : () async {
                     if (currentStep == 4) {
+                      viewModel.updateOrder(orderId, UpdateOrderRequest(state:'completed' ));
                       currentStep = 0;
                       Navigator.push(
                         context,
