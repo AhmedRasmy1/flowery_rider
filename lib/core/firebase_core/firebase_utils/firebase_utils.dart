@@ -72,6 +72,19 @@ class FirebaseUtils {
       log('Error updating order state: $e');
     }
   }
+  static Future<void> updateOrderDataDriver(String orderId,
+      Driver driverData) async {
+    try {
+      var document =
+      FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId);
+      await document.update({"driver": driverData.toJson()});
+
+      log('Order state updated successfully.');
+    } catch (e) {
+      log('Error updating order state: $e');
+    }
+  }
+
 
 }
 

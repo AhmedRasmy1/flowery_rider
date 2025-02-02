@@ -1,16 +1,16 @@
-
 import '../../domain/pending_entity.dart';
 
 class PendingOrdersResponse {
   PendingOrdersResponse({
-
     this.message,
     this.metadata,
-    this.orders,});
+    this.orders,
+  });
 
   PendingOrdersResponse.fromJson(dynamic json) {
     message = json['message'];
-    metadata = json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
+    metadata =
+        json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
     if (json['orders'] != null) {
       orders = [];
       json['orders'].forEach((v) {
@@ -18,6 +18,7 @@ class PendingOrdersResponse {
       });
     }
   }
+
   String? message;
   Metadata? metadata;
   List<Orders>? orders;
@@ -41,8 +42,6 @@ class PendingOrdersResponse {
       message: message,
     );
   }
-
-
 }
 
 class Orders {
@@ -59,7 +58,9 @@ class Orders {
     this.updatedAt,
     this.orderNumber,
     this.v,
-    this.store,});
+    this.store,
+    this.driver
+  });
 
   Orders.fromJson(dynamic json) {
     id = json['_id'];
@@ -80,7 +81,9 @@ class Orders {
     orderNumber = json['orderNumber'];
     v = json['__v'];
     store = json['store'] != null ? Store.fromJson(json['store']) : null;
+    driver = json['driver'] != null ? Driver.fromJson(json['driver']) : null;
   }
+
   String? id;
   User? user;
   List<OrderItems>? orderItems;
@@ -94,6 +97,7 @@ class Orders {
   String? orderNumber;
   num? v;
   Store? store;
+  Driver? driver;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -116,9 +120,11 @@ class Orders {
     if (store != null) {
       map['store'] = store?.toJson();
     }
+    if (driver != null) {
+      map['driver'] = driver?.toJson();
+    }
     return map;
   }
-
 }
 
 class Store {
@@ -127,7 +133,8 @@ class Store {
     this.image,
     this.address,
     this.phoneNumber,
-    this.latLong,});
+    this.latLong,
+  });
 
   Store.fromJson(dynamic json) {
     name = json['name'];
@@ -136,6 +143,7 @@ class Store {
     phoneNumber = json['phoneNumber'];
     latLong = json['latLong'];
   }
+
   String? name;
   String? image;
   String? address;
@@ -151,7 +159,6 @@ class Store {
     map['latLong'] = latLong;
     return map;
   }
-
 }
 
 class OrderItems {
@@ -159,14 +166,17 @@ class OrderItems {
     this.product,
     this.price,
     this.quantity,
-    this.id,});
+    this.id,
+  });
 
   OrderItems.fromJson(dynamic json) {
-    product = json['product'] != null ? Product.fromJson(json['product']) : null;
+    product =
+        json['product'] != null ? Product.fromJson(json['product']) : null;
     price = json['price'];
     quantity = json['quantity'];
     id = json['_id'];
   }
+
   Product? product;
   num? price;
   num? quantity;
@@ -182,7 +192,6 @@ class OrderItems {
     map['_id'] = id;
     return map;
   }
-
 }
 
 class Product {
@@ -202,7 +211,8 @@ class Product {
     this.updatedAt,
     this.v,
     this.discount,
-    this.sold,});
+    this.sold,
+  });
 
   Product.fromJson(dynamic json) {
     id = json['_id'];
@@ -222,6 +232,7 @@ class Product {
     discount = json['discount'];
     sold = json['sold'];
   }
+
   String? id;
   String? title;
   String? slug;
@@ -271,7 +282,8 @@ class User {
     this.gender,
     this.phone,
     this.photo,
-    this.passwordChangedAt,});
+    this.passwordChangedAt,
+  });
 
   User.fromJson(dynamic json) {
     id = json['_id'];
@@ -283,6 +295,7 @@ class User {
     photo = json['photo'];
     passwordChangedAt = json['passwordChangedAt'];
   }
+
   String? id;
   String? firstName;
   String? lastName;
@@ -304,7 +317,6 @@ class User {
     map['passwordChangedAt'] = passwordChangedAt;
     return map;
   }
-
 }
 
 class Metadata {
@@ -312,7 +324,8 @@ class Metadata {
     this.currentPage,
     this.totalPages,
     this.totalItems,
-    this.limit,});
+    this.limit,
+  });
 
   Metadata.fromJson(dynamic json) {
     currentPage = json['currentPage'];
@@ -320,6 +333,7 @@ class Metadata {
     totalItems = json['totalItems'];
     limit = json['limit'];
   }
+
   num? currentPage;
   num? totalPages;
   num? totalItems;
@@ -333,5 +347,60 @@ class Metadata {
     map['limit'] = limit;
     return map;
   }
+}
 
+class Driver {
+  Driver({
+    this.firstName,
+    this.lastName,
+    this.vehicleType,
+    this.email,
+    this.phone,
+    this.photo,
+    this.id,
+    this.lat,
+    this.long,
+
+  });
+
+  Driver.fromJson(dynamic json) {
+
+    firstName = json['firstName'];
+    lastName = json['lastName'];
+    vehicleType = json['vehicleType'];
+    email = json['email'];
+    phone = json['phone'];
+    photo = json['photo'];
+    id = json['_id'];
+    lat = json['lat'];
+    long = json['long'];
+  }
+
+
+  String? firstName;
+  String? lastName;
+  String? vehicleType;
+  String? email;
+  String? phone;
+  String? photo;
+  String? lat;
+  String? long;
+  String? id;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['firstName'] = firstName;
+    map['lastName'] = lastName;
+    map['vehicleType'] = vehicleType;
+
+    map['email'] = email;
+
+    map['phone'] = phone;
+    map['photo'] = photo;
+    map['lat'] = lat;
+    map['long'] = long;
+    map['_id'] = id;
+
+    return map;
+  }
 }

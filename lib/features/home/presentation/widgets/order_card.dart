@@ -1,3 +1,4 @@
+import 'package:flowery_rider/core/resources/app_constants.dart';
 import 'package:flowery_rider/core/resources/routes_manager.dart';
 
 import '../../../../core/firebase_core/firebase_utils/firebase_utils.dart';
@@ -106,7 +107,22 @@ class _OrderCardState extends State<OrderCard> {
                             );
                             await FirebaseUtils.addOrderToFirebase(
                               orders: widget.orderPending,
+
+
                             );
+                            await FirebaseUtils.updateOrderDataDriver(CacheService.getData(
+                                key: CacheConstants.orderPendingId), Driver(
+                              long: '37',
+                              lat: '24',
+                              vehicleType: driverData?.vehicleType,
+                              id: driverData?.id,
+                              phone: driverData?.phone,
+                              photo:  driverData?.photo,
+                              firstName: driverData?.firstName,
+                              lastName:  driverData?.lastName,
+                              email:   driverData?.email,
+
+                            ));
                             await FirebaseUtils.updateOrderState(
                               CacheService.getData(
                                   key: CacheConstants.orderPendingId),
