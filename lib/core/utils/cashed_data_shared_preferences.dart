@@ -65,5 +65,6 @@ class CacheConstants {
   static const String currentStep = 'currentStep';
 }
 
-String? orderPendingId=CacheService.getData(key: CacheConstants.orderPendingId);
+
 int currentStep = CacheService.getData(key: CacheConstants.currentStep) ?? 0;
+String orderPendingId=CacheService.getData(key: CacheConstants.orderPendingId)??'';

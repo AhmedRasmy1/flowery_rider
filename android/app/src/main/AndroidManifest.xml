@@ -43,7 +43,7 @@
             android:name="com.google.firebase.analytics.APPLICATION_ID"
             android:value="@string/google_app_id"/>
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD9muKr3jbebuye6Frinp1dY-BZZ-Qq6b4"/>
+            android:value="AIzaSyCjsw4K1qG6bgGRswsO7OW4oKRI3PJMkDI"/>
         <service android:name="com.google.firebase.messaging.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>

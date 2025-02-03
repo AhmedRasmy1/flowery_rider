@@ -1,5 +1,3 @@
-import 'package:flowery_rider/core/resources/custom_loading_dialog.dart';
-
 import '../../../../core/functions/extenstions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -54,29 +52,27 @@ class _LoginScreenState extends State<LoginView> {
         body: BlocListener<LoginViewModel, LoginState>(
           listener: (context, state) {
             if (state is LoadingLoginState) {
-              customLoadingDialog(context);
+              showDialog(
+                barrierDismissible: true,
+                context: context,
+                builder: (context) => AlertDialog(
+                  backgroundColor: Colors.transparent,
+                  content: Center(
+                      child: CircularProgressIndicator(
+                        color: ColorManager.pink,
+                      )),
+                ),
+              );
             } else if (state is SuccessLoginState) {
-              // orderPendingId.isNotEmpty
-              //     ?
-                  Navigator.pushReplacementNamed(
-                  context, RoutesManager.layoutRoute);
-                  // : Navigator.pushReplacement(
-                  // context,
-                  // MaterialPageRoute(
-                  //   builder: (context) => OrderDetailsView(),
-                  // ));
+              orderPendingId.isEmpty
+                  ?      Navigator.pushReplacementNamed(
+                  context, RoutesManager.layoutRoute)
+                  : Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OrderDetailsView(),
+                  ));
 
-//               if (orderPendingId?.isNotEmpty ?? false) {
-//                 Navigator.pushReplacement(
-//                   context,
-//                   MaterialPageRoute(
-//                     builder: (context) => OrderDetailsView(),
-//                   ),
-//                 );
-//               } else {
-//                 Navigator.pushReplacementNamed(
-//                     context, RoutesManager.layoutRoute);
-//               }
             } else if (state is ErrorLoginState) {
               Navigator.pop(context);
               MotionToast.error(
@@ -121,7 +117,7 @@ class _LoginScreenState extends State<LoginView> {
                         obscureText: true,
                         labelText: AppLocalizations.of(context)!.password,
                         hintText:
-                            AppLocalizations.of(context)!.enterYourPassword,
+                        AppLocalizations.of(context)!.enterYourPassword,
                         validator: (value) => validatePasswordMatch(
                           password: _passwordController.text,
                           confirmPassword: _passwordController.text,
@@ -247,7 +243,7 @@ class _LoginScreenState extends State<LoginView> {
                                       decoration: TextDecoration.underline,
                                       decorationColor: ColorManager.darkGrey,
                                       decorationStyle:
-                                          TextDecorationStyle.solid,
+                                      TextDecorationStyle.solid,
                                       decorationThickness: 1.5,
                                     ),
                                   ),
