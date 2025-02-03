@@ -121,6 +121,17 @@ import '../../features/order_details/domain/use_cases/start_order_usecase.dart'
     as _i1044;
 import '../../features/order_details/presentation/view_model/start_order_cubit.dart'
     as _i330;
+import '../../features/orders/data/data_sources/my_orders_online_data_source.dart'
+    as _i131;
+import '../../features/orders/data/data_sources/my_orders_online_data_source_impl.dart'
+    as _i291;
+import '../../features/orders/data/repositories/my_orders_repo_impl.dart'
+    as _i917;
+import '../../features/orders/domain/repositories/my_orders_repo.dart' as _i456;
+import '../../features/orders/domain/use_cases/my_orders_use_case.dart'
+    as _i1055;
+import '../../features/orders/presentation/manager/my_orders_view_model.dart'
+    as _i29;
 import '../api/api_manager/api_manager.dart' as _i680;
 import '../api/api_manager/api_manager_register.dart' as _i777;
 import '../api/dio_module.dart' as _i784;
@@ -150,6 +161,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i296.StartOrderDataSourcesRepoImpl(gh<_i680.ApiService>()));
     gh.factory<_i994.AuthOnLineDataSource>(
         () => _i140.AuthOnLineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i131.MyOrdersOnlineDataSource>(
+        () => _i291.MyOrdersOnlineDataSourceImpl(gh<_i680.ApiService>()));
     gh.factory<_i665.RegisterOnlineDataSource>(() =>
         _i211.RegisterOnlineDataSourceImpl(gh<_i777.RegisterApiManager>()));
     gh.factory<_i1021.HomeRepo>(
@@ -172,6 +185,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1044.StartOrderUseCase(gh<_i750.OrderDetailsRepo>()));
     gh.factory<_i804.ChangePasswordOnlineDataSource>(
         () => _i427.ChangePasswordOnlineDataSourceImpl(gh<_i680.ApiService>()));
+    gh.factory<_i456.MyOrdersRepo>(
+        () => _i917.MyOrdersRepoImpl(gh<_i131.MyOrdersOnlineDataSource>()));
     gh.factory<_i184.ForgetPasswordRepo>(() => _i732.ForgetPasswordRepoImpl(
         gh<_i740.ForgetPasswordOnlineDatasource>()));
     gh.factory<_i164.EditProfileRepo>(
@@ -202,6 +217,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i319.ChangePasswordViewModel(gh<_i282.ChangePasswordUseCase>()));
     gh.factory<_i87.ForgetPasswordViewModel>(
         () => _i87.ForgetPasswordViewModel(gh<_i427.ForgetPasswordUseCase>()));
+    gh.factory<_i1055.MyOrdersUseCase>(
+        () => _i1055.MyOrdersUseCase(gh<_i456.MyOrdersRepo>()));
     gh.factory<_i330.StartOrderCubit>(
         () => _i330.StartOrderCubit(gh<_i1044.StartOrderUseCase>()));
     gh.factory<_i790.EditProfileUseCase>(
@@ -212,6 +229,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i936.EditProfileCubit(gh<_i790.EditProfileUseCase>()));
     gh.factory<_i103.VehiclesUseCase>(
         () => _i103.VehiclesUseCase(gh<_i566.VehiclesRepo>()));
+    gh.factory<_i29.MyOrdersViewModel>(
+        () => _i29.MyOrdersViewModel(gh<_i1055.MyOrdersUseCase>()));
     gh.factory<_i986.VerifyPasswordViewModel>(
         () => _i986.VerifyPasswordViewModel(gh<_i135.VerifyUseCase>()));
     gh.factory<_i1038.LoginUseCases>(

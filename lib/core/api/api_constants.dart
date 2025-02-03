@@ -14,4 +14,5 @@ class ApiConstants {
   static const String editProfile = "drivers/editProfile";
   static const String startOrder = "orders/start";
   static const String updateOrder = "orders/state";
+  static const String getMyOrders = 'orders/driver-orders';
 }

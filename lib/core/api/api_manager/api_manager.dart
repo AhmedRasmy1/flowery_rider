@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flowery_rider/features/orders/data/models/my_orders_response.dart';
 import '../../../features/home/data/response/pending__orders__response.dart';
 import '../../../features/edit_profile/data/models/response/edit_profile_response.dart';
 import 'package:injectable/injectable.dart';
@@ -67,7 +68,6 @@ abstract class ApiService {
       @Body() ChangePasswordRequest changePasswordRequest,
       @Header("Authorization") String token);
 
-
   @GET(ApiConstants.getPendingDriverOrdersRoute)
   Future<PendingOrdersResponse> getHomeData(
       @Header("Authorization") String token);
@@ -78,6 +78,11 @@ abstract class ApiService {
 
   @PUT('${ApiConstants.updateOrder}/{orderId}')
   Future<UpdateOrderStateResponse?> updateOrder(
-      @Path()String orderId,
-      @Body() UpdateOrderRequest updateOrderRequest, @Header("Authorization") String token);
+      @Path() String orderId,
+      @Body() UpdateOrderRequest updateOrderRequest,
+      @Header("Authorization") String token);
+
+  @GET(ApiConstants.getMyOrders)
+  Future<MyOrdersResponse> getMyOrders(
+      @Header("Authorization") String token);
 }

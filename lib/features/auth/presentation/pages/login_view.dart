@@ -56,17 +56,27 @@ class _LoginScreenState extends State<LoginView> {
             if (state is LoadingLoginState) {
               customLoadingDialog(context);
             } else if (state is SuccessLoginState) {
-              if (orderPendingId?.isNotEmpty ?? false) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OrderDetailsView(),
-                  ),
-                );
-              } else {
-                Navigator.pushReplacementNamed(
-                    context, RoutesManager.layoutRoute);
-              }
+              // orderPendingId.isNotEmpty
+              //     ?
+                  Navigator.pushReplacementNamed(
+                  context, RoutesManager.layoutRoute);
+                  // : Navigator.pushReplacement(
+                  // context,
+                  // MaterialPageRoute(
+                  //   builder: (context) => OrderDetailsView(),
+                  // ));
+
+//               if (orderPendingId?.isNotEmpty ?? false) {
+//                 Navigator.pushReplacement(
+//                   context,
+//                   MaterialPageRoute(
+//                     builder: (context) => OrderDetailsView(),
+//                   ),
+//                 );
+//               } else {
+//                 Navigator.pushReplacementNamed(
+//                     context, RoutesManager.layoutRoute);
+//               }
             } else if (state is ErrorLoginState) {
               Navigator.pop(context);
               MotionToast.error(
