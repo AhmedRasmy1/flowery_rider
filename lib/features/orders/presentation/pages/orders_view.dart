@@ -72,7 +72,7 @@ class _OrdersViewState extends State<OrdersView> {
                   child: CustomAppBar(
                     color: Colors.black,
                     title: 'My orders',
-                    onTap: () {},
+                    // onTap: () {},
                   ),
                 ),
                 SizedBox(

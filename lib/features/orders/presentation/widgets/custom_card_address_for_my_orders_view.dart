@@ -61,7 +61,7 @@ class CustomCardAddressForMyOrdersView extends StatelessWidget {
                 clipBehavior: Clip.antiAlias,
                 decoration:
                 BoxDecoration(borderRadius: BorderRadius.circular(50)),
-                child:CashedImage(url: urlImage)
+                child:CustomCashedImage(url: urlImage)
             ),
             subtitle: Row(
               children: [
