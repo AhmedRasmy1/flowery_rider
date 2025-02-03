@@ -107,22 +107,21 @@ class _OrderCardState extends State<OrderCard> {
                             );
                             await FirebaseUtils.addOrderToFirebase(
                               orders: widget.orderPending,
-
-
                             );
-                            await FirebaseUtils.saveDriverInOrderData(CacheService.getData(
-                                key: CacheConstants.orderPendingId), Driver(
-                              long: '37',
-                              lat: '24',
-                              vehicleType: driverData?.vehicleType,
-                              id: driverData?.id,
-                              phone: driverData?.phone,
-                              photo:  driverData?.photo,
-                              firstName: driverData?.firstName,
-                              lastName:  driverData?.lastName,
-                              email:   driverData?.email,
-
-                            ));
+                            await FirebaseUtils.saveDriverInOrderData(
+                                CacheService.getData(
+                                    key: CacheConstants.orderPendingId),
+                                Driver(
+                                  long: '37',
+                                  lat: '24',
+                                  vehicleType: driverData?.vehicleType,
+                                  id: driverData?.id,
+                                  phone: driverData?.phone,
+                                  photo: driverData?.photo,
+                                  firstName: driverData?.firstName,
+                                  lastName: driverData?.lastName,
+                                  email: driverData?.email,
+                                ));
                             await FirebaseUtils.updateOrderState(
                               CacheService.getData(
                                   key: CacheConstants.orderPendingId),

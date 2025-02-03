@@ -84,19 +84,33 @@ class FirebaseUtils {
       log('Error updating order state: $e');
     }
   }
-
-  static Future<void> updateLatLongDriver(String orderId,
-      LatLongLocation latLong) async {
+  static Future<void> updateLatLongDriver(
+      {required String orderId,required  String lat,required String long}) async {
     try {
-      var document =
-      FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId);
-      await document.update({"driver": latLong.toJson()});
+      var document = FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId);
+      await document.update({
+        "driver.lat": lat,
+        "driver.long": long,
+      });
 
-      log('Order state updated successfully.');
+      log('Lat and Long updated successfully.');
     } catch (e) {
-      log('Error updating order state: $e');
+      log('Error updating lat and long: $e');
     }
   }
+
+  // static Future<void> updateLatLongDriver(String orderId,
+  //     Driver driver) async {
+  //   try {
+  //     var document =
+  //     FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId);
+  //     await document.update({"driver": driver.toJson()});
+  //
+  //     log('Order state updated successfully.');
+  //   } catch (e) {
+  //     log('Error updating order state: $e');
+  //   }
+  // }
 }
 
 class OrderStateModel {
@@ -140,10 +154,10 @@ class LatLongLocation {
     };
   }
 
-
-  factory LatLongLocation.fromJson(Map<String, dynamic> json) {
-    return LatLongLocation(
-      lat: json['lat'] as String,
-      long: json['long'] as String,
-    );
-  }}
+}
+  // factory LatLongLocation.fromJson(Map<String, dynamic> json) {
+  //   return LatLongLocation(
+  //     lat: json['lat'] as String,
+  //     long: json['long'] as String,
+  //   );
+  // }}
