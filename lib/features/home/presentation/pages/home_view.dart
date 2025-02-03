@@ -68,6 +68,7 @@ class _HomeViewState extends State<HomeView> {
                   onChanged: (value) {
                     setState(() {
                       isAvailable = value;
+                      if(isAvailable==true) viewModel.getHomeData("Bearer $savedToken");
                     });
                   },
                 ),
