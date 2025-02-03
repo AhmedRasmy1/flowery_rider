@@ -16,4 +16,7 @@ class AssetsManager {
   static const String test = 'assets/images/test.svg';
   static const String backIcon = 'assets/images/BackIcon.svg';
   static const String orderSuccessfullyIcon = 'assets/images/orderSuccessfullyIcon.svg';
+  static const String markerUser = 'assets/images/markerUser.png';
+  static const String markerDriver = 'assets/images/markerDriver.png';
+  static const String markerStore = 'assets/images/iconStore.png';
 }

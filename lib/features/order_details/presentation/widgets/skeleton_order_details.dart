@@ -24,6 +24,7 @@ class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
     return Skeletonizer(
       child:  ListView(
         children: [
+          SizedBox(height: 24,),
           Container(
             padding: EdgeInsets.all(16),
             decoration: BoxDecoration(

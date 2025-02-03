@@ -1,3 +1,4 @@
+import 'package:flowery_rider/features/my_profile/domain/entities/profile_data_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/home/presentation/pages/home_view.dart';
@@ -13,4 +14,7 @@ class AppConstants {
     MyProfile(),
   ];
   static const int listGenerate = 6;
+  static String googleAPIKey = "AIzaSyD9muKr3jbebuye6Frinp1dY-BZZ-Qq6b4";
+
 }
+DriverEntity? driverData;

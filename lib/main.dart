@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/di/di.dart';
 import 'core/resources/routes_manager.dart';
+import 'core/resources/theme_manager.dart';
 import 'core/utils/cashed_data_shared_preferences.dart';
 import 'core/utils/my_bloc_observer.dart';
 import 'firebase_options.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
   configureDependencies();
   EasyLoading.init();
   Bloc.observer = MyBlocObserver();
+
   runApp(const FlowerRider());
 }
 
@@ -46,7 +48,7 @@ class FlowerRider extends StatelessWidget {
             ],
             debugShowCheckedModeBanner: false,
             onGenerateRoute: RouteGenerator.getRoute,
-
+            theme: getApplicationTheme(),
             initialRoute: RoutesManager.onBoarding,
             //home: HomeView(),
             // initialRoute: RoutesManager.onBoarding,

@@ -34,7 +34,7 @@ class CustomCardOrderDetails extends StatelessWidget {
               color: ColorManager.blackPrice, fontSize: AppSize.s14),
         ),
         trailing: Text(
-          'X1',
+          'X${productInfo?.quantity}',
           style:
               getSemiBoldStyle(color: ColorManager.pink, fontSize: AppSize.s14),
         ),

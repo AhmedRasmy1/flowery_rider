@@ -40,6 +40,7 @@ class CustomCardDetails extends StatelessWidget {
         ),
         Card(
           color: Colors.white,
+          elevation: 5,
           margin: EdgeInsets.all(0),
           child: ListTile(
             contentPadding: EdgeInsets.all(10),

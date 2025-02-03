@@ -10,7 +10,6 @@ import '../../../../core/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import '../../data/models/request/update_order_request.dart';
 import '../view_model/start_order_cubit.dart';
-
 import '../widgets/order_detailsV_view_body.dart';
 
 class OrderDetailsView extends StatefulWidget {
@@ -89,6 +88,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                               Center(child: Text('Error: ${snapshot.error}')),
                         );
                       } else if (snapshot.hasData) {
+
                         final orderDetails = snapshot.data!;
                         return Expanded(
                           child: OrderDetailsViewBody(
@@ -104,83 +104,81 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                     }),
                 const SizedBox(height: 24),
                 CustomElevatedButton(
-                  buttonColor: isActive
-                      ? ColorManager.pink
-                      : ColorManager.placeHolderColor,
+                  buttonColor: ColorManager.pink,
                   title: currentStep < 4
                       ? buttonTitle[currentStep]
                       : buttonTitle[4],
                   onPressed: currentStep < 4
                       ? () {
-                          if (currentStep < 4) {
-                            FirebaseUtils.updateOrderState(
-                                orderId,
-                                OrderStateModel(
-                                    state: stateOrder2[currentStep],
-                                    updatedAt: DateTime.now()
-                                        .microsecondsSinceEpoch
-                                        .toString()));
-                            setState(() {
-                              currentStep++;
-                              CacheService.setData(
-                                  key: CacheConstants.currentStep,
-                                  value: currentStep);
-                            });
-                            if (currentStep == 1) {
-                              UpdateOrderRequest state = UpdateOrderRequest();
-                              state.state = 'inProgress';
-                              viewModel.startOrder(orderId);
-                              FirebaseUtils.updateOrderState(
-                                orderId,
-                                OrderStateModel(
-                                  state: 'inProgress',
-                                  updatedAt: DateTime.now()
-                                      .microsecondsSinceEpoch
-                                      .toString(),
-                                ),
-                              );
-                              // viewModel.updateOrder(orderId,state);
-                            }
-                            if (currentStep == 4) {
-                              // currentStep++;
-                              UpdateOrderRequest state = UpdateOrderRequest();
-                              state.state = 'completed';
-                              FirebaseUtils.updateOrderState(
-                                orderId,
-                                OrderStateModel(
-                                  state: stateOrder[currentStep],
-                                  updatedAt: DateTime.now()
-                                      .microsecondsSinceEpoch
-                                      .toString(),
-                                ),
-                              );
-                              CacheService.deleteItem(
-                                  key: CacheConstants.currentStep);
-                            }
-                          }
-                        }
-                      : () async {
-                          if (isActive) {
-                            setState(() {});
-                            isActive = false;
-                          } else {
-                            orderPendingId = '';
-                            viewModel.updateOrder(orderId,
-                                UpdateOrderRequest(state: 'completed'));
-                            CacheService.setData(
-                                key: CacheConstants.currentStep, value: 0);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      OrderDeliveredSuccessfully(),
-                                ),
-                            );
+                    FirebaseUtils.updateOrderState(
+                      orderId,
+                      OrderStateModel(
+                        state: stateOrder2[currentStep+1],
+                        updatedAt: DateTime.now().microsecondsSinceEpoch.toString(),
+                      ),
+                    );
+                    if (currentStep == 0) {
+                      UpdateOrderRequest state = UpdateOrderRequest();
+                      state.state = 'inProgress';
+                      viewModel.startOrder(orderId);
+                      FirebaseUtils.updateOrderState(
+                        orderId,
+                        OrderStateModel(
+                          state: stateOrder2[currentStep+1],
+                          updatedAt: DateTime.now().microsecondsSinceEpoch.toString(),
+                        ),
+                      );
+                    }
 
-                            currentStep = 0;
-                          }
-                        },
-                ),
+                    if (currentStep == 4) {
+                      FirebaseUtils.updateOrderState(
+                        orderId,
+                        OrderStateModel(
+                          state: stateOrder2[currentStep+1],
+                          updatedAt: DateTime.now().microsecondsSinceEpoch.toString(),
+                        ),
+                      );
+                      CacheService.deleteItem(key: CacheConstants.currentStep);
+                    }
+
+                    setState(() {
+                      currentStep++;
+                      CacheService.setData(
+                        key: CacheConstants.currentStep,
+                        value: currentStep,
+                      );
+                    });
+                  }
+                      : () async {
+                    if (currentStep == 4) {
+                      viewModel.updateOrder(orderId, UpdateOrderRequest(state:'completed' ));
+                      currentStep = 0;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OrderDeliveredSuccessfully(),
+                        ),
+                      );
+                    }
+                    if (isActive) {
+                      setState(() {});
+                      isActive = false;
+                    } else {
+                      orderPendingId = '';
+                      viewModel.updateOrder(
+                        orderId,
+                        UpdateOrderRequest(state: 'completed'),
+                      );
+                      CacheService.setData(
+                        key: CacheConstants.currentStep,
+                        value: 0,
+                      );
+
+                    }
+                  },
+                )
+
+
               ],
             ),
           ),

@@ -72,7 +72,45 @@ class FirebaseUtils {
       log('Error updating order state: $e');
     }
   }
+  static Future<void> saveDriverInOrderData(String orderId,
+      Driver driverData) async {
+    try {
+      var document =
+      FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId);
+      await document.update({"driver": driverData.toJson()});
 
+      log('Order state updated successfully.');
+    } catch (e) {
+      log('Error updating order state: $e');
+    }
+  }
+  static Future<void> updateLatLongDriver(
+      {required String orderId,required  String lat,required String long}) async {
+    try {
+      var document = FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId);
+      await document.update({
+        "driver.lat": lat,
+        "driver.long": long,
+      });
+
+      log('Lat and Long updated successfully.');
+    } catch (e) {
+      log('Error updating lat and long: $e');
+    }
+  }
+
+  // static Future<void> updateLatLongDriver(String orderId,
+  //     Driver driver) async {
+  //   try {
+  //     var document =
+  //     FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId);
+  //     await document.update({"driver": driver.toJson()});
+  //
+  //     log('Order state updated successfully.');
+  //   } catch (e) {
+  //     log('Error updating order state: $e');
+  //   }
+  // }
 }
 
 class OrderStateModel {
@@ -87,7 +125,7 @@ class OrderStateModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'status': state,
+      'state': state,
       'updatedAt': updatedAt,
     };
   }
@@ -95,7 +133,31 @@ class OrderStateModel {
 
   factory OrderStateModel.fromJson(Map<String, dynamic> json) {
     return OrderStateModel(
-      state: json['status'] as String,
+      state: json['state'] as String,
       updatedAt: json['updatedAt'] as String,
     );
   }}
+class LatLongLocation {
+  String lat;
+  String long;
+
+  LatLongLocation({
+    required this.lat,
+    required this.long,
+  });
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'lat': lat,
+      'long': long,
+    };
+  }
+
+}
+  // factory LatLongLocation.fromJson(Map<String, dynamic> json) {
+  //   return LatLongLocation(
+  //     lat: json['lat'] as String,
+  //     long: json['long'] as String,
+  //   );
+  // }}

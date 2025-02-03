@@ -1,3 +1,5 @@
+import 'package:flowery_rider/core/resources/custom_loading_dialog.dart';
+
 import '../../../../core/functions/extenstions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -52,17 +54,7 @@ class _LoginScreenState extends State<LoginView> {
         body: BlocListener<LoginViewModel, LoginState>(
           listener: (context, state) {
             if (state is LoadingLoginState) {
-              showDialog(
-                barrierDismissible: true,
-                context: context,
-                builder: (context) => AlertDialog(
-                  backgroundColor: Colors.transparent,
-                  content: Center(
-                      child: CircularProgressIndicator(
-                    color: ColorManager.pink,
-                  )),
-                ),
-              );
+              customLoadingDialog(context);
             } else if (state is SuccessLoginState) {
               // orderPendingId.isNotEmpty
               //     ?
@@ -74,6 +66,17 @@ class _LoginScreenState extends State<LoginView> {
                   //   builder: (context) => OrderDetailsView(),
                   // ));
 
+//               if (orderPendingId?.isNotEmpty ?? false) {
+//                 Navigator.pushReplacement(
+//                   context,
+//                   MaterialPageRoute(
+//                     builder: (context) => OrderDetailsView(),
+//                   ),
+//                 );
+//               } else {
+//                 Navigator.pushReplacementNamed(
+//                     context, RoutesManager.layoutRoute);
+//               }
             } else if (state is ErrorLoginState) {
               Navigator.pop(context);
               MotionToast.error(

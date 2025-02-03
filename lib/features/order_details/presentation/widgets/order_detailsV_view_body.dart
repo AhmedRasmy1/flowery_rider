@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/resources/values_manager.dart';
@@ -61,7 +62,7 @@ class OrderDetailsViewBody extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text('Wed, 03 Sep 2024, 11:00 AM  ',
+                    Text(convertDateTime(orderDetails.createdAt??''),
                         style: getBoldStyle(
                             fontSize: AppSize.s14,
                             color: ColorManager.blackPrice)),
@@ -82,7 +83,7 @@ class OrderDetailsViewBody extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PickupLocationView(orderDetails:orderDetails ,),
+                  builder: (context) => PickupLocationView(orderDetails:orderDetails ,isUser: false,),
                 ),
               );
             },
@@ -106,7 +107,7 @@ class OrderDetailsViewBody extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PickupLocationView(orderDetails:orderDetails ,),
+                    builder: (context) => PickupLocationView(orderDetails:orderDetails,isUser: true ,),
                   ));
             },
             noIcon: false,
@@ -215,4 +216,10 @@ class OrderDetailsViewBody extends StatelessWidget {
       ],
     );
   }
+}
+
+String convertDateTime(String inputDate){
+  DateTime dateTime=DateTime.parse(inputDate).toLocal();
+  String formatedDate=DateFormat("EEE, dd MMM yyyy, hh:mm a").format(dateTime);
+  return formatedDate;
 }

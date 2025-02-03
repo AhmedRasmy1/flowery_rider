@@ -61,7 +61,7 @@ class CardDriver extends StatelessWidget {
           width: AppSize.s50,
           height: AppSize.s50,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-          child: CashedImage(
+          child: CustomCashedImage(
               height: AppSize.s50,
               width: AppSize.s50,
               sizeIndicator: AppSize.s10,

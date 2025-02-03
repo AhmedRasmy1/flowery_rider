@@ -1,3 +1,5 @@
+import 'package:flowery_rider/core/resources/style_manager.dart';
+import 'package:flowery_rider/core/resources/values_manager.dart';
 import 'package:flowery_rider/core/widgets/custom_app_bar.dart';
 import 'package:flowery_rider/features/home/data/response/pending__orders__response.dart';
 import 'package:flowery_rider/features/home/presentation/widgets/available_for_delivery.dart';
@@ -59,55 +61,83 @@ class _HomeViewState extends State<HomeView> {
             backgroundColor: Colors.white,
             body: Column(
               children: [
-                CustomAppBarHome(title: 'Flowery Rider',
+                CustomAppBarHome(
+                  title: 'Flowery Rider',
                   color: ColorManager.pink,
-                  isAvailable
-                  :isAvailable,
-                  onChanged
-                  :(value){
+                  isAvailable: isAvailable,
+                  onChanged: (value) {
                     setState(() {
                       isAvailable = value;
+                      if(isAvailable==true) viewModel.getHomeData("Bearer $savedToken");
                     });
-                  },),
-                isAvailable ? BlocConsumer<HomeCubit, HomeState>(
-                    listener: (context, state) {
-                      if(state is HomeSuccess){
-                        isRefreshIndicator=true;
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is HomeLoading) {
-                        return Expanded(child: SkeletonHome());
-                      } else if (state is HomeSuccess) {
-                        PendingDriverOrdersEntity pendingDriverOrdersEntity =
-                            state.pendingDriverOrdersEntity;
-                        List<Orders> orders =
-                            pendingDriverOrdersEntity.orders ?? [];
+                  },
+                ),
+                isAvailable
+                    ? BlocConsumer<HomeCubit, HomeState>(
+                        listener: (context, state) {
+                        if (state is HomeSuccess) {
+                          isRefreshIndicator = true;
+                        }
+                      }, builder: (context, state) {
+                        if (state is HomeLoading) {
+                          return Expanded(child: SkeletonHome());
+                        } else if (state is HomeSuccess) {
+                          PendingDriverOrdersEntity pendingDriverOrdersEntity =
+                              state.pendingDriverOrdersEntity;
+                          List<Orders> orders =
+                              pendingDriverOrdersEntity.orders ?? [];
 
-                        return orders.isNotEmpty
-                            ? Expanded(
-                          child: ListView.builder(
-                            padding: EdgeInsets.all(16.0),
-                            itemCount: orders.length,
-                            itemBuilder: (context, index) {
-                              return OrderCard(
-                                orderPending: orders[index],
-                                onReject: () {
-                                  viewModel
-                                      .rejectOrderFromScreen(orders[index]);
-                                },
-                              );
-                            },
-                          ),
-                        )
-                            : Expanded(
-                              child: RefreshHome(
-                              viewModel: viewModel, savedToken: savedToken),
-                            );
-                      } else {
-                        return const Center(child: Text('Error'));
-                      }
-                    }) : Expanded(child: AvailableForDelivery()),
+                          return orders.isNotEmpty
+                              ? Expanded(
+                                  child: Stack(
+                                    clipBehavior: Clip.antiAlias,
+                                    children: [
+                                      ListView.builder(
+                                        padding: EdgeInsets.all(16.0),
+                                        itemCount: orders.length,
+                                        itemBuilder: (context, index) {
+                                          return OrderCard(
+                                            orderPending: orders[index],
+                                            onReject: () {
+                                              viewModel.rejectOrderFromScreen(
+                                                  orders[index]);
+                                            },
+                                          );
+                                        },
+                                      ),
+                                      Positioned(
+                                        right: 0,
+                                        bottom: 25,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: ColorManager.pink
+                                                .withOpacity(.6),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(50)),
+                                          ),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 16, vertical: 8),
+                                          child: Text(
+                                            orders.length.toString(),
+                                            style: getBoldStyle(
+                                                color: ColorManager.white,
+                                                fontSize: AppSize.s14),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              : Expanded(
+                                  child: RefreshHome(
+                                      viewModel: viewModel,
+                                      savedToken: savedToken),
+                                );
+                        } else {
+                          return const Center(child: Text('Error'));
+                        }
+                      })
+                    : Expanded(child: AvailableForDelivery()),
               ],
             ),
           ),

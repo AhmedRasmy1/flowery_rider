@@ -1,6 +1,8 @@
+import 'package:flowery_rider/core/resources/app_constants.dart';
 import 'package:flowery_rider/core/resources/routes_manager.dart';
 
 import '../../../../core/firebase_core/firebase_utils/firebase_utils.dart';
+import '../../../../core/resources/custom_loading_dialog.dart';
 import '../../../../core/utils/cashed_data_shared_preferences.dart';
 import '../../data/response/pending__orders__response.dart';
 import 'storeInfo.dart';
@@ -19,6 +21,8 @@ class OrderCard extends StatefulWidget {
 }
 
 class _OrderCardState extends State<OrderCard> {
+  bool isButtonDisabled = false;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -89,23 +93,77 @@ class _OrderCardState extends State<OrderCard> {
                   child: Text('Reject'),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    CacheService.setData(
-                        key: CacheConstants.orderPendingId,
-                        value: widget.orderPending.id);
-                    FirebaseUtils.addOrderToFirebase(
-                        orders: widget.orderPending);
-                    Navigator.pushReplacementNamed(
-                        context, RoutesManager.orderDetailsView);
-                  },
+                  onPressed: isButtonDisabled
+                      ? null
+                      : () async {
+                          setState(() {
+                            isButtonDisabled = true;
+                          });
+                          customLoadingDialog(context);
+                          try {
+                            await CacheService.setData(
+                              key: CacheConstants.orderPendingId,
+                              value: widget.orderPending.id,
+                            );
+                            await FirebaseUtils.addOrderToFirebase(
+                              orders: widget.orderPending,
+                            );
+                            await FirebaseUtils.saveDriverInOrderData(
+                                CacheService.getData(
+                                    key: CacheConstants.orderPendingId),
+                                Driver(
+                                  long: '37',
+                                  lat: '24',
+                                  vehicleType: driverData?.vehicleType,
+                                  id: driverData?.id,
+                                  phone: driverData?.phone,
+                                  photo: driverData?.photo,
+                                  firstName: driverData?.firstName,
+                                  lastName: driverData?.lastName,
+                                  email: driverData?.email,
+                                ));
+                            await FirebaseUtils.updateOrderState(
+                              CacheService.getData(
+                                  key: CacheConstants.orderPendingId),
+                              OrderStateModel(
+                                state: 'Accepted',
+                                updatedAt: DateTime.now()
+                                    .microsecondsSinceEpoch
+                                    .toString(),
+                              ),
+                            );
+                            if (mounted) {
+                              Navigator.pop(context);
+                              Navigator.pushReplacementNamed(
+                                context,
+                                RoutesManager.orderDetailsView,
+                              );
+                            }
+                          } catch (e) {
+                            if (mounted) {
+                              Navigator.pop(context);
+                            }
+                            setState(() {
+                              isButtonDisabled = false;
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content:
+                                    Text('حدث خطأ، يرجى المحاولة مرة أخرى'),
+                              ),
+                            );
+                          }
+                        },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pink,
+                    backgroundColor: isButtonDisabled
+                        ? ColorManager.placeHolderColor
+                        : ColorManager.pink,
                   ),
                   child: Text(
                     'Accept',
                     style: TextStyle(color: Colors.white),
                   ),
-                ),
+                )
               ],
             ),
           ],

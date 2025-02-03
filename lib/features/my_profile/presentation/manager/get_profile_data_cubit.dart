@@ -13,7 +13,7 @@ part 'get_profile_data_state.dart';
 class GetProfileDataCubit extends Cubit<GetProfileDataState> {
   GetProfileDataCubit(this._getProfileUseCase) : super(GetProfileDataInitial());
   final GetProfileUseCase _getProfileUseCase;
-
+  DriverEntity? driver;
   Future<void> getProfileData(String token) async {
     emit(LoadingGetProfileDataState());
 
