@@ -153,7 +153,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                     if (currentStep == 4) {
                       viewModel.updateOrder(orderId, UpdateOrderRequest(state:'completed' ));
                       currentStep = 0;
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => OrderDeliveredSuccessfully(),

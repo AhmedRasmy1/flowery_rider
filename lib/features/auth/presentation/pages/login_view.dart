@@ -58,21 +58,18 @@ class _LoginScreenState extends State<LoginView> {
                 builder: (context) => AlertDialog(
                   backgroundColor: Colors.transparent,
                   content: Center(
-                      child: CircularProgressIndicator(
-                        color: ColorManager.pink,
-                      )),
+                    child: CircularProgressIndicator(
+                      color: ColorManager.pink,
+                    ),
+                  ),
                 ),
               );
             } else if (state is SuccessLoginState) {
               orderPendingId.isEmpty
-                  ?      Navigator.pushReplacementNamed(
-                  context, RoutesManager.layoutRoute)
-                  : Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OrderDetailsView(),
-                  ));
-
+                  ? Navigator.pushReplacementNamed(
+                      context, RoutesManager.layoutRoute)
+                  : Navigator.pushReplacementNamed(
+                      context, RoutesManager.orderDetailsView);
             } else if (state is ErrorLoginState) {
               Navigator.pop(context);
               MotionToast.error(
@@ -117,7 +114,7 @@ class _LoginScreenState extends State<LoginView> {
                         obscureText: true,
                         labelText: AppLocalizations.of(context)!.password,
                         hintText:
-                        AppLocalizations.of(context)!.enterYourPassword,
+                            AppLocalizations.of(context)!.enterYourPassword,
                         validator: (value) => validatePasswordMatch(
                           password: _passwordController.text,
                           confirmPassword: _passwordController.text,
@@ -243,7 +240,7 @@ class _LoginScreenState extends State<LoginView> {
                                       decoration: TextDecoration.underline,
                                       decorationColor: ColorManager.darkGrey,
                                       decorationStyle:
-                                      TextDecorationStyle.solid,
+                                          TextDecorationStyle.solid,
                                       decorationThickness: 1.5,
                                     ),
                                   ),
