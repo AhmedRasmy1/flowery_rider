@@ -71,9 +71,15 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   injectable_generator: ^2.6.2
+  flutter_launcher_icons: "^0.14.3"
   json_serializable: ^6.8.0
   lints: ^5.0.0
   retrofit_generator: ^9.1.5
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo_icon.png"
+  min_sdk_android: 21
 flutter:
   generate: true
   uses-material-design: true

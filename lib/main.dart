@@ -50,10 +50,6 @@ class FlowerRider extends StatelessWidget {
             onGenerateRoute: RouteGenerator.getRoute,
             theme: getApplicationTheme(),
             initialRoute: RoutesManager.onBoarding,
-            //home: HomeView(),
-            // initialRoute: RoutesManager.onBoarding,
-
-            //home: OrderDetailsView(),
           );
         },
       ),
